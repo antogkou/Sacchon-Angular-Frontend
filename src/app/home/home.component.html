@@ -1,0 +1,39 @@
+<mat-toolbar class="position-absolute" color="primary">
+  <mat-toolbar-row class="justify-content-between">
+    <button [routerLink]="['/home']" mat-button>Home</button>
+    <button [routerLink]="['/measurements']" mat-button>Measurements</button>
+    <button [routerLink]="['/login']" mat-button>Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="d-flex align-items-center h-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <mat-card>
+          <h3 class="text-center">Sachoon A Diabetes Management Application</h3>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table border="1" cellspacing="0" cellpadding="0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{ user.createdDate | date: "dd/MM/yyyy" }}</th>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.phoneNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+</table>
