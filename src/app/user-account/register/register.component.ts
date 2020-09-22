@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
       address: ['', Validators.required],
       city: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      userRole: ['', Validators.required],
+      userRole: [''],
       zipCode: ['', Validators.required],
-      hasActiveDoctor: [1],
-      isActive: [0],
-      createdDate: []
+      // hasActiveDoctor: [1],
+      // isActive: [0],
+      // createdDate: []
     });
   }
 

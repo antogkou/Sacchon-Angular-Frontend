@@ -11,9 +11,9 @@ export class User {
     phoneNumber: number;
     userRole: string;
     zipCode: number;
-    hasActiveDoctor: number = 1;
-    createdDate: number;
-    isActive: number = 0;
+    // hasActiveDoctor: number = 1;
+    // createdDate: number;
+    // isActive: number = 0;
 
     //role: Role;
     //token?: string;
