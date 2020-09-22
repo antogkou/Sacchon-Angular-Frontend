@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   // get data() {
   //   return this.loginForm.controls;
-  // }
+  // }  
 
   // onLogout(){
   //   //debugger

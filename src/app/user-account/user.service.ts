@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserService {
+  public currentUserRole: any;
 
   constructor(private http: HttpClient) {
   
@@ -35,12 +36,13 @@ export class UserService {
       .pipe(
         tap((data: any) => {
           btoa(data.email + ':' + data.password);
-          localStorage.setItem(
-            'account',
-            btoa(data.email + ':' + data.password)
-          );
+          localStorage.setItem( 'account', btoa(data.email + ':' + data.password));
+          //test
+          this.currentUserRole = data.userRole;
+          console.log(this.currentUserRole);
         })
       );
+      
   }
 
   register(user: User){
