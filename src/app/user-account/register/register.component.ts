@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -14,15 +15,24 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      userRole: [''],
+      zipCode: ['', Validators.required],
+      // hasActiveDoctor: [1],
+      // isActive: [0],
+      // createdDate: []
     });
   }
 
@@ -30,18 +40,31 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  onSubmit() {
+  onRegister(){
     if (this.registerForm.invalid) {
       return;
     } else {
-      localStorage.setItem('firstname', this.data.firstname.value);
-      localStorage.setItem('lastname', this.data.lastname.value);
-      localStorage.setItem('username', this.data.username.value);
-      localStorage.setItem('password', this.data.password.value);
-      this._snackBar.open('Register Successfully', 'Success', {
-        duration: 2000,
-      });
-      this.router.navigate(['/login']);
+      this.userService.register(this.registerForm.value).subscribe(r => {
+        this.router.navigate(['/login']);
+      })
+        this._snackBar.open('Register Successfully', 'Success', {
+         duration: 2000,
+          });
     }
   }
+
+  // onSubmit() {
+  //   if (this.registerForm.invalid) {
+  //     return;
+  //   } else {
+  //     localStorage.setItem('firstname', this.data.firstname.value);
+  //     localStorage.setItem('lastname', this.data.lastname.value);
+  //     localStorage.setItem('username', this.data.email.value);
+  //     localStorage.setItem('password', this.data.password.value);
+  //     this._snackBar.open('Register Successfully', 'Success', {
+  //       duration: 2000,
+  //     });
+  //     this.router.navigate(['/login']);
+  //   }
+  // }
 }

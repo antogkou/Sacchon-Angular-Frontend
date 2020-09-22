@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [
   { path: '',  redirectTo: 'login', pathMatch: 'full'  },
@@ -48,6 +49,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+    NgxChartsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

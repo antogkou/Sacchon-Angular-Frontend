@@ -2,7 +2,8 @@
   <mat-toolbar-row class="justify-content-between">
     <button [routerLink]="['/home']" mat-button>Home</button>
     <button [routerLink]="['/measurements']" mat-button>Measurements</button>
-    <button [routerLink]="['/login']" mat-button>Logout</button>
+    <!-- <button [routerLink]="['/login']" mat-button>Logout</button> -->
+    <button (click)="logout()" mat-button>Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="d-flex align-items-center h-100">
@@ -15,6 +16,11 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Authorize patients only  -->
+<div *ngIf="userService.currentUserRole == 'patient'">
+<app-measurement-list></app-measurement-list>
 </div>
 
 <table border="1" cellspacing="0" cellpadding="0">
@@ -37,3 +43,27 @@
     </tbody>
   </table>
 </table>
+
+<!-- dummy chart -->
+<!-- <ngx-charts-line-chart
+  [view]="view"
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [timeline]="timeline"
+  [results]="multi"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)"
+  >
+</ngx-charts-line-chart> -->
+
+
+<div class="chart-container" style="position: relative; height:40vh; width:70vw">    
+  <canvas id="canvas">{{ Linechart }}</canvas>    
+</div>
