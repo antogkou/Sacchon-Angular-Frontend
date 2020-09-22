@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from 'src/user';
+import { User } from './_models/user';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -41,6 +41,11 @@ export class UserService {
           );
         })
       );
+  }
+
+  register(user: User){
+    return this.http
+    .post(this.baseUrl + 'register', user);
   }
 
   checkRole(userRole) {

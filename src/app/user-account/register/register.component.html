@@ -4,25 +4,56 @@
         <div class="col-sm-5">
           <mat-card>
             <h3 class="text-center">Register</h3>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
               <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="First Name" formControlName="firstname">
-                <mat-error *ngIf="data.firstname.errors?.required">First Name is required</mat-error>
+                <input type="text" matInput placeholder="First Name" formControlName="firstName">
+                <mat-error *ngIf="data.firstName.errors?.required">First Name is required</mat-error>
               </mat-form-field>
+
               <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Last Name" formControlName="lastname">
-                <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error>
+                <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+                <mat-error *ngIf="data.lastName.errors?.required">Last Name is required</mat-error>
               </mat-form-field>
+
+              <br>
+
               <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Username" formControlName="username">
-                <mat-error *ngIf="data.username.errors?.required">Username is required</mat-error>
+                <input type="text" matInput placeholder="Home Address" formControlName="address">
+                <mat-error *ngIf="data.address.errors?.required">Home Address is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="City" formControlName="city">
+                <mat-error *ngIf="data.city.errors?.required">City is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="Phone Number" formControlName="phoneNumber">
+                <mat-error *ngIf="data.phoneNumber.errors?.required">Phone Number is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="User Role" formControlName="userRole">
+                <mat-error *ngIf="data.userRole.errors?.required">User Role is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="w-100">
+                <input type="number" matInput placeholder="Zip Code" formControlName="zipCode">
+                <mat-error *ngIf="data.zipCode.errors?.required">Zip Code is required</mat-error>
+              </mat-form-field>
+              
+              <mat-form-field class="w-100">
+                <input type="text" matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
               </mat-form-field>
               <mat-form-field class="w-100">
                 <input type="password" matInput placeholder="Password" formControlName="password">
                 <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
               </mat-form-field>
+
               <div class="mt-4">
                 <button mat-raised-button color="primary">Register</button>
+                <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
                 <a [routerLink]="['/login']" class="ml-2" mat-button color="primary">Cancel</a>
               </div>
             </form>
