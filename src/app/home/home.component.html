@@ -2,7 +2,8 @@
   <mat-toolbar-row class="justify-content-between">
     <button [routerLink]="['/home']" mat-button>Home</button>
     <button [routerLink]="['/measurements']" mat-button>Measurements</button>
-    <button [routerLink]="['/login']" mat-button>Logout</button>
+    <!-- <button [routerLink]="['/login']" mat-button>Logout</button> -->
+    <button (click)="logout()" mat-button>Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="d-flex align-items-center h-100">
@@ -16,6 +17,8 @@
     </div>
   </div>
 </div>
+
+<app-measurement-list></app-measurement-list>
 
 <table border="1" cellspacing="0" cellpadding="0">
   <table class="table">
