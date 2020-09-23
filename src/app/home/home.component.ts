@@ -28,10 +28,14 @@ export class HomeComponent implements OnInit {
   //   ['Opera', 6.2],
   //   ['Others', 0.7],
   // ];
-  chartColumns = ['Glucose', 'Carb Intake'];
-  options = {};
-  width = 750;
-  height = 400;
+  chartColumns = ['Date', 'Glucose'];
+  options = {
+    hAxis: {
+      title: 'Timeline'
+   },
+  };
+  width = 950;
+  height = 500;
 
   glucose_level = [];
   carb_intake = [];
@@ -61,7 +65,7 @@ export class HomeComponent implements OnInit {
     this.measurementService.getMeasurements().subscribe((response) => {
       this.measurements = response;
       response.map(item => {
-        this.myData.push([item.measurement_created_date, item.carb_intake]);
+        this.myData.push([item.measurement_created_date, item.glucose_level]);
       })
       console.log(this.measurements);
     });
