@@ -19,14 +19,15 @@ export class HomeComponent implements OnInit {
 
   type = 'LineChart';
   title = 'Glucose level';
-  data = [
-    ['Firefox', 45.0],
-    ['IE', 26.8],
-    ['Chrome', 12.8],
-    ['Safari', 8.5],
-    ['Opera', 6.2],
-    ['Others', 0.7],
-  ];
+  // hard-coded dummy data(works)
+  // data = [
+  //   ['Firefox', 45.0],
+  //   ['IE', 26.8],
+  //   ['Chrome', 12.8],
+  //   ['Safari', 8.5],
+  //   ['Opera', 6.2],
+  //   ['Others', 0.7],
+  // ];
   chartColumns = ['Glucose', 'Carb Intake'];
   options = {};
   width = 750;
@@ -35,8 +36,9 @@ export class HomeComponent implements OnInit {
   glucose_level = [];
   carb_intake = [];
   measurement_created_date = [];
+
+  myData: any[] = [];
   measurements: Measurement[];
-  dataTable: any;
   users: User[];
 
   // End of Chart Test
@@ -59,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.measurementService.getMeasurements().subscribe((response) => {
       this.measurements = response;
       response.map(item => {
-        this.data.push([item.carb_intake, item.measurement_created_date]);
+        this.myData.push([item.measurement_created_date, item.carb_intake]);
       })
       console.log(this.measurements);
     });
