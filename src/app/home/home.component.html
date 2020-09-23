@@ -2,8 +2,7 @@
   <mat-toolbar-row class="justify-content-between">
     <button [routerLink]="['/home']" mat-button>Home</button>
     <button [routerLink]="['/measurements']" mat-button>Measurements</button>
-    <!-- <button [routerLink]="['/login']" mat-button>Logout</button> -->
-    <button (click)="logout()" mat-button>Logout</button>
+    <button [routerLink]="['/login']" mat-button>Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="d-flex align-items-center h-100">
@@ -16,11 +15,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Authorize patients only  -->
-<div *ngIf="userService.currentUserRole == 'patient'">
-  <app-measurement-list></app-measurement-list>
 </div>
 
 <table border="1" cellspacing="0" cellpadding="0">
@@ -43,13 +37,3 @@
     </tbody>
   </table>
 </table>
-
-<google-chart
-  [title]="title"
-  [type]="type"
-  [data]="myData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart>

@@ -31,11 +31,11 @@ export class HomeComponent implements OnInit {
   chartColumns = ['Date', 'Glucose'];
   options = {
     hAxis: {
-      title: 'Timeline'
+      title: 'Days of the Month'
    },
   };
-  width = 950;
-  height = 500;
+  width = 800;
+  height = 450;
 
   glucose_level = [];
   carb_intake = [];
