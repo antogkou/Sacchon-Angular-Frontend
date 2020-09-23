@@ -2,9 +2,8 @@
 
 # npm install
 # npm install bootstrap
-# ng add @angular/material
- Deep purple - No - Yes
 # npm install angular-google-charts
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
