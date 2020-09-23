@@ -20,7 +20,7 @@
 
 <!-- Authorize patients only  -->
 <div *ngIf="userService.currentUserRole == 'patient'">
-<app-measurement-list></app-measurement-list>
+  <app-measurement-list></app-measurement-list>
 </div>
 
 <table border="1" cellspacing="0" cellpadding="0">
@@ -44,6 +44,20 @@
   </table>
 </table>
 
+<google-chart
+  [title]="title"
+  [type]="type"
+  [data]="measurements"
+  [columns]="chartColumns"
+  [options]="options"
+  [width]="width"
+  [height]="height"
+></google-chart>
+
+<!-- <div *ngIf="chart">
+  <canvas id="canvas">{{ chart }}</canvas>
+</div> -->
+
 <!-- dummy chart -->
 <!-- <ngx-charts-line-chart
   [view]="view"
@@ -63,7 +77,9 @@
   >
 </ngx-charts-line-chart> -->
 
-
-<div class="chart-container" style="position: relative; height:40vh; width:70vw">    
-  <canvas id="canvas">{{ Linechart }}</canvas>    
-</div>
+<!-- <div
+  class="chart-container"
+  style="position: relative; height: 40vh; width: 70vw"
+>
+  <canvas id="canvas">{{ Linechart }}</canvas>
+</div> -->
