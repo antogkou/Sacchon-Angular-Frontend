@@ -41,8 +41,7 @@ export class UserService {
           this.currentUserRole = data.userRole;
           console.log(this.currentUserRole);
         })
-      );
-      
+      ); 
   }
 
   register(user: User){
