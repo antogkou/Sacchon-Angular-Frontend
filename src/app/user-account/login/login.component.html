@@ -1,3 +1,11 @@
+<mat-toolbar class="position-absolute" color="primary">
+  <mat-toolbar-row class="justify-content-between">
+    <button [routerLink]="['/home']" mat-button>Home</button>
+    <!-- TODO -->
+    <button [routerLink]="['/about']" mat-button>About</button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="d-flex align-items-center h-100">
     <div class="container">
       <div class="row justify-content-center">
@@ -26,3 +34,19 @@
       </div>
     </div>
   </div>
+
+  <main flex layout="column">
+    <div>
+      <div ui-view="" ></div>
+    </div>
+</main>
+
+<footer>
+<mat-toolbar class="md-hue-2 md-scroll-shrink">
+ 
+
+  <div layout="row" layout-align="center center" flex>
+    Powered by Runtime Terror - Pfizer SeniorZ
+  </div>
+</mat-toolbar>
+</footer>

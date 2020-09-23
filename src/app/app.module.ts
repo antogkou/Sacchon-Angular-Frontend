@@ -18,15 +18,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { MeasurementAddComponent } from './patient/measurement-add/measurement-add.component';
 
 const routes: Routes = [
   { path: '',  redirectTo: 'login', pathMatch: 'full'  },
   { path: 'login', component: LoginComponent  },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'measurements', component: MeasurementListComponent }
+  { path: 'measurements', component: MeasurementListComponent },
+  { path: 'measurements/create', component: MeasurementAddComponent },
 ];
 
 @NgModule({
@@ -35,6 +36,7 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    MeasurementAddComponent,
     MeasurementListComponent],
   imports: [
     CommonModule,
@@ -50,7 +52,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    NgxChartsModule,
     BrowserAnimationsModule,
     GoogleChartsModule,
     RouterModule.forRoot(routes)
