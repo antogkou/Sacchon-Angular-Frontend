@@ -20,7 +20,7 @@
 
 <!-- Authorize patients only  -->
 <div *ngIf="userService.currentUserRole == 'patient'">
-<app-measurement-list></app-measurement-list>
+  <app-measurement-list></app-measurement-list>
 </div>
 
 <table border="1" cellspacing="0" cellpadding="0">
@@ -44,26 +44,12 @@
   </table>
 </table>
 
-<!-- dummy chart -->
-<!-- <ngx-charts-line-chart
-  [view]="view"
-  [scheme]="colorScheme"
-  [legend]="legend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxis]="xAxis"
-  [yAxis]="yAxis"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [timeline]="timeline"
-  [results]="multi"
-  (select)="onSelect($event)"
-  (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)"
-  >
-</ngx-charts-line-chart> -->
-
-
-<div class="chart-container" style="position: relative; height:40vh; width:70vw">    
-  <canvas id="canvas">{{ Linechart }}</canvas>    
-</div>
+<google-chart
+  [title]="title"
+  [type]="type"
+  [data]="myData"
+  [columns]="chartColumns"
+  [options]="options"
+  [width]="width"
+  [height]="height"
+></google-chart>

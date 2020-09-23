@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 const routes: Routes = [
   { path: '',  redirectTo: 'login', pathMatch: 'full'  },
@@ -51,6 +52,7 @@ const routes: Routes = [
     HttpClientModule,
     NgxChartsModule,
     BrowserAnimationsModule,
+    GoogleChartsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

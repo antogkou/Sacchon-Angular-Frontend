@@ -16,11 +16,6 @@ export class MeasurementService {
   password = '123456#!';
 
   getMeasurements(): Observable<Measurement[]> {
-    // return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
-    //   headers: new HttpHeaders({
-    //     Authorization: 'Basic ' + btoa(this.username + ':' + this.password),
-    //   }),
-    // });
     return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
       headers: new HttpHeaders({
         Authorization: 'Basic ' + localStorage.getItem('account'),
@@ -39,7 +34,7 @@ export class MeasurementService {
       },
       {
         headers: new HttpHeaders({
-          Authorization: 'Basic ' + btoa(this.username + ':' + this.password),
+          Authorization: 'Basic ' + localStorage.getItem('account'),
         }),
       }
     );
