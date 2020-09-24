@@ -1,18 +1,12 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { User } from '../user-account/_models/user';
-import { Measurement } from './measurement';
+import { Observable, of } from 'rxjs';
+import { Consult } from '../_models/consult';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MeasurementService {
+export class ConsultService {
   private baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,23 +16,23 @@ export class MeasurementService {
   };
   constructor(private http: HttpClient) {}
 
-  /** GET measurements from the server */
-  getMeasurements(): Observable<Measurement[]> {
-    return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
+  /** GET consults from the server */
+  getConsults(): Observable<Consult[]> {
+    return this.http.get<Consult[]>(this.baseUrl + 'consult', {
       headers: new HttpHeaders({
         Authorization: 'Basic ' + localStorage.getItem('account'),
       }),
     });
   }
 
-  /** POST: add a new measurement to the server */
-  addMeasurement(values: Measurement): Observable<any> {
-    
+  /** Post consult to the server */
+  addConsult(values: Consult): Observable<any> {
     return this.http.post(
-      this.baseUrl + 'measurements',
+      this.baseUrl + 'consult',
       {
-        glucose_level: values.carb_intake,
-        carb_intake: values.glucose_level,
+        consultText: values.consultText,
+        dosage: values.dosage,
+        medication: values.medication
       },
       {
         headers: new HttpHeaders({
@@ -66,5 +60,4 @@ export class MeasurementService {
       return of(result as T);
     };
   }
-
 }

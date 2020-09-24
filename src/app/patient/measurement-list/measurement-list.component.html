@@ -1,29 +1,30 @@
-<!-- <table border="1" cellspacing="0" cellpadding="0">
-  <tr *ngFor="let measurement of measurements">
-    <td>{{ measurement.carb_intake }}</td>
-    <td>{{ measurement.glucose_level }}</td>
-  </tr>
-</table> -->
-
-<table border="1" cellspacing="0" cellpadding="0" >
-
   <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Phone Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let measurement of measurements">
-          <th scope="row">{{measurement.measurement_created_date | date:'dd/MM/yyyy'}}</th>
-           <td>{{ measurement.carb_intake }}</td>
-          <td>{{ measurement.glucose_level }}</td>
-        </tr>
-  
-      </tbody>
-    </table>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let measurement of measurements">
+        <th scope="row">
+          {{ measurement.measurement_created_date | date: "dd/MM/yyyy" }}
+        </th>
+        <td>{{ measurement.carb_intake }}</td>
+        <td>{{ measurement.glucose_level }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-    
+<!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
+<google-chart *ngIf = "myData.length > 0"
+  [title]="title"
+  [type]="type"
+  [data]="myData"
+  [columns]="chartColumns"
+  [options]="options"
+  [width]="width"
+  [height]="height"
+></google-chart>

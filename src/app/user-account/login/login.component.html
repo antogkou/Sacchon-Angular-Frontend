@@ -1,52 +1,42 @@
-<mat-toolbar class="position-absolute" color="primary">
-  <mat-toolbar-row class="justify-content-between">
-    <button [routerLink]="['/home']" mat-button>Home</button>
-    <!-- TODO -->
-    <button [routerLink]="['/about']" mat-button>About</button>
-
-  </mat-toolbar-row>
-</mat-toolbar>
-<div class="d-flex align-items-center h-100">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-5">
-          <div class="alert alert-danger" role="alert" *ngIf="submitted">
-            Email or password is incorrect
-          </div>
-          <mat-card>
-            <h3 class="text-center">Login</h3>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Email" formControlName="email">
-                <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
-              </mat-form-field>
-              <mat-form-field class="w-100">
-                <input type="password" matInput placeholder="Password" formControlName="password">
-                <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
-              </mat-form-field>
-              <div class="form-group mt-4">
-                <button mat-raised-button color="primary">Login</button>
-                <a [routerLink]="['/register']" class="ml-2" mat-button color="primary">Register</a>
-              </div>
-            </form>
-          </mat-card>
+<div class="card align-items-center">
+  <h4 class="card-header">Login</h4>
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && data.email.errors }"
+        />
+        <div *ngIf="submitted && data.email.errors" class="invalid-feedback">
+          <div *ngIf="data.email.errors.required">Email is required</div>
         </div>
       </div>
-    </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && data.password.errors }"
+        />
+        <div *ngIf="submitted && data.password.errors" class="invalid-feedback">
+          <div *ngIf="data.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Login
+        </button>
+        <a routerLink="../register" class="btn btn-link">Register</a>
+      </div>
+    </form>
   </div>
+</div>
 
-  <main flex layout="column">
-    <div>
-      <div ui-view="" ></div>
-    </div>
-</main>
-
-<footer>
-<mat-toolbar class="md-hue-2 md-scroll-shrink">
- 
-
-  <div layout="row" layout-align="center center" flex>
-    Powered by Runtime Terror - Pfizer SeniorZ
-  </div>
-</mat-toolbar>
-</footer>

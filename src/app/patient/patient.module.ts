@@ -10,13 +10,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { HeaderComponent } from '../_shared/_components/header/header.component';
+import { ConsultListComponent } from './consult-list/consult-list.component';
+import { FooterComponent } from '../_shared/_components/footer/footer.component';
+import { PatientComponent } from './patient.component';
+import { ConsultAddComponent } from '../doctor/consult-add/consult-add.component';
 
 @NgModule({
-  declarations: [MeasurementListComponent, MeasurementAddComponent],
+  declarations: [
+    MeasurementListComponent,
+    MeasurementAddComponent,
+    HeaderComponent,
+    ConsultListComponent,
+    FooterComponent,
+    PatientComponent,
+    ConsultAddComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -30,11 +43,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatFormFieldModule,
     BrowserAnimationsModule,
     RouterModule,
-    Router,
     HttpClientModule,
     GoogleChartsModule,
     BrowserAnimationsModule,
   ],
-  exports: [MeasurementListComponent],
+  exports: [MeasurementListComponent, ConsultListComponent],
 })
 export class PatientModule {}
