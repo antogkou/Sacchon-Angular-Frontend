@@ -11,7 +11,6 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 })
 export class MeasurementAddComponent implements OnInit {
   addMeasurementForm: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,

@@ -8,7 +8,6 @@ import { ConsultService } from '../../_shared/_services/consult.service';
   styleUrls: ['./consult-list.component.scss']
 })
 export class ConsultListComponent implements OnInit {
-
   constructor(private consultService: ConsultService) { }
 
   consults: Consult[];
@@ -19,5 +18,4 @@ export class ConsultListComponent implements OnInit {
       console.log(consults);
     });
   }
-
 }

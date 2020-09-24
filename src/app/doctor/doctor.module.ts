@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DoctorComponent } from './doctor.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DoctorComponent],
   imports: [
     CommonModule
   ]

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../_shared/_models/user';
+import { Observable } from 'rxjs';
+import { User } from '../_models/user';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,14 +10,9 @@ import { tap } from 'rxjs/operators';
 export class UserService {
   public currentUserRole: any;
 
-  constructor(private http: HttpClient) {
-  
-  }
+  constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
-
-  // username = 'test@gmail.com';
-  // password = '123456#!';
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', {
@@ -36,17 +31,19 @@ export class UserService {
       .pipe(
         tap((data: any) => {
           btoa(data.email + ':' + data.password);
-          localStorage.setItem( 'account', btoa(data.email + ':' + data.password));
+          localStorage.setItem(
+            'account',
+            btoa(data.email + ':' + data.password)
+          );
           //test
           this.currentUserRole = data.userRole;
           console.log(this.currentUserRole);
         })
-      ); 
+      );
   }
 
-  register(user: User){
-    return this.http
-    .post(this.baseUrl + 'register', user);
+  register(user: User) {
+    return this.http.post(this.baseUrl + 'register', user);
   }
 
   checkRole(userRole) {

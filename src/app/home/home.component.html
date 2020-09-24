@@ -1,39 +1,32 @@
-<app-header></app-header>
-<!-- Authorize patients only  -->
-<div *ngIf="userService.currentUserRole == 'patient'">
-  <app-measurement-list></app-measurement-list>
+<div class="patientDiv">
+  <button type="button" class="btn btn-primary" (click)="goToPatient()">
+    Go To Patient
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="goToDoctor()">
+    Go To Doctor
+  </button>
+  <button type="button" class="btn btn-success" (click)="goToAdmin()">
+    Go To Admin
+  </button>
 </div>
-
-<table border="1" cellspacing="0" cellpadding="0">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Phone Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row">{{ user.createdDate | date: "dd/MM/yyyy" }}</th>
-        <td>{{ user.userRole }}</td>
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
-        <td>{{ user.phoneNumber }}</td>
-      </tr>
-    </tbody>
-  </table>
-</table>
-
-<!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-<google-chart *ngIf = "myData.length > 0"
-  [title]="title"
-  [type]="type"
-  [data]="myData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart>
-
+<!-- <table border="1" cellspacing="0" cellpadding="0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">{{ user.createdDate | date: "dd/MM/yyyy" }}</th>
+          <td>{{ user.userRole }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.phoneNumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </table> -->

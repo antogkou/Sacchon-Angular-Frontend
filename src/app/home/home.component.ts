@@ -1,13 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Data, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../_shared/_models/user';
-import { UserService } from '../user-account/user.service';
-
-import { Chart } from 'chart.js';
-// import { multi } from '../data';
-import { HttpClient } from '@angular/common/http';
-import { MeasurementService } from '../_shared/_services/measurement.service';
-import { Measurement } from '../_shared/_models/measurement';
+import { UserService } from '../_shared/_services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -15,87 +9,25 @@ import { Measurement } from '../_shared/_models/measurement';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  url = 'http://localhost:9000/v1/team6/sacchon/measurements';
-
-  loading = false;
-  submitted = false;
-  type = 'LineChart';
-  title = 'Glucose level';
-  // hard-coded dummy data(works)
-  // data = [
-  //   ['Firefox', 45.0],
-  //   ['IE', 26.8],
-  //   ['Chrome', 12.8],
-  //   ['Safari', 8.5],
-  //   ['Opera', 6.2],
-  //   ['Others', 0.7],
-  // ];
-  chartColumns = ['Date', 'Glucose'];
-  options = {
-    hAxis: {
-      title: 'Timeline'
-   },
-  };
-  width = 950;
-  height = 500;
-
-  glucose_level = [];
-  carb_intake = [];
-  measurement_created_date = [];
-
-  myData: any[] = [];
-  measurements: Measurement[];
   users: User[];
 
-  constructor(
-    private httpClient: HttpClient,
-    public userService: UserService,
-    private router: Router,
-    private measurementService: MeasurementService
-  ) {
-    // Object.assign(this, { multi });
-  }
+  constructor(public userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
+    //move this to admin panel?
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
       console.log(users);
     });
-
-    this.measurementService.getMeasurements().subscribe((response) => {
-      this.measurements = response;
-      response.map(item => {
-        this.myData.push([item.measurement_created_date, item.glucose_level]);
-      })
-      console.log(this.myData);
-      console.log(this.measurements);
-    });
-
   }
 
+  goToPatient() {
+    this.router.navigate(['patient']);
+  }
+  goToDoctor() {
+    this.router.navigate(['doctor']);
+  }
+  goToAdmin() {
+    this.router.navigate(['admin']);
+  }
 }
-
-// get data() {
-//   return this.loginForm.controls;
-// }
-
-// onLogout(){
-//   //debugger
-//   this.userService.login(this.data.email.value, this.data.password.value).subscribe(a => {
-//     this.router.navigate(['/home']);
-//   })
-// }
-
-//charts start
-// onSelect(data): void {
-//   console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-// }
-
-// onActivate(data): void {
-//   console.log('Activate', JSON.parse(JSON.stringify(data)));
-// }
-
-// onDeactivate(data): void {
-//   console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-// }
-//charts end
