@@ -4,9 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { User } from '../user-account/_models/user';
+import { Observable, of } from 'rxjs';
 import { Measurement } from './measurement';
 
 @Injectable({

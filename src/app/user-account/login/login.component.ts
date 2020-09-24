@@ -11,8 +11,13 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -25,22 +30,17 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit(){
-    //debugger
-    this.userService.login(this.data.email.value, this.data.password.value).subscribe(a => {
-      this.router.navigate(['/home']);
-    })
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.userService
+      .login(this.data.email.value, this.data.password.value)
+      .subscribe((a) => {
+        this.router.navigate(['/home']);
+      },
+      );
   }
-  // onSubmit() {
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   } else if (
-  //     this.data.username.value == localStorage.getItem('username') &&
-  //     this.data.password.value == localStorage.getItem('password')
-  //   ) {
-  //     this.router.navigate(['/home']);
-  //   } else {
-  //     this.submitted = true;
-  //   }
-  // }
 }

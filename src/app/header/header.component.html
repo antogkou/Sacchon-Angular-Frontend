@@ -1,0 +1,10 @@
+<mat-toolbar class="position-absolute" color="primary">
+    <mat-toolbar-row class="align-items-center">
+      <button [routerLink]="['/home']" mat-button>Home</button>
+      <button [routerLink]="['/measurements']" mat-button>Measurements list</button>
+      <button [routerLink]="['/measurements/create']" mat-button>Add measurement</button>
+      <button [routerLink]="['/consult']" mat-button>Consult List</button>
+      <!-- <button [routerLink]="['/login']" mat-button>Logout</button> -->
+      <button (click)="logout()" mat-button>Logout</button>
+    </mat-toolbar-row>
+  </mat-toolbar>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Data, Router } from '@angular/router';
 import { User } from '../user-account/_models/user';
 import { UserService } from '../user-account/user.service';
@@ -73,12 +73,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('account');
-    console.log('user logged out');
-    this.router.navigate(['']);
-  }
 }
 
 // get data() {

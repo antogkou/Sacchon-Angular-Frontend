@@ -1,0 +1,24 @@
+<!-- <app-header></app-header> -->
+
+<table border="1" cellspacing="0" cellpadding="0" >
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">consult_text</th>
+            <th scope="col">dosage</th>
+            <th scope="col">medication</th>
+            <th scope="col">created_date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consult of consults">
+            <th scope="row">{{consult.consult_text }}</th>
+             <td>{{ consult.dosage }}</td>
+            <td>{{ consult.medication }}</td>
+            <td>{{ consult.created_date | date:'dd/MM/yyyy'}}</td>
+          </tr>
+    
+        </tbody>
+      </table>

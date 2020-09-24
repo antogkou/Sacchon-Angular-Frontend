@@ -14,11 +14,17 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { HeaderComponent } from '../header/header.component';
+import { ConsultListComponent } from './consult-list/consult-list.component';
 
 @NgModule({
-  declarations: [MeasurementListComponent, MeasurementAddComponent],
+  declarations: [
+    MeasurementListComponent,
+    MeasurementAddComponent,
+    HeaderComponent,
+    ConsultListComponent,
+  ],
   imports: [
-    CommonModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,

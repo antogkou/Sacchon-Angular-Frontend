@@ -17,10 +17,11 @@ import { MeasurementListComponent } from './patient/measurement-list/measurement
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { MeasurementAddComponent } from './patient/measurement-add/measurement-add.component';
-
+import { HeaderComponent } from './header/header.component';
+import { ConsultListComponent } from './patient/consult-list/consult-list.component';
+import { CommonModule } from '@angular/common';
 const routes: Routes = [
   { path: '',  redirectTo: 'login', pathMatch: 'full'  },
   { path: 'login', component: LoginComponent  },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'measurements', component: MeasurementListComponent },
   { path: 'measurements/create', component: MeasurementAddComponent },
+  { path: 'consult', component: ConsultListComponent },
 ];
 
 @NgModule({
@@ -37,10 +39,11 @@ const routes: Routes = [
     RegisterComponent,
     HomeComponent,
     MeasurementAddComponent,
-    MeasurementListComponent],
+    MeasurementListComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
-    BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

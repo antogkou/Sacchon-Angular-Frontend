@@ -1,0 +1,14 @@
+.navbar {
+    background-color: cornflowerblue;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    position: fixed;
+    width: 100%;
+  
+    span {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }

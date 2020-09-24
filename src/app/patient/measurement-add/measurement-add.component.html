@@ -1,30 +1,30 @@
+<app-header></app-header>
+
 <div class="d-flex align-items-center h-100">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-5">
-          <mat-card>
-            <h3 class="text-center">Log entry</h3>
-            <form [formGroup]="addMeasurementForm" (ngSubmit)="onCreateMeasurement()">
-              <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Glucose level" formControlName="glucose_level">
-                <mat-error *ngIf="data.glucose_level.errors?.required">Glocose level is required</mat-error>
-              </mat-form-field>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <mat-card>
+          <h3 class="text-center">Log entry</h3>
+          <form [formGroup]="addMeasurementForm" (ngSubmit)="onCreateMeasurement()">
+            <mat-form-field class="w-100">
+              <input type="text" matInput placeholder="Glucose level" formControlName="glucose_level">
+              <mat-error *ngIf="data.glucose_level.errors?.required">Glocose level is required</mat-error>
+            </mat-form-field>
 
-              <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Carb intake" formControlName="carb_intake">
-                <mat-error *ngIf="data.carb_intake.errors?.required">Carb intake is required</mat-error>
-              </mat-form-field>
+            <mat-form-field class="w-100">
+              <input type="text" matInput placeholder="Carb intake" formControlName="carb_intake">
+              <mat-error *ngIf="data.carb_intake.errors?.required">Carb intake is required</mat-error>
+            </mat-form-field>
 
-              <div class="mt-4">
-                <button mat-raised-button color="primary" >Log Entry</button>
-                <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
-                <!-- <a [routerLink]="['/home']" class="ml-2" mat-button color="primary">Cancel</a> -->
-              </div>
-            </form>
-          </mat-card>
-        </div>
+            <div class="mt-4">
+              <button mat-raised-button color="primary" >Log Entry</button>
+              <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
+              <!-- <a [routerLink]="['/home']" class="ml-2" mat-button color="primary">Cancel</a> -->
+            </div>
+          </form>
+        </mat-card>
       </div>
     </div>
   </div>
-  
-  <!-- (click)="add(heroName.value); heroName.value=''" -->
+</div>
