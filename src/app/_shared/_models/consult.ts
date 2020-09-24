@@ -1,7 +1,6 @@
 export interface Consult {
-    consult_text: string;
-    medication: string;
-    dosage: string;
-    created_date: string;
+    consultText: string;
+    medication: number;
+    dosage: number;
+    consult_created_date: Date;
   }
-  

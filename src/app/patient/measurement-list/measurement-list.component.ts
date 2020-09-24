@@ -50,10 +50,10 @@ export class MeasurementListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.measurementService.getMeasurements().subscribe((measurements) => {
-      this.measurements = measurements;
-      console.log(measurements);
-    });
+    // this.measurementService.getMeasurements().subscribe((measurements) => {
+    //   this.measurements = measurements;
+    //   console.log(measurements);
+    // });
 
     this.measurementService.getMeasurements().subscribe((response) => {
       this.measurements = response;

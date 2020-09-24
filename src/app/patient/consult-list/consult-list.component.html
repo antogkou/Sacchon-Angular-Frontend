@@ -1,18 +1,22 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">consult_text</th>
-      <th scope="col">dosage</th>
-      <th scope="col">medication</th>
-      <th scope="col">created_date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let consult of consults">
-      <th scope="row">{{ consult.consult_text }}</th>
-      <td>{{ consult.dosage }}</td>
-      <td>{{ consult.medication }}</td>
-      <td>{{ consult.created_date | date: "dd/MM/yyyy" }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h2>Dark Table</h2>
+  <p>Here is a list of all consults:</p>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>consultText</th>
+        <th>dosage</th>
+        <th>medication</th>
+        <th>created_date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consult of consults">
+        <td>{{ consult.consultText }}</td>
+        <td>{{ consult.dosage }}</td>
+        <td>{{ consult.medication }}</td>
+        <td>{{ consult.consult_created_date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

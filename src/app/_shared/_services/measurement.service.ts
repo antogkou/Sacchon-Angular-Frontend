@@ -31,7 +31,6 @@ export class MeasurementService {
 
   /** POST: add a new measurement to the server */
   addMeasurement(values: Measurement): Observable<any> {
-    
     return this.http.post(
       this.baseUrl + 'measurements',
       {
@@ -64,5 +63,4 @@ export class MeasurementService {
       return of(result as T);
     };
   }
-
 }

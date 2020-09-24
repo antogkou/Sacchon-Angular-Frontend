@@ -18,6 +18,7 @@ import { HeaderComponent } from '../_shared/_components/header/header.component'
 import { ConsultListComponent } from './consult-list/consult-list.component';
 import { FooterComponent } from '../_shared/_components/footer/footer.component';
 import { PatientComponent } from './patient.component';
+import { ConsultAddComponent } from '../doctor/consult-add/consult-add.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PatientComponent } from './patient.component';
     ConsultListComponent,
     FooterComponent,
     PatientComponent,
+    ConsultAddComponent,
   ],
   imports: [
     CommonModule,

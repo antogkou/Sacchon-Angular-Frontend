@@ -24,6 +24,7 @@ import { FooterComponent } from './_shared/_components/footer/footer.component';
 import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AdminComponent } from './admin/admin.component';
+import { ConsultAddComponent } from './doctor/consult-add/consult-add.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -51,6 +52,7 @@ const routes: Routes = [
       { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: DoctorComponent },
       { path: 'consults', component: ConsultListComponent },
+      { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
     ],
@@ -82,6 +84,7 @@ const routes: Routes = [
     FooterComponent,
     PatientComponent,
     DoctorComponent,
+    ConsultAddComponent
   ],
   imports: [
     CommonModule,
