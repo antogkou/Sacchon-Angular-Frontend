@@ -1,3 +1,11 @@
+<mat-toolbar class="position-absolute" color="primary">
+  <mat-toolbar-row class="justify-content-between">
+    <button [routerLink]="['/home']" mat-button>Home</button>
+    <!-- TODO -->
+    <button [routerLink]="['/about']" mat-button>About</button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="d-flex align-items-center h-100">
     <div class="container">
       <div class="row justify-content-center">
@@ -27,12 +35,18 @@
     </div>
   </div>
 
-<footer class="page-footer font-small blue pt-4">
-  <div class="container">
-    &copy; 2020 - Runtime Terror - 
-    <a href="https://github.com/alouvoul">Anastasios Louvoulinas </a> - 
-    <a href="https://github.com/antogkou">Antonis Gkoutzamanis </a> - 
-    <a href="https://github.com/empelogi">Eleni Mpelogianni </a> - 
-    <a href="https://github.com/LamprosTolis">Tolis - Papagiannis Lampros</a> Pfizer-team6
-</div>
+  <main flex layout="column">
+    <div>
+      <div ui-view="" ></div>
+    </div>
+</main>
+
+<footer>
+<mat-toolbar class="md-hue-2 md-scroll-shrink">
+ 
+
+  <div layout="row" layout-align="center center" flex>
+    Powered by Runtime Terror - Pfizer SeniorZ
+  </div>
+</mat-toolbar>
 </footer>

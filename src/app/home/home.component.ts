@@ -17,6 +17,8 @@ import { Measurement } from '../patient/measurement';
 export class HomeComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
+  loading = false;
+  submitted = false;
   type = 'LineChart';
   title = 'Glucose level';
   // hard-coded dummy data(works)
@@ -45,8 +47,6 @@ export class HomeComponent implements OnInit {
   measurements: Measurement[];
   users: User[];
 
-  // End of Chart Test
-
   constructor(
     private httpClient: HttpClient,
     public userService: UserService,
@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
       response.map(item => {
         this.myData.push([item.measurement_created_date, item.glucose_level]);
       })
+      console.log(this.myData);
       console.log(this.measurements);
     });
 
