@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Measurement } from './measurement';
+import { Measurement } from '../_models/measurement';
 
 @Injectable({
   providedIn: 'root',

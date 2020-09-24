@@ -1,6 +1,6 @@
 <!-- <app-header></app-header> -->
 
-<table border="1" cellspacing="0" cellpadding="0" >
+<!-- <table border="1" cellspacing="0" cellpadding="0" >
 
     <table class="table">
         <thead>
@@ -21,4 +21,11 @@
           </tr>
     
         </tbody>
-      </table>
+      </table> -->
+
+  <p>Heroes:</p>
+  <ul>
+    <li *ngFor="let consult of consults">
+      {{ consult.consult_text }}
+    </li>
+  </ul>

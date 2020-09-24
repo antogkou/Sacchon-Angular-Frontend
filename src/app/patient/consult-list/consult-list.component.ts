@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Consult } from '../consult';
-import { ConsultService } from '../consult.service';
+import { Consult } from '../../_shared/_models/consult';
+import { ConsultService } from '../../_shared/_services/consult.service';
 
 @Component({
   selector: 'app-consult-list',

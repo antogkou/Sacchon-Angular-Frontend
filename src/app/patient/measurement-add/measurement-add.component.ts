@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MeasurementService } from '../measurement.service';
+import { MeasurementService } from '../../_shared/_services/measurement.service';
 
 @Component({
   selector: 'app-measurement-add',

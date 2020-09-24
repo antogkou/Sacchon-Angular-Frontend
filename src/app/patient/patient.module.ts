@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -25,6 +25,7 @@ import { ConsultListComponent } from './consult-list/consult-list.component';
     ConsultListComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -36,11 +37,10 @@ import { ConsultListComponent } from './consult-list/consult-list.component';
     MatFormFieldModule,
     BrowserAnimationsModule,
     RouterModule,
-    Router,
     HttpClientModule,
     GoogleChartsModule,
     BrowserAnimationsModule,
   ],
-  exports: [MeasurementListComponent],
+  exports: [MeasurementListComponent, ConsultListComponent],
 })
 export class PatientModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Measurement } from '../measurement';
-import { MeasurementService } from '../measurement.service';
+import { Measurement } from '../../_shared/_models/measurement';
+import { MeasurementService } from '../../_shared/_services/measurement.service';
 
 @Component({
   selector: 'app-measurement-list',

@@ -1,13 +1,13 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Data, Router } from '@angular/router';
-import { User } from '../user-account/_models/user';
+import { User } from '../_shared/_models/user';
 import { UserService } from '../user-account/user.service';
 
 import { Chart } from 'chart.js';
 // import { multi } from '../data';
 import { HttpClient } from '@angular/common/http';
-import { MeasurementService } from '../patient/measurement.service';
-import { Measurement } from '../patient/measurement';
+import { MeasurementService } from '../_shared/_services/measurement.service';
+import { Measurement } from '../_shared/_models/measurement';
 
 @Component({
   selector: 'app-home',
