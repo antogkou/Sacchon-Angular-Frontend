@@ -7,28 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultAddComponent } from './consult-add/consult-add.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ActivePatientsComponent } from './active-patients/active-patients.component';
 import { MeasurementAddComponent } from '../patient/measurement-add/measurement-add.component';
 import { MeasurementEditComponent } from '../patient/measurement-edit/measurement-edit.component';
 
-// const routes: Routes  = [
-//   {
-//     path: 'doctor',
-//     component: DoctorComponent,
-//     children: [
-//       // { path: '', component: DoctorComponent },
-//       { path: 'my-patients', component: DoctorComponent },
-//       { path: 'patients-without-doctor', component: DoctorComponent },
-//       // { path: 'consults', component: ConsultListComponent },
-//       { path: 'consults/create', component: ConsultAddComponent },
-//       // { path: 'consults/:id', component: ConsultListComponent },
-//       // { path: 'consults/:id/edit', component: ConsultListComponent },
-//     ],
-//   },
-// ]
-
 
 @NgModule({
-  declarations: [DoctorComponent, ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent],
+  declarations: [DoctorComponent, ActivePatientsComponent,  ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent],
+
   imports: [
     CommonModule,
     RouterModule,
@@ -37,7 +23,6 @@ import { MeasurementEditComponent } from '../patient/measurement-edit/measuremen
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    // RouterModule.forRoot(routes),
   ],
   exports: [
     ConsultAddComponent, DoctorComponent
