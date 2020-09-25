@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -13,7 +9,6 @@ import { Measurement } from '../_models/measurement';
 })
 export class MeasurementService {
   private baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
-  private baseUrl2 = 'http://localhost:9000/v1/team6/sacchon';
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Basic ' + localStorage.getItem('account'),
@@ -21,24 +16,19 @@ export class MeasurementService {
   };
   constructor(private http: HttpClient) {}
 
-  /** GET all (not working, needs backend love) measurements from the server */
+  /** GET all measurements from the server */
   getMeasurements(): Observable<Measurement[]> {
-    return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    });
+    return this.http.get<Measurement[]>(
+      this.baseUrl + 'measurements',
+      this.httpOptions
+    );
   }
 
   /** GET current user's measurements from the server */
   getCurrentUserMeasurements(): Observable<Measurement[]> {
     return this.http.get<Measurement[]>(
       this.baseUrl + 'myaccount/mymeasurements',
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Basic ' + localStorage.getItem('account'),
-        }),
-      }
+      this.httpOptions
     );
   }
 
@@ -59,11 +49,7 @@ export class MeasurementService {
         glucose_level: values.carb_intake,
         carb_intake: values.glucose_level,
       },
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Basic ' + localStorage.getItem('account'),
-        }),
-      }
+      this.httpOptions
     );
   }
 

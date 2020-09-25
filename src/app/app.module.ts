@@ -26,6 +26,8 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConsultAddComponent } from './doctor/consult-add/consult-add.component';
 import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
+import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
+import { PatientModule } from './patient/patient.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
