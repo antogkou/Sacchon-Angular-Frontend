@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { MeasurementAddComponent } from './patient/measurement-add/measurement-add.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '',  redirectTo: 'login', pathMatch: 'full'  },
@@ -54,7 +55,8 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     GoogleChartsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

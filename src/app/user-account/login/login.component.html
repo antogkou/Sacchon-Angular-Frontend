@@ -14,7 +14,8 @@
             Email or password is incorrect
           </div>
           <mat-card>
-            <h3 class="text-center">Login</h3>
+            <h3 class="text-center">Log in</h3>
+            <img class="d-block w-100" src="../assets/images/Sacchon_200x200.png">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <mat-form-field class="w-100">
                 <input type="text" matInput placeholder="Email" formControlName="email">
@@ -34,19 +35,33 @@
       </div>
     </div>
   </div>
-
-  <main flex layout="column">
-    <div>
-      <div ui-view="" ></div>
-    </div>
-</main>
+  
+  
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="../assets/images/chicago.jpg" alt="Angular Carousel 1" width="300" height="250">
+      </div>
+      <div class="carousel-caption">
+        <h3>Glucose tracking</h3>
+        <p>Get your Glucose level in check!</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="../assets/images/la.jpg" alt="Angular Carousel 2" width="300" height="250">
+      </div>
+      <div class="carousel-caption">
+        <h3>Evaluation</h3>
+        <p>Recieve consults from your doctor!</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 
 <footer>
-<mat-toolbar class="md-hue-2 md-scroll-shrink">
- 
-
+<div>
   <div layout="row" layout-align="center center" flex>
     Powered by Runtime Terror - Pfizer SeniorZ
   </div>
-</mat-toolbar>
+</div>
 </footer>
