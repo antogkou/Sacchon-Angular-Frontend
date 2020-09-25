@@ -37,7 +37,7 @@ export class MeasurementAddComponent implements OnInit {
       this.measurementService
         .addMeasurement(this.addMeasurementForm.value)
         .subscribe((r) => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/patient/measurements']);
         });
       this._snackBar.open('Measurement logged Successfully', 'Success', {
         duration: 2000,
