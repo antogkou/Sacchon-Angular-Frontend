@@ -58,4 +58,15 @@ export class UserService {
         })
       );
   }
+
+  
+  /** GET patients that don't have active doctor */
+
+  getUsersWithoutDoctor(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'users-without-doctor' , {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    });
+  }
 }

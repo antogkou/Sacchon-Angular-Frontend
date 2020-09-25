@@ -25,6 +25,7 @@ import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConsultAddComponent } from './doctor/consult-add/consult-add.component';
+import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -50,7 +51,7 @@ const routes: Routes = [
     children: [
       // { path: '', component: DoctorComponent },
       { path: 'my-patients', component: DoctorComponent },
-      { path: 'patients-without-doctor', component: DoctorComponent },
+      { path: 'patients-without-doctor', component: ActivePatientsComponent},
       { path: 'consults', component: ConsultListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
@@ -75,6 +76,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
+    ActivePatientsComponent,
     RegisterComponent,
     HomeComponent,
     MeasurementAddComponent,

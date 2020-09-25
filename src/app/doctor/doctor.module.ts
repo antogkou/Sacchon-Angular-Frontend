@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultAddComponent } from './consult-add/consult-add.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ActivePatientsComponent } from './active-patients/active-patients.component';
 
 
 
 @NgModule({
-  declarations: [DoctorComponent,ConsultAddComponent],
+  declarations: [DoctorComponent,ConsultAddComponent, ActivePatientsComponent],
   imports: [
     CommonModule,
     RouterModule,
