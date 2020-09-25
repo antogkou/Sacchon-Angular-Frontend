@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-sm-5">
           <h3 class="text-center">Log entry</h3>
-          <form [formGroup]="addMeasurementForm" (ngSubmit)="onCreateMeasurement()">
+          <form [formGroup]="editMeasurementForm" (ngSubmit)="onFormSubmit()">
           
               <input type="text" matInput placeholder="Glucose level" formControlName="glucose_level">
         

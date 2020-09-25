@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConsultService } from 'src/app/_shared/_services/consult.service';
-import { MeasurementService } from '../../_shared/_services/measurement.service';
 
 @Component({
   selector: 'app-consult-add',

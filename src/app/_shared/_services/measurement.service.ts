@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Measurement } from '../_models/measurement';
 
 @Injectable({
@@ -12,21 +13,42 @@ import { Measurement } from '../_models/measurement';
 })
 export class MeasurementService {
   private baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
+  private baseUrl2 = 'http://localhost:9000/v1/team6/sacchon';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
       Authorization: 'Basic ' + localStorage.getItem('account'),
     }),
   };
   constructor(private http: HttpClient) {}
 
-  /** GET measurements from the server */
+  /** GET all (not working, needs backend love) measurements from the server */
   getMeasurements(): Observable<Measurement[]> {
     return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
       headers: new HttpHeaders({
         Authorization: 'Basic ' + localStorage.getItem('account'),
       }),
     });
+  }
+
+  /** GET current user's measurements from the server */
+  getCurrentUserMeasurements(): Observable<Measurement[]> {
+    return this.http.get<Measurement[]>(
+      this.baseUrl + 'myaccount/mymeasurements',
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
+    );
+  }
+
+  /** GET clicked measurement details from the server */
+  getMeasurementsById(id: string): Observable<Measurement> {
+    const url = `${this.baseUrl}measurements/${id}`;
+    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched measurement id=${id}`)),
+      catchError(this.handleError<Measurement>(`getMeasurementsById id=${id}`))
+    );
   }
 
   /** POST: add a new measurement to the server */
@@ -42,6 +64,24 @@ export class MeasurementService {
           Authorization: 'Basic ' + localStorage.getItem('account'),
         }),
       }
+    );
+  }
+
+  /** PUT: update a measurement and save it into the server */
+  updateMeasurements(id: string, measurements: Measurement): Observable<any> {
+    const url = `${this.baseUrl}measurements/${id}`;
+    return this.http.put(url, measurements, this.httpOptions).pipe(
+      tap((_) => console.log(`updated measurement with id=${id}`)),
+      catchError(this.handleError<any>('updateMeasurements'))
+    );
+  }
+
+  /** DELETE: delete a measurement from the server *be careful with this* */
+  deleteMeasurements(id: string): Observable<Measurement> {
+    const url = `${this.baseUrl}measurements/${id}`;
+    return this.http.delete<Measurement>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`deleted measurement with id=${id}`)),
+      catchError(this.handleError<Measurement>('deleteMeasurements'))
     );
   }
 

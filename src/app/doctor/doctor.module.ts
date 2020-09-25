@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DoctorComponent } from './doctor.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultAddComponent } from './consult-add/consult-add.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ActivePatientsComponent } from './active-patients/active-patients.component';
-
+import { MeasurementAddComponent } from '../patient/measurement-add/measurement-add.component';
+import { MeasurementEditComponent } from '../patient/measurement-edit/measurement-edit.component';
 
 
 @NgModule({
-  declarations: [DoctorComponent,ConsultAddComponent, ActivePatientsComponent],
+  declarations: [DoctorComponent, ActivePatientsComponent,  ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent],
+
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     ConsultAddComponent, DoctorComponent
