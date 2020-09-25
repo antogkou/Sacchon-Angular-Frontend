@@ -11,7 +11,7 @@ export class MeasurementService {
   private baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: 'Basic ' + sessionStorage.getItem('account'),
+      Authorization: 'Basic ' + localStorage.getItem('account'),
     }),
   };
   constructor(private http: HttpClient) {}
