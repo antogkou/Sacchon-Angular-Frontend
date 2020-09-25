@@ -1,6 +1,6 @@
 export interface Measurement {
-  measurement_id: number;
+  measurement_id: string;
   glucose_level: number;
   carb_intake: number;
-  measurement_created_date: string;
+  created_date: string;
 }

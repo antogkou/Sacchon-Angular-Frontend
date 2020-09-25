@@ -35,12 +35,15 @@ export class MeasurementListComponent implements OnInit {
   width = 950;
   height = 500;
 
-  glucose_level = [];
-  carb_intake = [];
-  measurement_created_date = [];
+  // measurement_id = [];
+  // glucose_level = [];
+  // carb_intake = [];
+  // measurement_created_date = [];
   myData: any[] = [];
   measurements: Measurement[];
   users: User[];
+
+  isLoadingResults = true;
 
   constructor(
     private measurementService: MeasurementService,
@@ -55,13 +58,30 @@ export class MeasurementListComponent implements OnInit {
     //   console.log(measurements);
     // });
 
-    this.measurementService.getMeasurements().subscribe((response) => {
-      this.measurements = response;
-      response.map((item) => {
-        this.myData.push([item.measurement_created_date, item.glucose_level]);
+    this.measurementService
+      .getCurrentUserMeasurements()
+      .subscribe((response) => {
+        this.measurements = response;
+        response.map((item) => {
+          this.myData.push([item.created_date, item.glucose_level]);
+        });
+        console.log(this.measurements);
       });
-      console.log(this.myData);
-      console.log(this.measurements);
-    });
+  }
+
+  deleteCases(id: any) {
+    this.isLoadingResults = true;
+    this.measurementService.deleteMeasurements(id).subscribe(
+      (res) => {
+        this.isLoadingResults = false;
+        //  location.reload();
+        this.ngOnInit();
+        //this.router.navigate(['patient/measurements']);
+      },
+      (err) => {
+        console.log(err);
+        this.isLoadingResults = false;
+      }
+    );
   }
 }

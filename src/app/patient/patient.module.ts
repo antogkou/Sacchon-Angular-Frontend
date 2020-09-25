@@ -14,21 +14,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
-import { HeaderComponent } from '../_shared/_components/header/header.component';
 import { ConsultListComponent } from './consult-list/consult-list.component';
-import { FooterComponent } from '../_shared/_components/footer/footer.component';
 import { PatientComponent } from './patient.component';
 import { ConsultAddComponent } from '../doctor/consult-add/consult-add.component';
+import { MeasurementEditComponent } from './measurement-edit/measurement-edit.component';
 
 @NgModule({
   declarations: [
     MeasurementListComponent,
     MeasurementAddComponent,
-    HeaderComponent,
     ConsultListComponent,
-    FooterComponent,
     PatientComponent,
     ConsultAddComponent,
+    MeasurementEditComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +45,6 @@ import { ConsultAddComponent } from '../doctor/consult-add/consult-add.component
     GoogleChartsModule,
     BrowserAnimationsModule,
   ],
-  exports: [MeasurementListComponent, ConsultListComponent],
+  exports: [MeasurementListComponent, ConsultListComponent, MeasurementAddComponent, MeasurementEditComponent],
 })
 export class PatientModule {}
