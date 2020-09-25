@@ -47,17 +47,14 @@ export class MeasurementListComponent implements OnInit {
 
   constructor(
     private measurementService: MeasurementService,
-    private httpClient: HttpClient,
-    public userService: UserService,
-    private router: Router
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {
-    // this.measurementService.getMeasurements().subscribe((measurements) => {
-    //   this.measurements = measurements;
-    //   console.log(measurements);
-    // });
+    this.getMeasurements();
+  }
 
+  getMeasurements() {
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
@@ -75,7 +72,7 @@ export class MeasurementListComponent implements OnInit {
       (res) => {
         this.isLoadingResults = false;
         //  location.reload();
-        this.ngOnInit();
+        this.getMeasurements();
         //this.router.navigate(['patient/measurements']);
       },
       (err) => {
