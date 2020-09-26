@@ -41,6 +41,15 @@ export class MeasurementService {
     );
   }
 
+  /** GET measurements by date */
+  getMeasurementsByDate(startDate: Date, endDate: Date): Observable<Measurement> {
+    const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
+    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched measurement with date from=${startDate} to=${endDate}`)),
+      catchError(this.handleError<Measurement>(`getMeasurementsByDate from=${startDate} to=${endDate}`))
+    );
+  }
+
   /** POST: add a new measurement to the server */
   addMeasurement(values: Measurement): Observable<any> {
     return this.http.post(

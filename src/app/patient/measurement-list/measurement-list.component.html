@@ -3,6 +3,15 @@
   rel="stylesheet"
 />
 
+<form
+  [formGroup]="dateForm"
+  (ngSubmit)="getMeasurementsByDate()"
+>
+  <input formControlName="startDate" type="date" name="startDate" id="startDate" />
+  <input formControlName="endDate" type="date" name="endDate" id="endDate" />
+  <input type="submit">
+</form>
+
 <!-- <table border="1" cellspacing="0" cellpadding="0" > -->
 <table class="table-striped">
   <thead class="head">
@@ -30,7 +39,13 @@
       <td>{{ measurement.glucose_level }} grams</td>
 
       <td>
-        <button (click)="deleteCases(measurement.measurement_id)" class="btn" type="button">Delete</button >
+        <button
+          (click)="deleteCases(measurement.measurement_id)"
+          class="btn"
+          type="button"
+        >
+          Delete
+        </button>
         <button
           [routerLink]="[measurement.measurement_id]"
           class="btn"
