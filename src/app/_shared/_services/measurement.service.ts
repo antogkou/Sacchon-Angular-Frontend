@@ -71,6 +71,16 @@ export class MeasurementService {
     );
   }
 
+  /**Fix method and endpoint in order to consume by doctor's see patient's without doctor measurement */
+
+  getMeasurementsByPatientsEmail(email: string): Observable<Measurement> {
+    const url = `${this.baseUrl}patient/measurements?email=${email}`;
+    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched measurement with patient mail=${email}`)),
+      catchError(this.handleError<Measurement>(`getMeasurementsByPatientsEmail email=${email}`))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

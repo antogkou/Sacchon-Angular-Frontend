@@ -16,7 +16,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ConsultListComponent } from './consult-list/consult-list.component';
 import { PatientComponent } from './patient.component';
-import { ConsultAddComponent } from '../doctor/consult-add/consult-add.component';
 import { MeasurementEditComponent } from './measurement-edit/measurement-edit.component';
 
 @NgModule({
@@ -25,8 +24,7 @@ import { MeasurementEditComponent } from './measurement-edit/measurement-edit.co
     MeasurementAddComponent,
     ConsultListComponent,
     PatientComponent,
-    ConsultAddComponent,
-    MeasurementEditComponent
+    MeasurementEditComponent,
   ],
   imports: [
     CommonModule,
@@ -43,8 +41,13 @@ import { MeasurementEditComponent } from './measurement-edit/measurement-edit.co
     RouterModule,
     HttpClientModule,
     GoogleChartsModule,
-    BrowserAnimationsModule,
   ],
-  exports: [MeasurementListComponent, ConsultListComponent, MeasurementAddComponent, MeasurementEditComponent],
+  exports: [
+    MeasurementListComponent,
+    ConsultListComponent,
+    MeasurementAddComponent,
+    MeasurementEditComponent,
+    PatientComponent
+  ],
 })
 export class PatientModule {}

@@ -7,15 +7,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultAddComponent } from './consult-add/consult-add.component';
 import { ActivePatientsComponent } from './active-patients-list/active-patients.component';
-import { MeasurementAddComponent } from '../patient/measurement-add/measurement-add.component';
-import { MeasurementEditComponent } from '../patient/measurement-edit/measurement-edit.component';
-
+import { PatientsDetailComponent } from './patients-detail/patients-detail.component';
+import { MyPatientsListComponent } from './my-patients-list/my-patients-list.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatCard } from '@angular/material/card';
 
 @NgModule({
-  declarations: [DoctorComponent, ActivePatientsComponent,  ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent],
+  declarations: [
+    DoctorComponent,
+    ActivePatientsComponent,
+    ConsultAddComponent,
+    PatientsDetailComponent,
+    MyPatientsListComponent,
+  ],
 
   imports: [
     CommonModule,
+    BrowserModule,
     RouterModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -24,7 +32,11 @@ import { MeasurementEditComponent } from '../patient/measurement-edit/measuremen
     FormsModule,
   ],
   exports: [
-    ConsultAddComponent, DoctorComponent
-  ]
+    ConsultAddComponent,
+    DoctorComponent,
+    PatientsDetailComponent,
+    ActivePatientsComponent,
+    DoctorComponent
+  ],
 })
-export class DoctorModule { }
+export class DoctorModule {}
