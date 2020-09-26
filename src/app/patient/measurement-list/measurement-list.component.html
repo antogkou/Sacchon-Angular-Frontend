@@ -7,9 +7,14 @@
   [formGroup]="dateForm"
   (ngSubmit)="getMeasurementsByDate()"
 >
-  <input formControlName="startDate" type="date" name="startDate" id="startDate" />
+  <input
+    formControlName="startDate"
+    type="date"
+    name="startDate"
+    id="startDate"
+  />
   <input formControlName="endDate" type="date" name="endDate" id="endDate" />
-  <input type="submit">
+  <input type="submit" />
 </form>
 
 <!-- <table border="1" cellspacing="0" cellpadding="0" > -->
@@ -17,13 +22,9 @@
   <thead class="head">
     <tr>
       <th scope="col">#</th>
-
       <th scope="col">Date</th>
-
       <th scope="col">Daily Glucose Level</th>
-
       <th scope="col">Daily Carb Intake</th>
-
       <th scope="col">Actions</th>
     </tr>
   </thead>

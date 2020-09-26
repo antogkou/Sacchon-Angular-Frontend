@@ -4,6 +4,7 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-measurement-list',
   templateUrl: './measurement-list.component.html',
@@ -14,8 +15,8 @@ export class MeasurementListComponent implements OnInit {
 
   dateForm: FormGroup;
 
-  startDate: '2020-09-25';
-  endDate: '2020-09-27';
+  startDate = new FormControl();
+  endDate = new FormControl();
 
   loading = false;
   submitted = false;
@@ -42,10 +43,10 @@ export class MeasurementListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.dateForm = new FormGroup({
-    //   startDate: new FormControl(null, Validators.required),
-    //   endDate: new FormControl(null, Validators.required)
-    // });
+    this.dateForm = new FormGroup({
+      startDate: new FormControl(),
+      endDate: new FormControl(),
+    });
     this.getMeasurements();
   }
 
@@ -61,10 +62,13 @@ export class MeasurementListComponent implements OnInit {
       });
   }
 
-  getMeasurementsByDate(startDate: Date, endDate: Date) {
+  getMeasurementsByDate() {
+    console.log('start= ' + this.dateForm.get('startDate').value, 'end= ' + this.dateForm.get('endDate').value);
     this.measurementService
-      .getMeasurementsByDate(startDate, endDate)
+      .getMeasurementsByDate(this.dateForm.get('startDate').value, this.dateForm.get('endDate').value)
       .subscribe((response) => {
+        
+        this.measurements.push(response);
         // this.dateForm.setValue(startDate, endDate)
         console.log(response);
       });
