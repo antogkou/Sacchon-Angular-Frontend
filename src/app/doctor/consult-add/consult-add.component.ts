@@ -1,6 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultService } from 'src/app/_shared/_services/consult.service';
 
 @Component({
@@ -10,8 +11,10 @@ import { ConsultService } from 'src/app/_shared/_services/consult.service';
 })
 export class ConsultAddComponent implements OnInit {
   addConsultForm: FormGroup;
+  patientMail = '';
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private consultService: ConsultService
   ) {}
 
@@ -21,6 +24,8 @@ export class ConsultAddComponent implements OnInit {
       dosage: new FormControl('', Validators.required),
       medication: new FormControl('', Validators.required),
     });
+    this.patientMail = this.route.snapshot.params.email;
+    console.log('DOULEUW MPAMPA ' + this.patientMail)
   }
 
   // convenience getter for easy access to form fields
@@ -28,14 +33,14 @@ export class ConsultAddComponent implements OnInit {
     return this.addConsultForm.controls;
   }
 
-  onCreateConsult() {
+  onCreateConsult(patientMail) {
     if (this.addConsultForm.invalid) {
       return;
     } else {
       this.consultService
-        .addConsult(this.addConsultForm.value)
+        .addConsult(this.addConsultForm.value, patientMail)
         .subscribe((r) => {
-          this.router.navigate(['/doctor']);
+          this.router.navigate(['/doctor/patients-without-doctor']);
         });
     }
   }
