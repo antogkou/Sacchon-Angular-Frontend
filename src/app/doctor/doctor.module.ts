@@ -9,10 +9,12 @@ import { ConsultAddComponent } from './consult-add/consult-add.component';
 import { ActivePatientsComponent } from './active-patients-list/active-patients.component';
 import { MeasurementAddComponent } from '../patient/measurement-add/measurement-add.component';
 import { MeasurementEditComponent } from '../patient/measurement-edit/measurement-edit.component';
+import { PatientsDetailComponent } from './patients-detail/patients-detail.component';
+import { MyPatientsListComponent } from './my-patients-list/my-patients-list.component';
 
 
 @NgModule({
-  declarations: [DoctorComponent, ActivePatientsComponent,  ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent],
+  declarations: [DoctorComponent, ActivePatientsComponent,  ConsultAddComponent, MeasurementAddComponent, MeasurementEditComponent, PatientsDetailComponent, MyPatientsListComponent],
 
   imports: [
     CommonModule,
