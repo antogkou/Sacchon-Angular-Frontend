@@ -1,7 +1,5 @@
 <div class="card align-items-center">
-  <h4 class="header">Login</h4>
-  <h5 class="header">Not a member? <a routerLink="../register">Sign up!</a> </h5>
-  <img width="200" height="200" src="../assets/images/Sacchon_200x200.png">
+  <h4 class="card-header">Login</h4>
   <div class="card-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -42,32 +40,3 @@
   </div>
 </div>
 
-<ngb-carousel>
-  <ng-template ngbSlide>
-    <div class="carousel-inner">
-      <img src="../assets/images/chicago.jpg" alt="Angular Carousel 1" width="300" height="250">
-    </div>
-    <div class="carousel-caption">
-      <h3>Glucose tracking</h3>
-      <p>Get your Glucose level in check!</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="carousel-inner">
-      <img src="../assets/images/la.jpg" alt="Angular Carousel 2" width="300" height="250">
-    </div>
-    <div class="carousel-caption">
-      <h3>Evaluation</h3>
-      <p>Recieve consults from your doctor!</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
-
-
-  <div class="footer">
-    <p>Powered by Runtime Terror - Pfizer SeniorZ
-      <a href="https://github.com/empelogi">Belogianni Eleni</a> - 
-      <a href="https://github.com/antogkou">Gkoutzamanis Antonis</a> - 
-      <a href="https://github.com/LamprosTolis">Tolis-Papagiannis Lampros</a> - 
-      <a href="https://github.com/alouvoul">Anastasios Louvoulinas</a> - 
-  </div>

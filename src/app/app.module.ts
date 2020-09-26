@@ -28,7 +28,6 @@ import { ConsultAddComponent } from './doctor/consult-add/consult-add.component'
 import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
 import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
 import { PatientModule } from './patient/patient.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -103,7 +102,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     GoogleChartsModule,
     RouterModule.forRoot(routes),
-    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
