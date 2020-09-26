@@ -4,7 +4,7 @@
       <div class="col-sm-5">
        
           <h3 class="text-center">Log entry</h3>
-          <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult()">
+          <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult(patientMail)">
             <input
               type="text"
               matInput

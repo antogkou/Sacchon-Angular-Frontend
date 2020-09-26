@@ -10,9 +10,6 @@ import { Measurement } from '../../_shared/_models/measurement';
   styleUrls: ['./patients-detail.component.scss'],
 })
 export class PatientsDetailComponent implements OnInit {
-  glucose_level: [];
-  carb_intake: [];
-  created_date: [];
   myData: any[] = [];
   measurements: Measurement[];
 
