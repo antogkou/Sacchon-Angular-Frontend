@@ -30,6 +30,7 @@ import { MeasurementEditComponent } from './patient/measurement-edit/measurement
 import { PatientModule } from './patient/patient.module';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
+import { DoctorModule } from './doctor/doctor.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -81,17 +82,15 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    ActivePatientsComponent,
-    MyPatientsListComponent,
     RegisterComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    DoctorComponent,
   ],
   imports: [
     CommonModule,
     PatientModule,
+    DoctorModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
