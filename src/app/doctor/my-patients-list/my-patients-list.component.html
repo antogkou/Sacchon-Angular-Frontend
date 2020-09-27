@@ -19,16 +19,20 @@
         <td>{{ user.lastName }}</td>
         <td>{{ user.phoneNumber}}</td>
         <td>
-          <button
-           class="btn" 
-           type="button"
-           [routerLink]="[user.email]"
-            >
+            
+          <button class="btn" type="button">
             See Patient's Measurements
           </button>
+           
+            
+            <button class="btn" type="button">
+                See Patient's Consults
+              </button>
+
+           
         </td>
+
+
       </tr>
     </tbody>
   </table>
-
- <router-outlet></router-outlet>

@@ -29,6 +29,9 @@ import { ActivePatientsComponent } from './doctor/active-patients-list/active-pa
 import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
 import { PatientModule } from './patient/patient.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
+import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
+import { DoctorModule } from './doctor/doctor.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -52,12 +55,14 @@ const routes: Routes = [
     component: DoctorComponent,
     children: [
       // { path: '', component: DoctorComponent },
-      { path: 'my-patients', component: DoctorComponent },
+      // { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: ActivePatientsComponent},
+      { path: 'my-patients', component : MyPatientsListComponent},
       { path: 'consults', component: ConsultListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
+      { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
     ],
   },
   {
@@ -78,16 +83,15 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    ActivePatientsComponent,
     RegisterComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    DoctorComponent,
   ],
   imports: [
     CommonModule,
     PatientModule,
+    DoctorModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,

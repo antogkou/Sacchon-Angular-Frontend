@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Consult } from '../_models/consult';
 
 @Injectable({
@@ -18,27 +19,29 @@ export class ConsultService {
 
   /** GET consults from the server */
   getConsults(): Observable<Consult[]> {
-    return this.http.get<Consult[]>(this.baseUrl + 'consult', {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    });
+    return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
+  }
+
+  /** GET clicked consult id from the server */
+  getConsultById(id: string): Observable<Consult> {
+    const url = `${this.baseUrl}consult/${id}`;
+    return this.http.get<Consult>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched consult id=${id}`)),
+      catchError(this.handleError<Consult>(`getConsultById id=${id}`))
+    );
   }
 
   /** Post consult to the server */
-  addConsult(values: Consult): Observable<any> {
+  addConsult(values: Consult, email: string): Observable<any> {
     return this.http.post(
       this.baseUrl + 'consult',
       {
         consultText: values.consultText,
         dosage: values.dosage,
-        medication: values.medication
+        medication: values.medication,
+        patient_email: email
       },
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Basic ' + localStorage.getItem('account'),
-        }),
-      }
+      this.httpOptions
     );
   }
 

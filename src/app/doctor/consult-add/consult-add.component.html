@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-5">
-        <mat-card>
+       
           <h3 class="text-center">Log entry</h3>
-          <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult()">
+          <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult(patientMail)">
             <input
               type="text"
               matInput
@@ -27,7 +27,7 @@
               Submit
             </button>
           </form>
-        </mat-card>
+       
       </div>
     </div>
   </div>
