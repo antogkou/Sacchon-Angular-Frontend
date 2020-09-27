@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { PatientMeasurementComponent } from './patient-measurement/patient-measurement.component';
+import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientListComponent } from './patient-list/patient-list.component';
+import { DoctorListComponent } from './doctor-list/doctor-list.component';
 
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    PatientMeasurementComponent,
+    PatientDetailComponent,
     PatientListComponent,
+    DoctorListComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { PatientListComponent } from './patient-list/patient-list.component';
   ],
   exports: [
     AdminComponent,
-    PatientMeasurementComponent,
+    PatientDetailComponent,
     PatientListComponent
   ]
 })
