@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
+import { PatientConsultListComponent } from './doctor/patient-consult-list/patient-consult-list.component';
 import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
 import { AdminModule } from './admin/admin.module';
 import { PatientListComponent } from './admin/patient-list/patient-list.component';
@@ -68,6 +69,8 @@ const routes: Routes = [
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
       { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/consult/:email', component: PatientConsultListComponent }
     ],
   },
   {

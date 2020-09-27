@@ -31,6 +31,16 @@ export class ConsultService {
     );
   }
 
+  /**GET consult by patient email */
+  getConsultByPatientEmail(email: string): Observable<Consult>{
+    const url = `${this.baseUrl}my-patients?consults-of-patient&email=${email}`;
+    return this.http.get<Consult>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched consults with patient mail=${email}`)),
+      catchError(this.handleError<Consult>(`getConsultByPatientEmail email=${email}`))
+    );
+  }
+
+
   /** Post consult to the server */
   addConsult(values: Consult, email: string): Observable<any> {
     return this.http.post(

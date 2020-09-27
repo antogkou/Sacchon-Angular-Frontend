@@ -34,9 +34,4 @@ export class ActivePatientsComponent implements OnInit {
       console.log(this.users);
     });
   }
-
-  // btnClick(){ 
-  //   this.router.navigate(['/measurement']);
-  // } 
-
 }
