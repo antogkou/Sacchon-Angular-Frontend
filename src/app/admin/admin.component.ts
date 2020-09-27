@@ -16,11 +16,8 @@ export class AdminComponent implements OnInit {
   }
 
   getAllUsers(): void {
-    this.userService.getUsers().subscribe((response) => {
+    this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
-      response.map((item) => {
-        this.users.push(item);
-      });
       console.log(this.users);
     });
   }

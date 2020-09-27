@@ -31,6 +31,8 @@ import { PatientModule } from './patient/patient.module';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
+import { PatientMeasurementComponent } from './admin/patient-measurement/patient-measurement.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -70,8 +72,8 @@ const routes: Routes = [
     children: [
       // { path: '', component: DoctorComponent },
       { path: 'all-users', component: AdminComponent },
-      { path: 'all-patients', component: AdminComponent },
-      { path: 'all-doctors', component: ConsultListComponent },
+      { path: 'patient-data/:email', component: PatientMeasurementComponent},
+      { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
     ],
@@ -86,10 +88,10 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AdminComponent,
   ],
   imports: [
     CommonModule,
+    AdminModule,
     PatientModule,
     DoctorModule,
     BrowserModule,
