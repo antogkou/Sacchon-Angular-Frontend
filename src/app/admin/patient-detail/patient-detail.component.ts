@@ -6,13 +6,15 @@ import { UserService } from 'src/app/_shared/_services/user.service';
 @Component({
   selector: 'app-patient-detail',
   templateUrl: './patient-detail.component.html',
-  styleUrls: ['./patient-detail.component.scss']
+  styleUrls: ['./patient-detail.component.scss'],
 })
 export class PatientDetailComponent implements OnInit {
-
   user: User;
-  
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getPatient(this.route.snapshot.params.email);
@@ -25,5 +27,4 @@ export class PatientDetailComponent implements OnInit {
       console.log(this.user);
     });
   }
-
 }

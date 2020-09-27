@@ -35,6 +35,8 @@ import { DoctorModule } from './doctor/doctor.module';
 import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
 import { AdminModule } from './admin/admin.module';
 import { PatientListComponent } from './admin/patient-list/patient-list.component';
+import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
+import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -75,6 +77,8 @@ const routes: Routes = [
       // { path: '', component: DoctorComponent },
       { path: 'patient-list', component: PatientListComponent },
       { path: 'patient-list/:email', component: PatientDetailComponent},
+      { path: 'doctor-list', component: DoctorListComponent },
+      { path: 'doctor-list/:email', component: DoctorDetailComponent},
       { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },

@@ -3,8 +3,8 @@
 <nav *ngIf="userService.currentUserRole == 'admin'">
   <ul>
     <li><a routerLink="patient-list">patient-list</a></li>
-    <!-- <li><a routerLink="measurements/create">measurements/create</a></li>
-    <li><a routerLink="consult">consult</a></li> -->
+    <li><a routerLink="doctor-list">doctor-list</a></li>
   </ul>
 </nav>
+
 <router-outlet></router-outlet>
