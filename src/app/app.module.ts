@@ -94,6 +94,7 @@ const routes: Routes = [
     AdminModule,
     PatientModule,
     DoctorModule,
+    AdminModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
