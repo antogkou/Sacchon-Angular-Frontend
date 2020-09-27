@@ -1,24 +1,6 @@
-<!-- <div class="vertical-menu">
-  <a routerLink="/patient" routerLinkActive="active">Patient Component </a>
-  <a routerLink="/doctor" routerLinkActive="active">Doctor Component </a>
-  <a routerLink="/admin" routerLinkActive="active">Admin Component </a>
-</div> -->
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <img src="../assets/images/Sacchon_16_16.ico">
-      <a class="navbar-brand" href="#">Sacchon</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home </a><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
-                         <a routerLink="/doctor" routerLinkActive="active"> Doctor Component </a>
-                         <a routerLink="/admin" routerLinkActive="active"> Admin Component </a></li>
-
-    </ul>
-  </div>
-</nav>
-
+<app-header></app-header>
 
 <!-- The routed views render in the <router-outlet>-->
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>

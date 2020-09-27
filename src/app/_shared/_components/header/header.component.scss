@@ -1,21 +1,32 @@
-.navbar {
-    background-color: cornflowerblue;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 10px;
-    position: fixed;
-    width: 100%;
-  
-    span {
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
-    }
-  }
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: teal;
+  overflow: hidden;
+}
 
-.patientDiv {
-  position: absolute;
-  bottom: 10px;
-  width: 50%;
-  border: 3px solid #8AC007;
+/* Style the links inside the navigation bar */
+.topnav a {
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+background-color: #ddd;
+color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+background-color: lightskyblue;
+color: white;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+float: right;
 }
