@@ -86,6 +86,7 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    AdminComponent,
   ],
   imports: [
     CommonModule,

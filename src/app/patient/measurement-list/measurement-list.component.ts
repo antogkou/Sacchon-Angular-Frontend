@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Measurement } from '../../_shared/_models/measurement';
 import { MeasurementService } from '../../_shared/_services/measurement.service';
-import { Router } from '@angular/router';
 import { UserService } from '../../_shared/_services/user.service';
-import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/_shared/_models/user';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-measurement-list',
   templateUrl: './measurement-list.component.html',
@@ -12,15 +13,13 @@ import { User } from 'src/app/_shared/_models/user';
 })
 export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
-  // hard-coded dummy data(works)
-  // data = [
-  //   ['Firefox', 45.0],
-  //   ['IE', 26.8],
-  //   ['Chrome', 12.8],
-  //   ['Safari', 8.5],
-  //   ['Opera', 6.2],
-  //   ['Others', 0.7],
-  // ];
+
+  dateForm: FormGroup;
+
+  hideTable = true;
+  hideDateTable = false;
+  startDate = new FormControl();
+  endDate = new FormControl();
 
   loading = false;
   submitted = false;
@@ -35,12 +34,9 @@ export class MeasurementListComponent implements OnInit {
   width = 950;
   height = 500;
 
-  // measurement_id = [];
-  // glucose_level = [];
-  // carb_intake = [];
-  // measurement_created_date = [];
-  myData: any[] = [];
+  myGraphData: any[] = [];
   measurements: Measurement[];
+  measurementsByDate: Measurement[];
   users: User[];
 
   isLoadingResults = true;
@@ -51,6 +47,10 @@ export class MeasurementListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.dateForm = new FormGroup({
+      startDate: new FormControl(),
+      endDate: new FormControl(),
+    });
     this.getMeasurements();
   }
 
@@ -60,9 +60,32 @@ export class MeasurementListComponent implements OnInit {
       .subscribe((response) => {
         this.measurements = response;
         response.map((item) => {
-          this.myData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([item.created_date, item.glucose_level]);
         });
         console.log(this.measurements);
+      });
+  }
+
+  getMeasurementsByDate() {
+    console.log(
+      'start= ' + this.dateForm.get('startDate').value,
+      'end= ' + this.dateForm.get('endDate').value
+    );
+    this.measurementService
+      .getMeasurementsByDate2(
+        this.dateForm.get('startDate').value,
+        this.dateForm.get('endDate').value
+      )
+      .subscribe((response) => {
+        this.hideTable = false;
+        this.hideDateTable = true;
+        this.measurements = response;
+        response.map((item) => {
+          this.measurementsByDate.push();
+        });
+        // this.measurementsByDate.push(response);
+        // this.dateForm.setValue(startDate, endDate)
+        console.log('response is: ' + response);
       });
   }
 
