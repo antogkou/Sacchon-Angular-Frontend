@@ -4,11 +4,11 @@ import { User } from 'src/app/_shared/_models/user';
 import { UserService } from 'src/app/_shared/_services/user.service';
 
 @Component({
-  selector: 'app-patient-measurement',
-  templateUrl: './patient-measurement.component.html',
-  styleUrls: ['./patient-measurement.component.scss']
+  selector: 'app-patient-detail',
+  templateUrl: './patient-detail.component.html',
+  styleUrls: ['./patient-detail.component.scss']
 })
-export class PatientMeasurementComponent implements OnInit {
+export class PatientDetailComponent implements OnInit {
 
   user: User;
   
@@ -16,7 +16,7 @@ export class PatientMeasurementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatient(this.route.snapshot.params.email);
-    console.log('asdzxc');
+    console.log('got patient inside of patient-detail');
   }
 
   getPatient(email: string): void {

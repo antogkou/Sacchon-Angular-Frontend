@@ -31,7 +31,7 @@ import { PatientModule } from './patient/patient.module';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
-import { PatientMeasurementComponent } from './admin/patient-measurement/patient-measurement.component';
+import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
 import { AdminModule } from './admin/admin.module';
 import { PatientListComponent } from './admin/patient-list/patient-list.component';
 
@@ -73,7 +73,7 @@ const routes: Routes = [
     children: [
       // { path: '', component: DoctorComponent },
       { path: 'patient-list', component: PatientListComponent },
-      { path: 'patient-list/:email', component: PatientMeasurementComponent},
+      { path: 'patient-list/:email', component: PatientDetailComponent},
       { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
