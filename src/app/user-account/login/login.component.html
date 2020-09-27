@@ -1,67 +1,77 @@
-<mat-toolbar class="position-absolute" color="primary">
-  <mat-toolbar-row class="justify-content-between">
-    <button [routerLink]="['/home']" mat-button>Home</button>
-    <!-- TODO -->
-    <button [routerLink]="['/about']" mat-button>About</button>
-
-  </mat-toolbar-row>
-</mat-toolbar>
-<div class="d-flex align-items-center h-100">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-5">
-          <div class="alert alert-danger" role="alert" *ngIf="submitted">
-            Email or password is incorrect
-          </div>
-          <mat-card>
-            <h3 class="text-center">Log in</h3>
-            <img class="d-block w-100" src="../assets/images/Sacchon_200x200.png">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <mat-form-field class="w-100">
-                <input type="text" matInput placeholder="Email" formControlName="email">
-                <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
-              </mat-form-field>
-              <mat-form-field class="w-100">
-                <input type="password" matInput placeholder="Password" formControlName="password">
-                <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
-              </mat-form-field>
-              <div class="form-group mt-4">
-                <button mat-raised-button color="primary">Login</button>
-                <a [routerLink]="['/register']" class="ml-2" mat-button color="primary">Register</a>
-              </div>
-            </form>
-          </mat-card>
+<div class="card align-items-center">
+  <h4 class="header">Login</h4>
+  <h5 class="header">Not a member? <a routerLink="../register">Sign up!</a> </h5>
+  <img width="200" height="200" src="../assets/images/Sacchon_200x200.png">
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && data.email.errors }"
+        />
+        <div *ngIf="submitted && data.email.errors" class="invalid-feedback">
+          <div *ngIf="data.email.errors.required">Email is required</div>
         </div>
       </div>
-    </div>
-  </div>
-  
-  
-  <ngb-carousel>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img src="../assets/images/chicago.jpg" alt="Angular Carousel 1" width="300" height="250">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && data.password.errors }"
+        />
+        <div *ngIf="submitted && data.password.errors" class="invalid-feedback">
+          <div *ngIf="data.password.errors.required">Password is required</div>
+        </div>
       </div>
-      <div class="carousel-caption">
-        <h3>Glucose tracking</h3>
-        <p>Get your Glucose level in check!</p>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Login
+        </button>
+        <a routerLink="../register" class="btn btn-link">Register</a>
       </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img src="../assets/images/la.jpg" alt="Angular Carousel 2" width="300" height="250">
-      </div>
-      <div class="carousel-caption">
-        <h3>Evaluation</h3>
-        <p>Recieve consults from your doctor!</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
-
-<footer>
-<div>
-  <div layout="row" layout-align="center center" flex>
-    Powered by Runtime Terror - Pfizer SeniorZ
+    </form>
   </div>
 </div>
-</footer>
+
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <div class="carousel-inner">
+      <img src="../assets/images/Blood_Sugar_Test.jpg" class="w-100" alt="Angular Carousel 1" width="250" height="250">
+    </div>
+    <div class="carousel-caption">
+      <h3>Glucose tracking</h3>
+      <p>Get your Glucose level in check!</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>  
+    <div class="carousel-inner">
+      <img src="../assets/images/blood-sugar-exam.jpg" alt="Angular Carousel 2" width="300" height="250">
+    </div>
+    <div class="carousel-caption">
+      <h3>Evaluation</h3>
+      <p>Recieve consults from your doctor!</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>  
+    <div class="carousel-inner">
+      <img src="../assets/images/blood-test.jpg" alt="Angular Carousel 2" width="300" height="250">
+    </div>
+    <div class="carousel-caption">
+      <h3>Evaluation</h3>
+      <p>Recieve consults from your doctor!</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<!-- <h3 class="text-center">Test Header</h3>
+<p class="text-center">and there some more text</p> -->
+

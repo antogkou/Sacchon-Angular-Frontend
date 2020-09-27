@@ -1,0 +1,34 @@
+<div class="d-flex align-items-center h-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+       
+          <h3 class="text-center">Log entry</h3>
+          <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult(patientMail)">
+            <input
+              type="text"
+              matInput
+              placeholder="Consult Text"
+              formControlName="consultText"
+            />
+            <input
+              type="text"
+              matInput
+              placeholder="Dosage"
+              formControlName="dosage"
+            />
+            <input
+              type="text"
+              matInput
+              placeholder="Medication"
+              formControlName="medication"
+            />
+            <button class="btn btn-primary" [disabled]="!addConsultForm.valid">
+              Submit
+            </button>
+          </form>
+       
+      </div>
+    </div>
+  </div>
+</div>

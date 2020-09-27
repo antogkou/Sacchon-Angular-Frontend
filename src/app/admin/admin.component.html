@@ -1,0 +1,24 @@
+<p>Are you an admin?</p>
+<div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid">
+  <div class="row">
+    <div *ngFor="let user of users" class="col-md-3">
+      <div *ngIf="user.hasActiveDoctor == 0"class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+          <p class="card-text">{{ user.email }}</p>
+          <div class="card-text">
+            address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+          </div>
+          <div class="card-text">{{ user.phoneNumber }}</div>
+          <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
+          
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="card-footer text-muted">
+          Registed at:
+          <cite title="Source Title">{{ user.createdDate | date }}</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

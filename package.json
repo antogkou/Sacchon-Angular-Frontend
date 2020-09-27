@@ -24,6 +24,7 @@
     "@angular/router": "~10.1.0",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@swimlane/ngx-charts": "^16.0.0",
+    "angular-bootstrap-md": "^10.0.0",
     "angular-google-charts": "^1.1.6",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",

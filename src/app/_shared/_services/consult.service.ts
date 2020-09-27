@@ -1,18 +1,13 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { User } from '../user-account/_models/user';
-import { Measurement } from './measurement';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Consult } from '../_models/consult';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MeasurementService {
+export class ConsultService {
   private baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,29 +17,31 @@ export class MeasurementService {
   };
   constructor(private http: HttpClient) {}
 
-  /** GET measurements from the server */
-  getMeasurements(): Observable<Measurement[]> {
-    return this.http.get<Measurement[]>(this.baseUrl + 'measurements', {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    });
+  /** GET consults from the server */
+  getConsults(): Observable<Consult[]> {
+    return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
   }
 
-  /** POST: add a new measurement to the server */
-  addMeasurement(values: Measurement): Observable<any> {
-    
+  /** GET clicked consult id from the server */
+  getConsultById(id: string): Observable<Consult> {
+    const url = `${this.baseUrl}consult/${id}`;
+    return this.http.get<Consult>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched consult id=${id}`)),
+      catchError(this.handleError<Consult>(`getConsultById id=${id}`))
+    );
+  }
+
+  /** Post consult to the server */
+  addConsult(values: Consult, email: string): Observable<any> {
     return this.http.post(
-      this.baseUrl + 'measurements',
+      this.baseUrl + 'consult',
       {
-        glucose_level: values.carb_intake,
-        carb_intake: values.glucose_level,
+        consultText: values.consultText,
+        dosage: values.dosage,
+        medication: values.medication,
+        patient_email: email
       },
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Basic ' + localStorage.getItem('account'),
-        }),
-      }
+      this.httpOptions
     );
   }
 
@@ -66,5 +63,4 @@ export class MeasurementService {
       return of(result as T);
     };
   }
-
 }
