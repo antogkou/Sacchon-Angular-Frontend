@@ -20,13 +20,11 @@ export class ActivePatientsComponent implements OnInit {
   users: User[];
 
   constructor(
-    private UserService: UserService,
-    private HttpClient: HttpClient,
-    private router: Router
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    this.UserService.getUsersWithoutDoctor().subscribe((response) => {
+    this.userService.getUsersWithoutDoctor().subscribe((response) => {
       this.users = response;
       response.map((item) =>{
         this.myData.push([item.firstName, item.lastName, item.phoneNumber]);
@@ -36,9 +34,4 @@ export class ActivePatientsComponent implements OnInit {
       console.log(this.users);
     });
   }
-
-  // btnClick(){ 
-  //   this.router.navigate(['/measurement']);
-  // } 
-
 }

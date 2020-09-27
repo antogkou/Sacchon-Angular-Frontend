@@ -11,6 +11,8 @@ import { PatientsDetailComponent } from './patients-detail/patients-detail.compo
 import { MyPatientsListComponent } from './my-patients-list/my-patients-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCard } from '@angular/material/card';
+import { PatientConsultListComponent } from './patient-consult-list/patient-consult-list.component';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { MatCard } from '@angular/material/card';
     ConsultAddComponent,
     PatientsDetailComponent,
     MyPatientsListComponent,
+    PatientConsultListComponent
   ],
 
   imports: [
@@ -36,7 +39,9 @@ import { MatCard } from '@angular/material/card';
     DoctorComponent,
     PatientsDetailComponent,
     ActivePatientsComponent,
-    DoctorComponent
+    DoctorComponent,
+    MyPatientsListComponent,
+    PatientConsultListComponent
   ],
 })
 export class DoctorModule {}

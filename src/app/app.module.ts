@@ -32,6 +32,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
+import { PatientConsultListComponent } from './doctor/patient-consult-list/patient-consult-list.component';
+import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
+import { AdminModule } from './admin/admin.module';
+import { PatientListComponent } from './admin/patient-list/patient-list.component';
+import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
+import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -63,6 +69,8 @@ const routes: Routes = [
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
       { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/consult/:email', component: PatientConsultListComponent }
     ],
   },
   {
@@ -70,9 +78,11 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       // { path: '', component: DoctorComponent },
-      { path: 'all-users', component: AdminComponent },
-      { path: 'all-patients', component: AdminComponent },
-      { path: 'all-doctors', component: ConsultListComponent },
+      { path: 'patient-list', component: PatientListComponent },
+      { path: 'patient-list/:email', component: PatientDetailComponent},
+      { path: 'doctor-list', component: DoctorListComponent },
+      { path: 'doctor-list/:email', component: DoctorDetailComponent},
+      { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
     ],
@@ -87,12 +97,13 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AdminComponent,
   ],
   imports: [
     CommonModule,
+    AdminModule,
     PatientModule,
     DoctorModule,
+    AdminModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,

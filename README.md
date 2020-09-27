@@ -3,6 +3,7 @@
 # npm install
 # npm install bootstrap
 # npm install angular-google-charts
+# npm install --save @ng-bootstrap/ng-bootstrap
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
