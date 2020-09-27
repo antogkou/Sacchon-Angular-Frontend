@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <div class="container-fluid">
   <div class="row">
     <div *ngFor="let user of users" class="col-md-3">
@@ -11,7 +12,7 @@
           <div class="card-text">{{ user.phoneNumber }}</div>
           <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
           
-          <button class="btn" type="button" [routerLink]="[user.email]">
+          <button class="btn" type="button" [routerLink]="['patient-data',user.email]">
             See Patient's details
           </button>
         </div>

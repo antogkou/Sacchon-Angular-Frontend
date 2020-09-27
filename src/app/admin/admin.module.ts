@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { PatientComponent } from '../patient/patient.component';
 import { PatientMeasurementComponent } from './patient-measurement/patient-measurement.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -14,7 +17,11 @@ import { PatientMeasurementComponent } from './patient-measurement/patient-measu
   ],
   imports: [
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     AdminComponent,

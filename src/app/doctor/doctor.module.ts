@@ -10,7 +10,6 @@ import { ActivePatientsComponent } from './active-patients-list/active-patients.
 import { PatientsDetailComponent } from './patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './my-patients-list/my-patients-list.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatCard } from '@angular/material/card';
 
 @NgModule({
   declarations: [
