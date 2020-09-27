@@ -28,6 +28,7 @@
     "angular-google-charts": "^1.1.6",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
+    "ng-bootstrap": "^1.6.3",
     "ngx-charts": "^3.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
