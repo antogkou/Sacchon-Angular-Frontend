@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<p>Are you an admin?</p>
+<div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid">
   <div class="row">
     <div *ngFor="let user of users" class="col-md-3">
       <div *ngIf="user.hasActiveDoctor == 0"class="card">

@@ -90,7 +90,8 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(
       `${this.baseUrl}get-all-users`,
-      this.httpOptions
+      this.httpOptions).pipe(
+      tap((_) => console.log(`fetched all users`)),
     );
   }
 
