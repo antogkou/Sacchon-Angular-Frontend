@@ -49,8 +49,9 @@ export class MeasurementEditComponent implements OnInit {
     this.measurementService.updateMeasurements(this.measurement_id, this.editMeasurementForm.value)
       .subscribe((res: any) => {
           const id = res.measurement_id;
+          console.log(id);
           this.isLoadingResults = false;
-          this.router.navigate(['/patient/measurements']);
+          this.router.navigate(['/patient/measurements/']);
         }, (err: any) => {
           console.log(err);
           this.isLoadingResults = false;

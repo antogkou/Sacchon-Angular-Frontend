@@ -31,15 +31,27 @@ export class ConsultService {
     );
   }
 
-  /**GET consult by patient email */
-  getConsultByPatientEmail(email: string): Observable<Consult>{
+  /** GET consult by patient email */
+  getConsultByPatientEmail(email: string): Observable<Consult> {
     const url = `${this.baseUrl}my-patients?consults-of-patient&email=${email}`;
     return this.http.get<Consult>(url, this.httpOptions).pipe(
       tap((_) => console.log(`fetched consults with patient mail=${email}`)),
-      catchError(this.handleError<Consult>(`getConsultByPatientEmail email=${email}`))
+      catchError(
+        this.handleError<Consult>(`getConsultByPatientEmail email=${email}`)
+      )
     );
   }
 
+  /** GET consult by doctor email */
+  getConsultByDoctorEmail(email: string): Observable<Consult> {
+    const url = `${this.baseUrl}admin-panel?doctor&email=${email}`;
+    return this.http.get<Consult>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched consults with doctor mail=${email}`)),
+      catchError(
+        this.handleError<Consult>(`getConsultByDoctorEmail email=${email}`)
+      )
+    );
+  }
   /**PUT consult and save it into the server */
 
   updateConsult(id: string, consult: Consult): Observable<any>{
@@ -59,7 +71,7 @@ export class ConsultService {
       catchError(this.handleError<Consult>('deleteCosnults'))
     );
   }
-
+ 
 
   /** Post consult to the server */
   addConsult(values: Consult, email: string): Observable<any> {
@@ -69,7 +81,7 @@ export class ConsultService {
         consultText: values.consultText,
         dosage: values.dosage,
         medication: values.medication,
-        patient_email: email
+        patient_email: email,
       },
       this.httpOptions
     );
