@@ -32,6 +32,7 @@ import { PatientsDetailComponent } from './doctor/patients-detail/patients-detai
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
 import { PatientConsultListComponent } from './doctor/patient-consult-list/patient-consult-list.component';
+import { ConsultEditComponent } from './doctor/consult-edit/consult-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -64,7 +65,8 @@ const routes: Routes = [
       { path: 'consults/:id/edit', component: ConsultListComponent },
       { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
       { path: 'my-patients/:email', component: PatientsDetailComponent },
-      { path: 'my-patients/consult/:email', component: PatientConsultListComponent }
+      { path: 'my-patients/consult/:email', component: PatientConsultListComponent },
+      { path: 'my-patients/consult/:email/:id', component: ConsultEditComponent}
     ],
   },
   {

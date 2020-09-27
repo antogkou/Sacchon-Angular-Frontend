@@ -40,6 +40,26 @@ export class ConsultService {
     );
   }
 
+  /**PUT consult and save it into the server */
+
+  updateConsult(id: string, consult: Consult): Observable<any>{
+    const url = `${this.baseUrl}consult/${id}`;
+    return this.http.put(url, consult, this.httpOptions).pipe(
+      tap((_) => console.log(`updated consult with id=${id}`)),
+      catchError(this.handleError<any>('update consults'))
+    );
+  }
+
+  /**DELETE: delete a consult from the server */
+
+  deleteConsults(id : string):Observable<Consult>{
+    const url = `${this.baseUrl}consult/${id}`;
+    return this.http.delete<Consult>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`deleted consult with id=${id}`)),
+      catchError(this.handleError<Consult>('deleteCosnults'))
+    );
+  }
+
 
   /** Post consult to the server */
   addConsult(values: Consult, email: string): Observable<any> {
