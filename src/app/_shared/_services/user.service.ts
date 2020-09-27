@@ -95,9 +95,9 @@ export class UserService {
     );
   }
 
-  getPatientData(email: String): Observable<User> {
+  getPatientData(email: string): Observable<User> {
     return this.http.get<User>(
-      `${this.baseUrl}admin-panel/?patient&email=${email}`,
+      `${this.baseUrl}admin-panel?patient&email=${email}`,
       this.httpOptions
     ).pipe(
       tap((_) => console.log(`fetched patient with data email=${email}`)),
