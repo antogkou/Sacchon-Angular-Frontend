@@ -14,22 +14,23 @@
           {{ measurement.measurement_created_date | date: "dd/MM/yyyy" }}
         </th> -->
 
-      <td>{{ i + 1 }}</td>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.phoneNumber }}</td>
-      <td>
-        <button class="btn" type="button" [routerLink]="[user.email]">
-          See Patient's Measurements
-        </button>
-
-        <button
-          class="btn"
-          type="button"
-          [routerLink]="['consult', user.email]"
-        >
-          See Patient's Consults
-        </button>
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.phoneNumber}}</td>
+        <td>
+            
+          <button class="btn" type="button"
+          [routerLink]="[user.email]">
+            See Patient's Measurements
+          </button>
+           
+            
+            <button class="btn" type="button"
+            [routerLink] = "['consult', user.email]">
+                See Patient's Consults
+              </button>
+       
       </td>
     </tr>
   </tbody>

@@ -14,6 +14,8 @@ export class PatientConsultListComponent implements OnInit {
   myData: any[] = [];
   consults: Consult[];
 
+  isLoadingResults = true;
+
   constructor(
     private consultService: ConsultService,
     private HttpClient : HttpClient,
@@ -31,6 +33,21 @@ export class PatientConsultListComponent implements OnInit {
       this.consults = response;
       console.log(response);
     });
+  }
+
+  deleteConsult(id : any , email:string){
+    this.isLoadingResults = true;
+    this.consultService.deleteConsults(id).subscribe(
+      (res) => {
+        this.isLoadingResults = false;
+        this.router.navigate(['/doctor/my-patients'])
+        //window.location.reload()
+      },
+      (err) => {
+        console.log(err);
+        this.isLoadingResults = false;
+      }
+    )
   }
 
 }
