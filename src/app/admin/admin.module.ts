@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
+import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 
 
 
@@ -18,6 +19,7 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
     PatientDetailComponent,
     PatientListComponent,
     DoctorListComponent,
+    DoctorDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,9 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
   exports: [
     AdminComponent,
     PatientDetailComponent,
-    PatientListComponent
+    PatientListComponent,
+    DoctorListComponent,
+    DoctorDetailComponent,
   ]
 })
 export class AdminModule { }
