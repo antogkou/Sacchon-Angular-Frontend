@@ -28,6 +28,7 @@ import { ConsultAddComponent } from './doctor/consult-add/consult-add.component'
 import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
 import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
 import { PatientModule } from './patient/patient.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
@@ -111,6 +112,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     GoogleChartsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
