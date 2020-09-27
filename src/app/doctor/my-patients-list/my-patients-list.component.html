@@ -20,12 +20,14 @@
         <td>{{ user.phoneNumber}}</td>
         <td>
             
-          <button class="btn" type="button">
+          <button class="btn" type="button"
+          [routerLink]="[user.email]">
             See Patient's Measurements
           </button>
            
             
-            <button class="btn" type="button">
+            <button class="btn" type="button"
+            [routerLink] = "[user.email]">
                 See Patient's Consults
               </button>
 
