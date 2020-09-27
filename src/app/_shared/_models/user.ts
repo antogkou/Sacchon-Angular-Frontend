@@ -1,5 +1,3 @@
-//import { Role } from "./role";
-
 export class User {
     // user_id: number;
     firstName: string;
@@ -14,7 +12,4 @@ export class User {
     hasActiveDoctor: number;
     createdDate: number;
     isActive: number;
-
-    //role: Role;
-    //token?: string;
 }
