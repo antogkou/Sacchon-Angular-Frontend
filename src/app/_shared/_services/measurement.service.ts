@@ -26,9 +26,9 @@ export class MeasurementService {
 
   /** GET current user's measurements from the server */
   getCurrentUserMeasurements(): Observable<Measurement[]> {
-    return this.http.get<Measurement[]>(
-      this.baseUrl + 'myaccount/mymeasurements',
-      this.httpOptions
+    return this.http.get<Measurement[]>(this.baseUrl + 'myaccount/mymeasurements', this.httpOptions).pipe(
+      tap((_ => console.log('fetched current user measurements')),
+      catchError(this.handleError<Measurement>('getCurrentUserMeasurements')))
     );
   }
 
@@ -48,6 +48,12 @@ export class MeasurementService {
       tap((_) => console.log(`fetched measurement with date from=${startDate} to=${endDate}`)),
       catchError(this.handleError<Measurement>(`getMeasurementsByDate from=${startDate} to=${endDate}`))
     );
+  }
+
+   /** GET measurements by date */
+   getMeasurementsByDate2(startDate: Date, endDate: Date): Observable<Measurement[]> {
+    const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
+    return this.http.get<Measurement[]>(url, this.httpOptions)
   }
 
   /** POST: add a new measurement to the server */

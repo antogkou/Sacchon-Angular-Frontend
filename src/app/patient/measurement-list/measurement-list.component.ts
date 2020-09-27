@@ -4,6 +4,7 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-measurement-list',
@@ -15,6 +16,8 @@ export class MeasurementListComponent implements OnInit {
 
   dateForm: FormGroup;
 
+  hideTable = true;
+  hideDateTable = false;
   startDate = new FormControl();
   endDate = new FormControl();
 
@@ -31,8 +34,9 @@ export class MeasurementListComponent implements OnInit {
   width = 950;
   height = 500;
 
-  myData: any[] = [];
+  myGraphData: any[] = [];
   measurements: Measurement[];
+  measurementsByDate: Measurement[];
   users: User[];
 
   isLoadingResults = true;
@@ -56,21 +60,32 @@ export class MeasurementListComponent implements OnInit {
       .subscribe((response) => {
         this.measurements = response;
         response.map((item) => {
-          this.myData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([item.created_date, item.glucose_level]);
         });
         console.log(this.measurements);
       });
   }
 
   getMeasurementsByDate() {
-    console.log('start= ' + this.dateForm.get('startDate').value, 'end= ' + this.dateForm.get('endDate').value);
+    console.log(
+      'start= ' + this.dateForm.get('startDate').value,
+      'end= ' + this.dateForm.get('endDate').value
+    );
     this.measurementService
-      .getMeasurementsByDate(this.dateForm.get('startDate').value, this.dateForm.get('endDate').value)
+      .getMeasurementsByDate2(
+        this.dateForm.get('startDate').value,
+        this.dateForm.get('endDate').value
+      )
       .subscribe((response) => {
-        
-        this.measurements.push(response);
+        this.hideTable = false;
+        this.hideDateTable = true;
+        this.measurements = response;
+        response.map((item) => {
+          this.measurementsByDate.push();
+        });
+        // this.measurementsByDate.push(response);
         // this.dateForm.setValue(startDate, endDate)
-        console.log(response);
+        console.log('response is: ' + response);
       });
   }
 
