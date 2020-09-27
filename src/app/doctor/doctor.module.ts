@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatCard } from '@angular/material/card';
 import { PatientConsultListComponent } from './patient-consult-list/patient-consult-list.component';
 
+
 @NgModule({
   declarations: [
     DoctorComponent,
