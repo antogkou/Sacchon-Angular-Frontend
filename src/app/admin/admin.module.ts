@@ -7,13 +7,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PatientListComponent } from './patient-list/patient-list.component';
 
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    PatientMeasurementComponent
+    PatientMeasurementComponent,
+    PatientListComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   exports: [
     AdminComponent,
-    PatientMeasurementComponent
+    PatientMeasurementComponent,
+    PatientListComponent
   ]
 })
 export class AdminModule { }

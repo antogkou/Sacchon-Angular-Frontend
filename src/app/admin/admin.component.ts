@@ -14,14 +14,11 @@ export class AdminComponent implements OnInit {
   constructor(public userService: UserService) {}
  
   ngOnInit(): void {
-    this.getAllUsers();
-  }
-
-  getAllUsers(): void {
-    this.userService.getAllUsers().subscribe((response) => {
-      this.users = response;
-      console.log(this.users);
+    this.userService.getUsers().subscribe((users) => {
+      this.users = users;
+      console.log(users);
     });
   }
+
 
 }

@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_shared/_models/user';
@@ -20,7 +19,7 @@ export class PatientMeasurementComponent implements OnInit {
     console.log('asdzxc');
   }
 
-  getPatient(email: String): void {
+  getPatient(email: string): void {
     this.userService.getPatientData(email).subscribe((response) => {
       this.user = response;
       console.log(this.user);
