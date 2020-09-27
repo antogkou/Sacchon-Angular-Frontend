@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   public currentUserRole: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
   httpOptions = {
@@ -20,11 +20,7 @@ export class UserService {
   };
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    });
+    return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', this.httpOptions);
   }
 
   login(email, password) {
@@ -64,9 +60,7 @@ export class UserService {
       );
   }
 
-
   /** GET patients that don't have active doctor */
-
   getUsersWithoutDoctor(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', {
       headers: new HttpHeaders({
@@ -79,12 +73,11 @@ export class UserService {
 
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
-    return this.http.get<User[]>(url, this.httpOptions)
-      .pipe(tap((_) => console.log(`fetched my patients`)),
-        catchError(this.handleError<User[]>(`getDoctorPatients failed`))
-      );
+    return this.http.get<User[]>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched my patients`)),
+      catchError(this.handleError<User[]>(`getDoctorPatients failed`))
+    );
   }
-
 
   getUsersById(id: string): Observable<User> {
     const url = `${this.baseUrl}users-without-doctor/${id}`;
@@ -94,6 +87,13 @@ export class UserService {
     );
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(
+      `${this.baseUrl}get-all-users`,
+      this.httpOptions).pipe(
+      tap((_) => console.log(`fetched all users`)),
+    );
+  }
 
   /**
    * Handle Http operation that failed.
@@ -113,5 +113,4 @@ export class UserService {
       return of(result as T);
     };
   }
-
 }

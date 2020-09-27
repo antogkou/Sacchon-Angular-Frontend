@@ -3,18 +3,26 @@
   rel="stylesheet"
 />
 
+<form [formGroup] = "dateForm"
+  (ngSubmit)="getMeasurementsByDate()"
+>
+  <input
+    formControlName="startDate"
+    type="date"
+    name="startDate"
+    id="startDate"/>
+  <input formControlName="endDate" type="date" name="endDate" id="endDate" />
+  <input type="submit" />
+</form>
+
 <!-- <table border="1" cellspacing="0" cellpadding="0" > -->
-<table class="table-striped">
+<table *ngIf="hideTable" class="table-striped">
   <thead class="head">
     <tr>
       <th scope="col">#</th>
-
       <th scope="col">Date</th>
-
       <th scope="col">Daily Glucose Level</th>
-
       <th scope="col">Daily Carb Intake</th>
-
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -30,7 +38,56 @@
       <td>{{ measurement.glucose_level }} grams</td>
 
       <td>
-        <button (click)="deleteCases(measurement.measurement_id)" class="btn" type="button">Delete</button >
+        <button
+          (click)="deleteCases(measurement.measurement_id)"
+          class="btn"
+          type="button"
+        >
+          Delete
+        </button>
+        <button
+          [routerLink]="[measurement.measurement_id]"
+          class="btn"
+          type="button"
+        >
+          Update
+        </button>
+      </td>
+    </tr>
+
+    <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
+  </tbody>
+</table>
+
+<table *ngIf="hideDateTable" class="table-striped">
+  <thead class="head">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Daily Glucose Level</th>
+      <th scope="col">Daily Carb Intake</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody class="table-body">
+    <tr *ngFor="let measurement of measurementsByDate; let i = index">
+      <td>{{ i + 1 }}</td>
+
+      <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
+
+      <td>{{ measurement.carb_intake }} mg/dL</td>
+
+      <td>{{ measurement.glucose_level }} grams</td>
+
+      <td>
+        <button
+          (click)="deleteCases(measurement.measurement_id)"
+          class="btn"
+          type="button"
+        >
+          Delete
+        </button>
         <button
           [routerLink]="[measurement.measurement_id]"
           class="btn"
@@ -56,10 +113,10 @@
 </div>
 
 <google-chart
-  *ngIf="myData.length > 0"
+  *ngIf="myGraphData.length > 0"
   [title]="title"
   [type]="type"
-  [data]="myData"
+  [data]="myGraphData"
   [columns]="chartColumns"
   [options]="options"
   [width]="width"
