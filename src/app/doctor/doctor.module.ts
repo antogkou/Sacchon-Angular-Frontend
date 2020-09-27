@@ -14,6 +14,7 @@ import { MatCard } from '@angular/material/card';
 import { PatientConsultListComponent } from './patient-consult-list/patient-consult-list.component';
 import { ConsultEditComponent } from './consult-edit/consult-edit.component';
 
+
 @NgModule({
   declarations: [
     DoctorComponent,

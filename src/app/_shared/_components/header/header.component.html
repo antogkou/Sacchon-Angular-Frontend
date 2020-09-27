@@ -1,14 +1,27 @@
-<mat-toolbar class="position-absolute" color="primary">
-  <mat-toolbar-row class="align-items-center">
-    <button [routerLink]="['/home']" mat-button>Home</button>
-    <button [routerLink]="['/patient/measurements']" mat-button>
-      Measurements list
-    </button>
-    <button [routerLink]="['/patient/measurements/create']" mat-button>
-      Add measurement
-    </button>
-    <button [routerLink]="['/patient/consult']" mat-button>Consult List</button>
-    <button (click)="logout()" mat-button>Logout</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="topnav">
+  <a href="#">Home </a><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
+  <a routerLink="/doctor" routerLinkActive="active"> Doctor Component </a>
+  <a routerLink="/admin" routerLinkActive="active"> Admin Component </a>
+  <div class="topnav-right">
+    <a href="#search">Contact</a>
+    <a href="#about">About</a>
+  </div>
+</div>
+
+
+
+
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container-fluid topnav-right">
+    <div class="navbar-header">
+      <img src="../assets/images/Sacchon_16_16.ico">
+      <a class="navbar-brand" href="#">Sacchon</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home </a><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
+                         <a routerLink="/doctor" routerLinkActive="active"> Doctor Component </a>
+                         <a routerLink="/admin" routerLinkActive="active"> Admin Component </a></li>
+    </ul>
+  </div>
+</nav> -->
 

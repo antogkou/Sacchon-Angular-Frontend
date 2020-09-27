@@ -28,11 +28,17 @@ import { ConsultAddComponent } from './doctor/consult-add/consult-add.component'
 import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
 import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
 import { PatientModule } from './patient/patient.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
 import { PatientConsultListComponent } from './doctor/patient-consult-list/patient-consult-list.component';
 import { ConsultEditComponent } from './doctor/consult-edit/consult-edit.component';
+import { PatientListComponent } from './admin/patient-list/patient-list.component';
+import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
+import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
+import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -74,9 +80,11 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       // { path: '', component: DoctorComponent },
-      { path: 'all-users', component: AdminComponent },
-      { path: 'all-patients', component: AdminComponent },
-      { path: 'all-doctors', component: ConsultListComponent },
+      { path: 'patient-list', component: PatientListComponent },
+      { path: 'patient-list/:email', component: PatientDetailComponent},
+      { path: 'doctor-list', component: DoctorListComponent },
+      { path: 'doctor-list/:email', component: DoctorDetailComponent},
+      { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
     ],
@@ -91,10 +99,10 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AdminComponent,
   ],
   imports: [
     CommonModule,
+    AdminModule,
     PatientModule,
     DoctorModule,
     BrowserModule,
@@ -112,6 +120,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     GoogleChartsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
