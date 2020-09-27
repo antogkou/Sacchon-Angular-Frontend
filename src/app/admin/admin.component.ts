@@ -9,7 +9,7 @@ import { UserService } from '../_shared/_services/user.service';
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  constructor(private userService: UserService) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
     this.getAllUsers();
