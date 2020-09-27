@@ -31,6 +31,7 @@ import { PatientModule } from './patient/patient.module';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -86,12 +87,12 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AdminComponent,
   ],
   imports: [
     CommonModule,
     PatientModule,
     DoctorModule,
+    AdminModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,

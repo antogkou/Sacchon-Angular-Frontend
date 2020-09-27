@@ -21,8 +21,6 @@ export class MyPatientsListComponent implements OnInit {
 
   constructor(
     private UserService: UserService,
-    private httpClient : HttpClient,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
