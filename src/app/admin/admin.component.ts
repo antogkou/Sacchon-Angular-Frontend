@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_shared/_models/user';
 import { UserService } from '../_shared/_services/user.service';
 
@@ -9,8 +10,9 @@ import { UserService } from '../_shared/_services/user.service';
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  constructor(public userService: UserService) {}
 
+  constructor(public userService: UserService) {}
+ 
   ngOnInit(): void {
     this.getAllUsers();
   }
@@ -18,10 +20,8 @@ export class AdminComponent implements OnInit {
   getAllUsers(): void {
     this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
-      // response.map((item) => {
-      //   this.users.push(item);
-      // });
       console.log(this.users);
     });
   }
+
 }

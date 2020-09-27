@@ -20,12 +20,14 @@ export class MyPatientsListComponent implements OnInit {
   users: User[];
 
   constructor(
-    private UserService: UserService,
+    private userService: UserService,
+    private httpClient : HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
 
-    this.UserService.getDoctorPatients()
+    this.userService.getDoctorPatients()
     .subscribe((response) =>{
       this.users = response;
       response.map((item) => {
