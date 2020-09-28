@@ -104,6 +104,15 @@ export class UserService {
     );
   }
 
+  /** GET inactive patients over a time range */
+  getInactivePatients(startDate: Date, endDate: Date): Observable<User[]> {
+    return this.http.get<User[]>(
+      `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
+      this.httpOptions).pipe(
+      tap((_) => console.log(`fetched all inactive doctors`)),
+    );
+  }
+
   getPatientData(email: string): Observable<User> {
     return this.http.get<User>(
       `${this.baseUrl}admin-panel?patient&email=${email}`,

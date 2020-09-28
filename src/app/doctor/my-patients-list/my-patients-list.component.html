@@ -1,3 +1,19 @@
+<table class="table-striped">
+  <thead class="head">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody class="table-body">
+    <tr *ngFor="let user of users; let i = index">
+      <!-- <th scope="row">
+          {{ measurement.measurement_created_date | date: "dd/MM/yyyy" }}
+        </th> -->
+
 
 <table class="table">
     <thead>
@@ -21,7 +37,7 @@
         <td>{{ user.email }}</td>
         <td>{{ user.phoneNumber}}</td>
         <td>
-          <button class="btn btn-primary" type="button">
+          <button class="btn btn-primary" type="button" [routerLink]="[user.email]>
             Measurements
           </button>
           <button class="btn btn-primary" type="button">
@@ -33,3 +49,14 @@
   </table>
   
 
+        <button
+          class="btn"
+          type="button"
+          [routerLink]="['consult', user.email]"
+        >
+          See Patient's Consults
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

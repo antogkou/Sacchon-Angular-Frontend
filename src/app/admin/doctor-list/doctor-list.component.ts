@@ -11,11 +11,11 @@ import { UserService } from 'src/app/_shared/_services/user.service';
 export class DoctorListComponent implements OnInit {
   page = 1;
   pageSize = 5;
+
   users: User[];
   inactiveDoctors: any[] = [];
-  inactiveDateForm : FormGroup;
-  // startDate = new FormControl();
-  // endDate = new FormControl();
+
+  inactiveDateForm: FormGroup;
   showInactive = false;
   doctorList = true;
   constructor(public userService: UserService) {}
@@ -42,18 +42,19 @@ export class DoctorListComponent implements OnInit {
       'start= ' + this.inactiveDateForm.get('startDate').value,
       'end= ' + this.inactiveDateForm.get('endDate').value
     );
-    this.userService.getInactiveDoctors(
-      this.inactiveDateForm.get('startDate').value,
+    this.userService
+      .getInactiveDoctors(
+        this.inactiveDateForm.get('startDate').value,
         this.inactiveDateForm.get('endDate').value
-    ).subscribe((response) => {
-      this.inactiveDoctors = response;
-      console.log(this.inactiveDoctors);
-    });
+      )
+      .subscribe((response) => {
+        this.inactiveDoctors = response;
+        console.log(this.inactiveDoctors);
+      });
   }
 
-  showInactiveFunction() {
+  showInactiveFunction(): void {
     this.showInactive = !this.showInactive;
     this.doctorList = !this.doctorList;
-  
   }
 }
