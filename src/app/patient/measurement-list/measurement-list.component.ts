@@ -4,8 +4,6 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
-import { ChartsModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-measurement-list',
@@ -15,10 +13,10 @@ import { ChartsModule } from 'angular-bootstrap-md';
 export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
-  dateForm: FormGroup;
-
+  showChart = false;
   hideTable = true;
-  hideDateTable = false;
+
+  dateForm: FormGroup;
   startDate = new FormControl();
   endDate = new FormControl();
 
@@ -55,11 +53,17 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
+  showCharts() {
+    this.showChart = !this.showChart;
+  }
+
   getMeasurements() {
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
+        // sets the table values
         this.measurements = response;
+        // updates the graph
         response.map((item) => {
           this.myGraphData.push([item.created_date, item.glucose_level]);
         });
@@ -73,28 +77,25 @@ export class MeasurementListComponent implements OnInit {
       'end= ' + this.dateForm.get('endDate').value
     );
     this.measurementService
-      .getMeasurementsByDate2(
+      .getMeasurementsByDate(
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
-      )
-      .subscribe((response) => {
-        this.hideTable = false;
-        this.hideDateTable = true;
-         this.measurements = response;
-
-        //this.measurementsByDate = response;
-        //this.dateForm.setValue(startDate, endDate)
+      ).subscribe((response) => {
+        if(response.length > 0 ){
+          this.measurements = response;
+        }else{
+          console.log('response is zero')
+        }
         console.log('response is: ' + response);
       });
   }
 
-  deleteCases(id: any) {
+  deleteCases(id: any): void {
     this.isLoadingResults = true;
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
         //  location.reload();
-        window.location.reload()
         this.getMeasurements();
         //this.router.navigate(['patient/measurements']);
       },
