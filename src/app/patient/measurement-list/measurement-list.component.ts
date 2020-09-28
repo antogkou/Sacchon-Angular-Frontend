@@ -1,138 +1,118 @@
-<div class="col">
+import { Component, OnInit } from '@angular/core';
+import { Measurement } from '../../_shared/_models/measurement';
+import { MeasurementService } from '../../_shared/_services/measurement.service';
+import { UserService } from '../../_shared/_services/user.service';
+import { User } from 'src/app/_shared/_models/user';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<h2 class="text-center">Measurement Data</h2>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">
-      <table *ngIf="hideTable" class="table-striped">
-        <thead class="head">
-          <tr>
-            <th scope="col"> # </th>
-            <th scope="col"> Date </th>
-            <th scope="col"> Daily Glucose Level </th>
-            <th scope="col"> Daily Carb Intake </th>
-            <th scope="col"> Actions </th>
-          </tr>
-        </thead>
-      
-        <tbody class="table-body">
-          <tr *ngFor="let measurement of measurements; let i = index">
-            <td>{{ i + 1 }}</td>
-      
-            <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
-      
-            <td>{{ measurement.carb_intake }} mg/dL</td>
-      
-            <td>{{ measurement.glucose_level }} grams</td>
-      
-            <td>
-              <button
-                (click)="deleteCases(measurement.measurement_id)"
-                class="btn"
-                type="button"
-              ><i class="fa fa-trash"></i>
-                
-              </button>
-      
-              <button
-              
-                [routerLink]="[measurement.measurement_id]"
-                class="btn"
-                type="button"><i class="fa fa-folder"></i>
-                
-              </button>
-            </td>
-          </tr>
-      
-          <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-        </tbody>
-      </table>
-      
-      <table *ngIf="hideDateTable" class="table-striped">
-        <thead class="head">
-          <tr>
-            <th scope="col"> # </th>
-            <th scope="col"> Date </th>
-            <th scope="col"> Daily Glucose Level </th>
-            <th scope="col"> Daily Carb Intake </th>
-            <th scope="col" > Actions </th>
-          </tr>
-        </thead>
-      
-        <tbody class="table-body">
-          <tr *ngFor="let measurement of measurementsByDate; let i = index">
-            <td>{{ i + 1 }}</td>
-      
-            <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
-      
-            <td>{{ measurement.carb_intake }} mg/dL</td>
-      
-            <td>{{ measurement.glucose_level }} grams</td>
-      
-            <td>
-              <button
-                (click)="deleteCases(measurement.measurement_id)"
-                class="btn"
-                type="button"
-              >
-                Delete
-              </button>
-              <button
-                [routerLink]="[measurement.measurement_id]"
-                class="btn"
-                type="button"
-              >
-                Update
-              </button>
-            </td>
-          </tr>
-      
-          <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-        </tbody>
-      </table>
-      <div class="container">
-        <button type="button" class="btn btn-primary btn-lg" id="averageBtn">
-          Compute My Average
-        </button>
-      
-        <button type="button" class="btn btn-primary btn-lg" id="graphBtn" (click)="showCharts()">
-          Show My Graphs
-        </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="showChart">
+@Component({
+  selector: 'app-measurement-list',
+  templateUrl: './measurement-list.component.html',
+  styleUrls: ['./measurement-list.component.scss'],
+})
+export class MeasurementListComponent implements OnInit {
+  url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
-        <google-chart
-        *ngIf="myGraphData.length > 0"
-        [title]="title"
-        [type]="type"
-        [data]="myGraphData"
-        [columns]="chartColumns"
-        [options]="options"
-        [width]="width"
-        [height]="height"
-      ></google-chart>
-      
-      </div>
-    </div>
-  </div>
-</div>
+  showChart = false;
+  hideTable = true;
 
-<!-- <table border="1" cellspacing="0" cellpadding="0" > -->
+  dateForm: FormGroup;
+  startDate = new FormControl();
+  endDate = new FormControl();
+
+  loading = false;
+  submitted = false;
+  type = 'LineChart';
+  title = 'Glucose level';
+  chartColumns = ['Date', 'Glucose'];
+  options = {
+    hAxis: {
+      title: 'Timeline',
+    },
+  };
+  width = 950;
+  height = 500;
+
+  myGraphData: any[] = [];
+  measurements: Measurement[];
+  measurementsByDate: Measurement[];
+  users: User[];
+
+  isLoadingResults = true;
+  subscription: Subscription;
+
+  constructor(
+    private measurementService: MeasurementService,
+    public userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.dateForm = new FormGroup({
+      startDate: new FormControl(),
+      endDate: new FormControl(),
+    });
+    this.getMeasurements();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      console.log('ngOnDestroy called');
+    }
+  }
 
 
+  showCharts(): void {
+    this.showChart = !this.showChart;
+  }
 
+  getMeasurements(): void {
+    this.measurementService
+      .getCurrentUserMeasurements()
+      .subscribe((response) => {
+        // sets the table values
+        this.measurements = response;
+        // updates the graph
+        response.map((item) => {
+          this.myGraphData.push([item.created_date, item.glucose_level]);
+        });
+        console.log(this.measurements);
+      });
+  }
 
-</div>
-  <!-- <google-chart
-  *ngIf="myGraphData.length > 0"
-  [title]="title"
-  [type]="type"
-  [data]="myGraphData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart> -->
+  getMeasurementsByDate(): void {
+    console.log(
+      'start= ' + this.dateForm.get('startDate').value,
+      'end= ' + this.dateForm.get('endDate').value
+    );
+    this.measurementService
+      .getMeasurementsByDate(
+        this.dateForm.get('startDate').value,
+        this.dateForm.get('endDate').value
+      )
+      .subscribe((response) => {
+        if (response.length > 0) {
+          this.measurements = response;
+        } else {
+          console.log('getMeasurementsByDate failed');
+        }
+        console.log('response is: ' + response);
+      });
+  }
+
+  deleteMeasurements(id: any): void {
+    this.isLoadingResults = true;
+    this.measurementService.deleteMeasurements(id).subscribe(
+      (res) => {
+        this.isLoadingResults = false;
+        this.getMeasurements();
+        // this.router.navigate(['patient/measurements']);
+      },
+      (err) => {
+        console.log(err);
+        this.isLoadingResults = false;
+      }
+    );
+  }
+}
