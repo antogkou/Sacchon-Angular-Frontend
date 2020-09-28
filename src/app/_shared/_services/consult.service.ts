@@ -22,6 +22,11 @@ export class ConsultService {
     return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
   }
 
+  /**GET consult by doctor */
+  getConsultByDoctor(): Observable<Consult[]>{
+    return this.http.get<Consult[]>(this.baseUrl + 'doctor/my-consults', this.httpOptions);
+  }
+
   /** GET clicked consult id from the server */
   getConsultById(id: string): Observable<Consult> {
     const url = `${this.baseUrl}consult/${id}`;
@@ -52,6 +57,8 @@ export class ConsultService {
       )
     );
   }
+
+  
   /**PUT consult and save it into the server */
 
   updateConsult(id: string, consult: Consult): Observable<any>{
