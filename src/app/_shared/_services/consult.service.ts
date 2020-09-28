@@ -22,7 +22,12 @@ export class ConsultService {
     return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
   }
 
-  /**GET consult by doctor */
+  /** GET consults from the server */
+  getMyPatientConsults(): Observable<Consult[]> {
+    return this.http.get<Consult[]>(this.baseUrl + 'myaccount/consults', this.httpOptions);
+  }
+
+  /** GET logged in patient's consults */
   getConsultByDoctor(): Observable<Consult[]>{
     return this.http.get<Consult[]>(this.baseUrl + 'doctor/my-consults', this.httpOptions);
   }
