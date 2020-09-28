@@ -39,7 +39,7 @@ import { PatientDetailComponent } from './admin/patient-detail/patient-detail.co
 import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
 import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
 import { AdminModule } from './admin/admin.module';
-import { ConsultHistoryListComponent } from './consult-history-list/consult-history-list.component';
+import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

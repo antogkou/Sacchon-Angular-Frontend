@@ -65,7 +65,7 @@ export class MeasurementListComponent implements OnInit {
         this.measurements = response;
         // updates the graph
         response.map((item) => {
-          this.myGraphData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([item.created_date , item.glucose_level]);
         });
         console.log(this.measurements);
       });

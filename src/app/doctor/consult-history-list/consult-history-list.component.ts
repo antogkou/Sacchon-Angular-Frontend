@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Consult } from '../_shared/_models/consult';
-import { ConsultService } from '../_shared/_services/consult.service';
+import { Consult } from '../../_shared/_models/consult';
+import { ConsultService } from '../../_shared/_services/consult.service';
 
 @Component({
   selector: 'app-consult-history-list',
