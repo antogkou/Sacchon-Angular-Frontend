@@ -53,11 +53,16 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
-  showCharts() {
+  // ngOnDestroy(): void {
+    
+  // }
+
+
+  showCharts(): void {
     this.showChart = !this.showChart;
   }
 
-  getMeasurements() {
+  getMeasurements(): void {
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
@@ -65,13 +70,13 @@ export class MeasurementListComponent implements OnInit {
         this.measurements = response;
         // updates the graph
         response.map((item) => {
-          this.myGraphData.push([item.created_date , item.glucose_level]);
+          this.myGraphData.push([item.created_date, item.glucose_level]);
         });
         console.log(this.measurements);
       });
   }
 
-  getMeasurementsByDate() {
+  getMeasurementsByDate(): void {
     console.log(
       'start= ' + this.dateForm.get('startDate').value,
       'end= ' + this.dateForm.get('endDate').value
@@ -80,24 +85,24 @@ export class MeasurementListComponent implements OnInit {
       .getMeasurementsByDate(
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
-      ).subscribe((response) => {
-        if(response.length > 0 ){
+      )
+      .subscribe((response) => {
+        if (response.length > 0) {
           this.measurements = response;
-        }else{
-          console.log('response is zero')
+        } else {
+          console.log('getMeasurementsByDate failed');
         }
         console.log('response is: ' + response);
       });
   }
 
-  deleteCases(id: any): void {
+  deleteMeasurements(id: any): void {
     this.isLoadingResults = true;
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
-        //  location.reload();
         this.getMeasurements();
-        //this.router.navigate(['patient/measurements']);
+        // this.router.navigate(['patient/measurements']);
       },
       (err) => {
         console.log(err);
