@@ -15,7 +15,11 @@ export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
   showChart = false;
+  showAvg = false;
   hideTable = true;
+
+  avgCarb: number = 0;
+  avgGlucose: number = 0;
 
   dateForm: FormGroup;
   startDate = new FormControl();
@@ -25,7 +29,7 @@ export class MeasurementListComponent implements OnInit {
   submitted = false;
   type = 'LineChart';
   title = 'Glucose level';
-  chartColumns = ['Date', 'Glucose'];
+  chartColumns = ['Date', 'Glucose', 'Carb Intake'];
   options = {
     hAxis: {
       title: 'Timeline',
@@ -55,16 +59,19 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-      console.log('ngOnDestroy called');
-    }
-  }
-
+  // ngOnDestroy(): void {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //     console.log('ngOnDestroy called');
+  //   }
+  // }
 
   showCharts(): void {
     this.showChart = !this.showChart;
+  }
+
+  showAverages(): void {
+    this.showAvg = !this.showAvg;
   }
 
   getMeasurements(): void {
@@ -75,7 +82,10 @@ export class MeasurementListComponent implements OnInit {
         this.measurements = response;
         // updates the graph
         response.map((item) => {
-          this.myGraphData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([
+            new Date(item.created_date),
+            item.glucose_level, item.carb_intake
+          ]);
         });
         console.log(this.measurements);
       });
@@ -91,12 +101,11 @@ export class MeasurementListComponent implements OnInit {
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
       )
-      .subscribe((response) => {
-        if (response.length > 0) {
-          this.measurements = response;
-        } else {
-          console.log('getMeasurementsByDate failed');
-        }
+      .subscribe((response: any) => {
+        this.measurements = response.measurements;
+        this.avgCarb = response.avgCarb;
+        this.avgGlucose = response.avgGlucose;
+        console.log(this.measurements);
         console.log('response is: ' + response);
       });
   }
