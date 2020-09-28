@@ -81,9 +81,10 @@ export class MeasurementListComponent implements OnInit {
         // sets the table values
         this.measurements = response;
         // updates the graph
+        debugger
         response.map((item) => {
           this.myGraphData.push([
-            new Date(item.created_date),
+            new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
             item.glucose_level, item.carb_intake
           ]);
         });
