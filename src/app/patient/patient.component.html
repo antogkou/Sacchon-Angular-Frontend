@@ -1,21 +1,13 @@
 <!-- Authorized for patients only  -->
 <p>Are you a patient?</p>
 
-<div *ngIf="userService.currentUserRole == 'patient'">
-  <p>Welcome!</p>
-</div>
-
-
-
+<!--*ngIf="userService.currentUserRole == 'patient'"-->
 <nav *ngIf="userService.currentUserRole == 'patient'">
   <ul>
     <li><a routerLink="measurements">measurements</a></li>
-    <li><a routerLink="measurements/create">Enter your measurements</a></li>
+    <li><a routerLink="measurements/create">measurements/create</a></li>
     <li><a routerLink="consult">consult</a></li>
   </ul>
 </nav>
-
-
-
 
 <router-outlet></router-outlet>

@@ -39,6 +39,7 @@ import { PatientDetailComponent } from './admin/patient-detail/patient-detail.co
 import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
 import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
 import { AdminModule } from './admin/admin.module';
+import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -65,7 +66,7 @@ const routes: Routes = [
       // { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: ActivePatientsComponent},
       { path: 'my-patients', component : MyPatientsListComponent},
-      { path: 'consults', component: ConsultListComponent },
+      { path: 'consults', component: ConsultHistoryListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
@@ -99,6 +100,7 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ConsultHistoryListComponent,
   ],
   imports: [
     CommonModule,

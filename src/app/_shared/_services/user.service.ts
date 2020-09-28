@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { User } from '../_models/user';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -9,7 +9,8 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class UserService {
   public currentUserRole: any;
-
+  ping = new Subject<string>();
+  
   constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
@@ -20,7 +21,10 @@ export class UserService {
   };
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', this.httpOptions);
+    return this.http.get<User[]>(
+      this.baseUrl + 'users-without-doctor',
+      this.httpOptions
+    );
   }
 
   login(email, password) {
@@ -36,7 +40,6 @@ export class UserService {
             'account',
             btoa(data.email + ':' + data.password)
           );
-          //test
           this.currentUserRole = data.userRole;
           console.log(this.currentUserRole);
         })
@@ -88,21 +91,41 @@ export class UserService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(
-      `${this.baseUrl}get-all-users`,
-      this.httpOptions).pipe(
-      tap((_) => console.log(`fetched all users`)),
-    );
+    return this.http
+      .get<User[]>(`${this.baseUrl}get-all-users`, this.httpOptions)
+      .pipe(tap((_) => console.log(`fetched all users`)));
+  }
+
+  /** GET inactive doctors over a time range */
+  getInactiveDoctors(startDate: Date, endDate: Date): Observable<User[]> {
+    return this.http
+      .get<User[]>(
+        `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
+        this.httpOptions
+      )
+      .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
+  }
+
+  /** GET inactive patients over a time range */
+  getInactivePatients(startDate: Date, endDate: Date): Observable<User[]> {
+    return this.http
+      .get<User[]>(
+        `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
+        this.httpOptions
+      )
+      .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
 
   getPatientData(email: string): Observable<User> {
-    return this.http.get<User>(
-      `${this.baseUrl}admin-panel?patient&email=${email}`,
-      this.httpOptions
-    ).pipe(
-      tap((_) => console.log(`fetched patient with data email=${email}`)),
-      catchError(this.handleError<User>(`getPatient from admin panel`))
-    );
+    return this.http
+      .get<User>(
+        `${this.baseUrl}admin-panel?patient&email=${email}`,
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log(`fetched patient with data email=${email}`)),
+        catchError(this.handleError<User>(`getPatient from admin panel`))
+      );
   }
 
   /**
