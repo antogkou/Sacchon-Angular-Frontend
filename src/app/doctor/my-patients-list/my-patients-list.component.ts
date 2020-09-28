@@ -7,7 +7,8 @@ import { UserService } from 'src/app/_shared/_services/user.service';
 @Component({
   selector: 'app-my-patients-list',
   templateUrl: './my-patients-list.component.html',
-  styleUrls: ['./my-patients-list.component.scss']
+  styleUrls: ['./my-patients-list.component.scss',
+              '../doctor.component.scss']
 })
 export class MyPatientsListComponent implements OnInit {
 
