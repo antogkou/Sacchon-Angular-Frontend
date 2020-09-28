@@ -1,0 +1,35 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
+<!-- <h1>Measurements of patient: {{user.firstName}} {{user.lastName}}</h1> -->
+<!-- <table border="1" cellspacing="0" cellpadding="0" > -->
+<table class="table-striped">
+  <thead class="head">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Doctor's Note</th>
+      <th scope="col">Medication Suggested</th>
+      <th scope="col">Dosage</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let consult of consults; let i = index" class="table-body">
+    <tr >
+      <td>{{ i + 1 }}</td>
+      <th scope="row">{{ consult.consult_date | date: "dd/MM/yyyy" }}</th>
+      <td>{{ consult.consultText }}</td>
+      <td>{{ consult.medication }} </td>
+      <td>{{ consult.dosage }} grams </td>
+      <td>
+          <button class="btn" type="button"
+          [routerLink] = "[consult.consult_id]">Update Consult</button>
+          <button class="btn" type="button"
+          (click) = "deleteConsult(consult.consult_id)">Delete Consult</button>
+      </td>
+    </tr>
+    <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
+  </tbody>
+</table>

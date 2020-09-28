@@ -1,5 +1,5 @@
 export interface Consult {
-  consult_id: number;
+  consult_id: string;
   consultText: string;
   medication: number;
   dosage: number;

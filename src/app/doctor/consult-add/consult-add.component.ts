@@ -25,7 +25,7 @@ export class ConsultAddComponent implements OnInit {
       medication: new FormControl('', Validators.required),
     });
     this.patientMail = this.route.snapshot.params.email;
-    console.log('DOULEUW MPAMPA ' + this.patientMail)
+    console.log(this.patientMail)
   }
 
   // convenience getter for easy access to form fields
@@ -40,7 +40,7 @@ export class ConsultAddComponent implements OnInit {
       this.consultService
         .addConsult(this.addConsultForm.value, patientMail)
         .subscribe((r) => {
-          this.router.navigate(['/doctor/patients-without-doctor']);
+          this.router.navigate(['/doctor/my-patients/consult/',patientMail]);
         });
     }
   }

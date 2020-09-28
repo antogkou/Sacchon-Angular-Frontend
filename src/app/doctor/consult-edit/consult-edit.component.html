@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center h-100">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-5">
+            <h3 class="text-center">Log entry</h3>
+            <form [formGroup]="editConsultForm" (ngSubmit)="onFormSubmit()">
+            
+                <input type="text" matInput placeholder="Doctor's Note" formControlName="consultText">
+          
+             
+                <input type="text" matInput placeholder="Medication" formControlName="medication">
+
+                <input type="text" matInput placeholder="Dosage" formControlName="dosage">
+            
+             
+  
+              <div class="mt-4">
+                <button mat-raised-button color="primary" >Log Entry</button>
+                <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
+                <!-- <a [routerLink]="['/home']" class="ml-2" mat-button color="primary">Cancel</a> -->
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

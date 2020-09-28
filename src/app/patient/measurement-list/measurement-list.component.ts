@@ -5,6 +5,7 @@ import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { ChartsModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-measurement-list',
@@ -79,12 +80,10 @@ export class MeasurementListComponent implements OnInit {
       .subscribe((response) => {
         this.hideTable = false;
         this.hideDateTable = true;
-        this.measurements = response;
-        response.map((item) => {
-          this.measurementsByDate.push();
-        });
-        // this.measurementsByDate.push(response);
-        // this.dateForm.setValue(startDate, endDate)
+         this.measurements = response;
+
+        //this.measurementsByDate = response;
+        //this.dateForm.setValue(startDate, endDate)
         console.log('response is: ' + response);
       });
   }
@@ -95,6 +94,7 @@ export class MeasurementListComponent implements OnInit {
       (res) => {
         this.isLoadingResults = false;
         //  location.reload();
+        window.location.reload()
         this.getMeasurements();
         //this.router.navigate(['patient/measurements']);
       },

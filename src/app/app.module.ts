@@ -28,12 +28,17 @@ import { ConsultAddComponent } from './doctor/consult-add/consult-add.component'
 import { ActivePatientsComponent } from './doctor/active-patients-list/active-patients.component';
 import { MeasurementEditComponent } from './patient/measurement-edit/measurement-edit.component';
 import { PatientModule } from './patient/patient.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PatientsDetailComponent } from './doctor/patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './doctor/my-patients-list/my-patients-list.component';
 import { DoctorModule } from './doctor/doctor.module';
-import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
-import { AdminModule } from './admin/admin.module';
+import { PatientConsultListComponent } from './doctor/patient-consult-list/patient-consult-list.component';
+import { ConsultEditComponent } from './doctor/consult-edit/consult-edit.component';
 import { PatientListComponent } from './admin/patient-list/patient-list.component';
+import { PatientDetailComponent } from './admin/patient-detail/patient-detail.component';
+import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
+import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -65,6 +70,9 @@ const routes: Routes = [
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
       { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/:email', component: PatientsDetailComponent },
+      { path: 'my-patients/consult/:email', component: PatientConsultListComponent },
+      { path: 'my-patients/consult/:email/:id', component: ConsultEditComponent}
     ],
   },
   {
@@ -74,6 +82,8 @@ const routes: Routes = [
       // { path: '', component: DoctorComponent },
       { path: 'patient-list', component: PatientListComponent },
       { path: 'patient-list/:email', component: PatientDetailComponent},
+      { path: 'doctor-list', component: DoctorListComponent },
+      { path: 'doctor-list/:email', component: DoctorDetailComponent},
       { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
@@ -95,7 +105,6 @@ const routes: Routes = [
     AdminModule,
     PatientModule,
     DoctorModule,
-    AdminModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -111,6 +120,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     GoogleChartsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

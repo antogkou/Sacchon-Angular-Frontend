@@ -10,6 +10,10 @@ import { ActivePatientsComponent } from './active-patients-list/active-patients.
 import { PatientsDetailComponent } from './patients-detail/patients-detail.component';
 import { MyPatientsListComponent } from './my-patients-list/my-patients-list.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatCard } from '@angular/material/card';
+import { PatientConsultListComponent } from './patient-consult-list/patient-consult-list.component';
+import { ConsultEditComponent } from './consult-edit/consult-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import { BrowserModule } from '@angular/platform-browser';
     ConsultAddComponent,
     PatientsDetailComponent,
     MyPatientsListComponent,
+    PatientConsultListComponent,
+    ConsultEditComponent
   ],
 
   imports: [
@@ -35,7 +41,9 @@ import { BrowserModule } from '@angular/platform-browser';
     DoctorComponent,
     PatientsDetailComponent,
     ActivePatientsComponent,
-    DoctorComponent
+    DoctorComponent,
+    MyPatientsListComponent,
+    PatientConsultListComponent
   ],
 })
 export class DoctorModule {}
