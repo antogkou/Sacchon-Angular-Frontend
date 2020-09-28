@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+
+    // if(this.data.password.value.invalid){
+    //   // passwordcheck maybe..?
+    // }
+
+
     this.loading = true;
     this.userService
       .login(this.data.email.value, this.data.password.value)

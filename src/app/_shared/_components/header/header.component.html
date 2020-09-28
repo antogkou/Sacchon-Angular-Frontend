@@ -1,10 +1,11 @@
 <div class="topnav">
-  <a href="#">Home </a><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
+  <a  href="#">Home </a><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
   <a routerLink="/doctor" routerLinkActive="active"> Doctor Component </a>
   <a routerLink="/admin" routerLinkActive="active"> Admin Component </a>
   <div class="topnav-right">
     <a href="#search">Contact</a>
     <a href="#about">About</a>
+    <a routerLink="/login" (click)="logout()">Logout</a>
   </div>
 </div>
 

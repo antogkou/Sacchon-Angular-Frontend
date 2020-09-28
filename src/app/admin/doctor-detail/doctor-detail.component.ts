@@ -9,7 +9,7 @@ import { ConsultService } from 'src/app/_shared/_services/consult.service';
   styleUrls: ['./doctor-detail.component.scss'],
 })
 export class DoctorDetailComponent implements OnInit {
-  consults: any[] = [];
+  consults:  any[] = [];
   page = 4;
   pageSize = 6;
   constructor(
@@ -21,7 +21,7 @@ export class DoctorDetailComponent implements OnInit {
     this.getDoctorConsults(this.route.snapshot.params.email);
   }
 
-  getDoctorConsults(email: string): void {
+  getDoctorConsults(email: string) {
     this.consultService
       .getConsultByDoctorEmail(email)
       .subscribe((response: any) => {
@@ -29,5 +29,4 @@ export class DoctorDetailComponent implements OnInit {
         console.log(this.consults);
       });
   }
-  
 }
