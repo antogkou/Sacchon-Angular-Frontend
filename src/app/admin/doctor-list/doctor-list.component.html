@@ -1,21 +1,17 @@
-<button type="button" class="btn btn-info" (click)="showInactiveFunction()">Show Active/Inactive Doctors</button>
+<button type="button" class="btn btn-info" (click)="showInactiveFunction()">
+  Show Active/Inactive Doctors
+</button>
 <div *ngIf="showInactive">
-
-  <form [formGroup] = "inactiveDateForm"
-  (ngSubmit)="getInactiveDoctors()"
->
-  <input
-    formControlName="startDate"
-    type="date"
-    name="startDate"
-    id="startDate"/>
-  <input
-  formControlName="endDate" 
-  type="date" 
-  name="endDate" 
-  id="endDate" />
-  <input type="submit" />
-</form>
+  <form [formGroup]="inactiveDateForm" (ngSubmit)="getInactiveDoctors()">
+    <input
+      formControlName="startDate"
+      type="date"
+      name="startDate"
+      id="startDate"
+    />
+    <input formControlName="endDate" type="date" name="endDate" id="endDate" />
+    <input type="submit" />
+  </form>
 
   <table class="table">
     <thead class="thead-dark">
@@ -45,16 +41,14 @@
   </table>
   <p>Change page:</p>
   <ngb-pagination
-    [(page)]='page'
+    [(page)]="page"
     [pageSize]="pageSize"
     [collectionSize]="inactiveDoctors.length"
   ></ngb-pagination>
 </div>
 
-
-
 <div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid">
-  <div *ngIf="doctorList"   class="row">
+  <div *ngIf="doctorList" class="row">
     <div *ngFor="let user of users" class="col-md-3">
       <div *ngIf="user.userRole == 'doctor'" class="card">
         <div class="card-body">
