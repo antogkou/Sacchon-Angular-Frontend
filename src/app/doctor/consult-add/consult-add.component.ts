@@ -40,7 +40,7 @@ export class ConsultAddComponent implements OnInit {
       this.consultService
         .addConsult(this.addConsultForm.value, patientMail)
         .subscribe((r) => {
-          this.router.navigate(['/doctor/my-patients/consult/',patientMail]);
+          this.router.navigate(['/doctor/my-patients/consult/', patientMail]);
         });
     }
   }

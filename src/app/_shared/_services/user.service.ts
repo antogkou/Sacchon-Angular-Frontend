@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   public currentUserRole: any;
   ping = new Subject<string>();
-  
+
   constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
@@ -72,8 +72,7 @@ export class UserService {
     });
   }
 
-  /**GET specific doctor's patients */
-
+  /** GET specific doctor's patients */
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
     return this.http.get<User[]>(url, this.httpOptions).pipe(
@@ -116,6 +115,7 @@ export class UserService {
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
 
+  /** GET a patient's data by using email */
   getPatientData(email: string): Observable<User> {
     return this.http
       .get<User>(

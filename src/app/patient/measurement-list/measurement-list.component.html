@@ -60,23 +60,26 @@
     Compute My Average
   </button>
 
-  <button (click)="showCharts()" type="button" class="btn btn-primary btn-lg" id="graphBtn">
+  <button
+    (click)="showCharts()"
+    type="button"
+    class="btn btn-primary btn-lg"
+    id="graphBtn"
+  >
     Show My Graphs
   </button>
 </div>
 
 <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
 <div *ngIf="showChart">
-
-  <google-chart 
-  *ngIf="myGraphData.length > 0"
-  [title]="title"
-  [type]="type"
-  [data]="myGraphData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart>
-
+  <google-chart
+    *ngIf="myGraphData.length > 0"
+    [title]="title"
+    [type]="type"
+    [data]="myGraphData"
+    [columns]="chartColumns"
+    [options]="options"
+    [width]="width"
+    [height]="height"
+  ></google-chart>
 </div>
