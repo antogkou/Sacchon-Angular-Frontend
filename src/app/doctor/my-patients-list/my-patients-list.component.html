@@ -1,37 +1,35 @@
-<table class="table-striped">
-  <thead class="head">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody class="table-body">
-    <tr *ngFor="let user of users; let i = index">
-      <!-- <th scope="row">
-          {{ measurement.measurement_created_date | date: "dd/MM/yyyy" }}
-        </th> -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let user of users; let i=index">
 
         <td>{{ i + 1 }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.phoneNumber}}</td>
         <td>
-            
-          <button class="btn" type="button"
-          [routerLink]="[user.email]">
-            See Patient's Measurements
+          <button class="btn" type="button">
+            See Measurements
           </button>
-           
-            
-            <button class="btn" type="button"
-            [routerLink] = "['consult', user.email]">
-                See Patient's Consults
-              </button>
-       
-      </td>
-    </tr>
-  </tbody>
-</table>
+          <button class="btn" type="button">
+            See Consults
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+

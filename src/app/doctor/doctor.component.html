@@ -1,12 +1,50 @@
-<p><p>Are you a doctor?</p>
-<!--*ngIf="userService.currentUserRole == 'doctor'"-->
-<nav >
-    <ul *ngIf="userService.currentUserRole == 'doctor'">
-      <li><a routerLink="consults">view consults</a></li>
-      <li><a routerLink="patients-without-doctor">View Active Patients</a></li>
-      <li><a routerLink="my-patients">View My Patients</a></li>
-      <!-- <li><a routerLink="patients-without-doctor">view patients without doctor</a></li> -->
-    </ul>
-  </nav>
-  
-  <router-outlet></router-outlet>
+<div class="wrapper">
+  <div id="sidebar-div" class="sidebar">
+    <div class="nav-bar-container">
+      <div class="brand">
+          <span style="color: white;">TODO na valw tin eikona=======</span>
+      </div>
+      <ol class="main-menu text-left">
+          <li><a routerLink="my-patients">My Patients</a></li>
+          <li><a routerLink="consults">My consults</a></li>
+          <li><a routerLink="patients-without-doctor">Find Patients</a></li>
+          <li><a >Example</a></li>
+          <li><a >Example</a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-body">
+    <div class="dashboard-div pad-bot-50">
+      <div class="" >
+        <div>
+          <span class="dashboard-title">Dashboard</span>
+          <span class="dashboard-second-title">Control Panel</span>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+    <p class="card-text">{{ user.email }}</p>
+    <div class="card-text">
+      address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+    </div>
+    <div class="card-text">{{ user.phoneNumber }}</div>
+    <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
+    
+    <button class="btn" type="button" [routerLink]="[user.email]">
+      See Patient's details
+    </button>
+  </div>
+  <div class="card-footer text-muted">
+    Registed at:
+    <cite title="Source Title">{{ user.createdDate | date }}</cite>
+  </div>
+</div> -->
