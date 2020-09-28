@@ -4,6 +4,7 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-measurement-list',
@@ -39,6 +40,7 @@ export class MeasurementListComponent implements OnInit {
   users: User[];
 
   isLoadingResults = true;
+  subscription: Subscription;
 
   constructor(
     private measurementService: MeasurementService,
@@ -53,9 +55,12 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
-  // ngOnDestroy(): void {
-    
-  // }
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      console.log('ngOnDestroy called');
+    }
+  }
 
 
   showCharts(): void {
