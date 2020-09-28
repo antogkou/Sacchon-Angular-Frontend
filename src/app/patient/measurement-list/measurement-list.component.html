@@ -96,13 +96,13 @@
           Compute My Average
         </button>
       
-        <button type="button" class="btn btn-primary btn-lg" id="graphBtn">
+        <button type="button" class="btn btn-primary btn-lg" id="graphBtn" (click)="showCharts()">
           Show My Graphs
         </button>
       </div>
     </div>
     <div class="col-md-6">
-      <div>
+      <div *ngIf="showChart">
 
         <google-chart
         *ngIf="myGraphData.length > 0"

@@ -15,6 +15,8 @@ import { ChartsModule } from 'angular-bootstrap-md';
 export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
+  showChart = false;
+
   dateForm: FormGroup;
 
   hideTable = true;
@@ -55,6 +57,10 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
+  showCharts(): void {
+    this.showChart = !this.showChart;
+  }
+  
   getMeasurements() {
     this.measurementService
       .getCurrentUserMeasurements()
