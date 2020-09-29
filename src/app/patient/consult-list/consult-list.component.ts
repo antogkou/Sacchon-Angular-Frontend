@@ -13,7 +13,7 @@ export class ConsultListComponent implements OnInit {
   consults: Consult[];
 
   ngOnInit(): void {
-    this.consultService.getConsults().subscribe((consults) => {
+    this.consultService.getMyPatientConsults().subscribe((consults) => {
       this.consults = consults;
       console.log(consults);
     });

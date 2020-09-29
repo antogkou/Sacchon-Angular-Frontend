@@ -24,7 +24,6 @@ export class MeasurementListComponent implements OnInit {
 
   dateForm: FormGroup;
 
-  hideTable = true;
   hideDateTable = false;
   startDate = new FormControl();
   endDate = new FormControl();
