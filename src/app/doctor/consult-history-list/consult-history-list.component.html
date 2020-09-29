@@ -24,7 +24,7 @@
       <td>{{ consult.consultText }}</td>
       <td>{{ consult.medication }} </td>
       <td>{{ consult.dosage }} grams </td>
-      <th scope="row">{{ consult.consult_date | date: "dd/MM/yyyy" }}</th>
+      <th scope="row">{{ consult.consult_created_date | date: "dd/MM/yyyy" }}</th>
 
     </tr>
     <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
