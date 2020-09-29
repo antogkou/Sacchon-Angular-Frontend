@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatCard } from '@angular/material/card';
 import { PatientConsultListComponent } from './patient-consult-list/patient-consult-list.component';
 import { ConsultEditComponent } from './consult-edit/consult-edit.component';
+import { UserPanelComponent } from '../_shared/_components/user-panel/user-panel.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { ConsultEditComponent } from './consult-edit/consult-edit.component';
     PatientsDetailComponent,
     MyPatientsListComponent,
     PatientConsultListComponent,
-    ConsultEditComponent
+    ConsultEditComponent,
   ],
 
   imports: [

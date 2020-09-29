@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -9,7 +9,6 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class UserService {
   public currentUserRole: any;
-   ping = new Subject<User[]>();
 
   constructor(private http: HttpClient) {}
 
