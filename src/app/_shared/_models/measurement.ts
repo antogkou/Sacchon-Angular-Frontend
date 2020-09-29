@@ -3,5 +3,5 @@ export interface Measurement {
   glucose_level: number;
   carb_intake: number;
   patient_email: string;
-  created_date: Date;
+  created_date: string;
 }

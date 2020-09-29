@@ -1,24 +1,34 @@
-<div *ngFor="let user of users; let i=index">
-  <div class="card pad-20">
-    <div class="card-body">
-      <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-      <p class="card-text">{{ user.email }}</p>
-      <div class="card-text">
-        address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
-      </div>
-      <div class="card-text">{{ user.phoneNumber }}</div>
-      <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
-      <div class="patient-btn pad-top-20">
-        <button class="btn btn-outline-dark patient-btn" type="button" [routerLink]="[user.email]" >
-          See Patient's details
-        </button>
-      </div>
-      
-    </div>
-    <div class="card-footer text-muted">
-      Registed at:
-      <cite title="Source Title">{{ user.createdDate | date }}</cite>
-    </div>
-  </div>
-</div>
-<router-outlet></router-outlet>
+<table class="table-striped">
+    <thead class="head">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let user of users; let i=index">
+        <!-- <th scope="row">
+          {{ measurement.measurement_created_date | date: "dd/MM/yyyy" }}
+        </th> -->
+
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.phoneNumber}}</td>
+        <td>
+          <button
+           class="btn" 
+           type="button"
+           [routerLink]="[user.email]"
+            >
+            See Patient's Measurements
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+ <router-outlet></router-outlet>

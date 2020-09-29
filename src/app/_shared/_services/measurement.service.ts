@@ -26,19 +26,10 @@ export class MeasurementService {
 
   /** GET current user's measurements from the server */
   getCurrentUserMeasurements(): Observable<Measurement[]> {
-    return this.http
-      .get<Measurement[]>(
-        this.baseUrl + 'myaccount/mymeasurements',
-        this.httpOptions
-      )
-      .pipe(
-        tap(
-          (_) => console.log('fetched current user measurements'),
-          catchError(
-            this.handleError<Measurement>('getCurrentUserMeasurements')
-          )
-        )
-      );
+    return this.http.get<Measurement[]>(this.baseUrl + 'myaccount/mymeasurements', this.httpOptions).pipe(
+      tap((_ => console.log('fetched current user measurements')),
+      catchError(this.handleError<Measurement>('getCurrentUserMeasurements')))
+    );
   }
 
   /** GET clicked measurement details from the server */
@@ -50,57 +41,20 @@ export class MeasurementService {
     );
   }
 
-  /** GET measurements by date currently testing */
-  getMeasurementsByDate(
-    startDate: Date,
-    endDate: Date
-  ): Observable<Measurement[]> {
+  /** GET measurements by date */
+  getMeasurementsByDate(startDate: Date, endDate: Date): Observable<Measurement> {
     const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-    return this.http.get<Measurement[]>(url, this.httpOptions);
+    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched measurement with date from=${startDate} to=${endDate}`)),
+      catchError(this.handleError<Measurement>(`getMeasurementsByDate from=${startDate} to=${endDate}`))
+    );
   }
 
-  /** GET measurements by date Old */
-  // getMeasurementsByDate2(
-  //   startDate: Date,
-  //   endDate: Date
-  // ): Observable<Measurement> {
-  //   const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-  //   return this.http.get<Measurement>(url, this.httpOptions).pipe(
-  //     tap((_) =>
-  //       console.log(
-  //         `fetched measurements with date from=${startDate} to=${endDate}`
-  //       )
-  //     ),
-  //     catchError(
-  //       this.handleError<Measurement>(
-  //         `getMeasurementsByDate from=${startDate} to=${endDate}`
-  //       )
-  //     )
-  //   );
-  // }
-
-  /** GET current user's measurements from the server by date didnt work */
-  // getCurrentUserMeasurementsDates(
-  //   startDate: Date,
-  //   endDate: Date
-  // ): Observable<Measurement[]> {
-  //   const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-  //   return this.http
-  //     .get<Measurement[]>(url, this.httpOptions)
-  //     .pipe(
-  //       tap(
-  //         (_) =>
-  //           console.log(
-  //             `fetched measurements with date from=${startDate} to=${endDate}`
-  //           ),
-  //         catchError(
-  //           this.handleError<Measurement>(
-  //             `getMeasurementsByDate from=${startDate} to=${endDate}`
-  //           )
-  //         )
-  //       )
-  //     );
-  // }
+   /** GET measurements by date */
+   getMeasurementsByDate2(startDate: Date, endDate: Date): Observable<Measurement[]> {
+    const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
+    return this.http.get<Measurement[]>(url, this.httpOptions)
+  }
 
   /** POST: add a new measurement to the server */
   addMeasurement(values: Measurement): Observable<any> {
@@ -138,11 +92,7 @@ export class MeasurementService {
     const url = `${this.baseUrl}patient/measurements?email=${email}`;
     return this.http.get<Measurement>(url, this.httpOptions).pipe(
       tap((_) => console.log(`fetched measurement with patient mail=${email}`)),
-      catchError(
-        this.handleError<Measurement>(
-          `getMeasurementsByPatientsEmail email=${email}`
-        )
-      )
+      catchError(this.handleError<Measurement>(`getMeasurementsByPatientsEmail email=${email}`))
     );
   }
 
