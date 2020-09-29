@@ -19,7 +19,7 @@
   <tbody *ngFor="let consult of consults; let i = index" class="table-body">
     <tr >
       <td>{{ i + 1 }}</td>
-      <th scope="row">{{ consult.consult_date | date: "dd/MM/yyyy" }}</th>
+      <th scope="row">{{ consult.consult_created_date | date: "dd/MM/yyyy" }}</th>
       <td>{{ consult.consultText }}</td>
       <td>{{ consult.medication }} </td>
       <td>{{ consult.dosage }} grams </td>

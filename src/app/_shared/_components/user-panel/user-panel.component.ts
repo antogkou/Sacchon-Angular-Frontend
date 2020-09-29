@@ -25,6 +25,7 @@ export class UserPanelComponent implements OnInit {
   zipCode: '';
   submitted = false;
   loading = false;
+  disEmail = '';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -34,18 +35,6 @@ export class UserPanelComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.getCurrentUserInfo();
-   // this.patchForm();
-    // * this.userService.getCurrentUser
-    // this.userPanelForm = this.formBuilder.group({
-    //   email: ['', Validators.required],
-    //   password: ['', Validators.required],
-    //   firstName: ['', Validators.required],
-    //   lastName: ['', Validators.required],
-    //   phoneNumber: ['', Validators.required],
-    //   city: ['', Validators.required],
-    //   address: ['', Validators.required],
-    //   zipCode: ['', Validators.required],
-    // });
     
   }
 
@@ -82,17 +71,13 @@ export class UserPanelComponent implements OnInit {
     });
   }
 
-  patchForm() {
-    this.userPanelForm.setValue({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      city: ['', Validators.required],
-      address: ['', Validators.required],
-      zipCode: ['', Validators.required],
-    });
+  disableAccount(){
+    console.log(this.email);
+    this.userService
+      .disableUser(this.email)
+      .subscribe((a) => {
+        this.router.navigate(['/home']);
+      });
   }
 
   onSubmit() {
