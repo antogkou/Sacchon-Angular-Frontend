@@ -35,16 +35,15 @@ export class UserPanelComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.getCurrentUserInfo();
-    
   }
 
   get data() {
     return this.userPanelForm.controls;
   }
 
-  initializeForm() {
+  initializeForm(): void {
     this.userPanelForm = new FormGroup({
-      email: new FormControl(),
+      email: new FormControl({ disabled: true }),
       password: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
@@ -55,7 +54,7 @@ export class UserPanelComponent implements OnInit {
     });
   }
 
-  getCurrentUserInfo() {
+  getCurrentUserInfo(): void {
     this.userService.getCurrentUserInfo().subscribe((data: any) => {
       this.email = data.email;
       this.userPanelForm.setValue({
@@ -71,16 +70,14 @@ export class UserPanelComponent implements OnInit {
     });
   }
 
-  disableAccount(){
+  disableAccount(): void {
     console.log(this.email);
-    this.userService
-      .disableUser(this.email)
-      .subscribe((a) => {
-        this.router.navigate(['/home']);
-      });
+    this.userService.disableUser(this.email).subscribe((a) => {
+      this.router.navigate(['/home']);
+    });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
     if (this.userPanelForm.invalid) {
       return;
