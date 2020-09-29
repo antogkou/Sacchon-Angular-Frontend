@@ -1,31 +1,33 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
 <div>
   <app-consult-add></app-consult-add>
 </div>
-<!-- <h1>Measurements of patient: {{user.firstName}} {{user.lastName}}</h1> -->
-<!-- <table border="1" cellspacing="0" cellpadding="0" > -->
-<table class="table-striped">
-  <thead class="head">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Daily Glucose Level</th>
-      <th scope="col">Daily Carb Intake</th>
-    </tr>
-  </thead>
 
-  <tbody *ngFor="let measurement of measurements; let i = index"class="table-body">
-    <tr >
-      <td>{{ i + 1 }}</td>
-      <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
-      <td>{{ measurement.carb_intake }} mg/dL</td>
-      <td>{{ measurement.glucose_level }} grams</td>
-    </tr>
-    <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-  </tbody>
-</table>
+<div class="container-fluid pad-top-20">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Daily Glucose Level</th>
+            <th scope="col">Daily Carb Intake</th>
+          </tr>
+        </thead>
+      
+        <tbody *ngFor="let measurement of measurements; let i = index"class="table-body">
+          <tr >
+            <td>{{ i + 1 }}</td>
+            <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
+            <td>{{ measurement.carb_intake }} mg/dL</td>
+            <td>{{ measurement.glucose_level }} grams</td>
+          </tr>
+          <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 
 

@@ -1,34 +1,43 @@
-<div class="d-flex align-items-center h-100">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-sm-5">
-       
+      <div class="col-sm-4">
           <h3 class="text-center">Log entry</h3>
           <form [formGroup]="addConsultForm" (ngSubmit)="onCreateConsult(patientMail)">
-            <input
+            <div class="form-group">
+              <label for="consultText">Consult</label>
+              <input id="consultText"
+              class="form-control mb-2"
               type="text"
               matInput
               placeholder="Consult Text"
-              formControlName="consultText"
-            />
-            <input
-              type="text"
-              matInput
-              placeholder="Dosage"
-              formControlName="dosage"
-            />
-            <input
-              type="text"
-              matInput
-              placeholder="Medication"
-              formControlName="medication"
-            />
+              formControlName="consultText"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="dosage">Dosage</label>
+                <input id="dosage"
+                  class="form-control mb-2"
+                  type="text"
+                  matInput
+                  placeholder="mg/dL"
+                  formControlName="dosage"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="medication">Medication</label>
+                <input id="medication"
+                  class="form-control mb-2"
+                  type="text"
+                  matInput
+                  placeholder="Medication"
+                  formControlName="medication"
+                />
+              </div>
+            </div>
             <button class="btn btn-primary" [disabled]="!addConsultForm.valid">
               Submit
             </button>
           </form>
-       
       </div>
     </div>
   </div>
-</div>

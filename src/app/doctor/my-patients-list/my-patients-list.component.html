@@ -1,5 +1,5 @@
 
-<table class="table-striped">
+<table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -13,7 +13,6 @@
   </thead>
   <tbody class="table-body">
     <tr *ngFor="let user of users; let i=index">
-
       <td>{{ i + 1 }}</td>
       <td>{{ user.firstName }}</td>
       <td>{{ user.lastName }}</td>
@@ -22,10 +21,10 @@
       <td>{{ user.phoneNumber}}</td>
       <td>
         <button class="btn" type="button" [routerLink]="[user.email]">
-          See Measurements
-        </button>
+          Measurements
+        </button><span> | </span>
         <button class="btn" type="button" [routerLink]="['consult', user.email]">
-          See Consults
+          Consults
         </button>
       </td>
     </tr>
