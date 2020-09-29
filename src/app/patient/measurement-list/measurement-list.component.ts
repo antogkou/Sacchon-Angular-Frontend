@@ -16,6 +16,11 @@ export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
   showChart = false;
+  showAvg = false;
+  hideTable = true;
+
+  avgCarb = 0;
+  avgGlucose = 0;
 
   dateForm: FormGroup;
 
@@ -28,7 +33,7 @@ export class MeasurementListComponent implements OnInit {
   submitted = false;
   type = 'LineChart';
   title = 'Glucose level';
-  chartColumns = ['Date', 'Glucose'];
+  chartColumns = ['Date', 'Glucose', 'Carb Intake'];
   options = {
     hAxis: {
       title: 'Timeline',
@@ -57,17 +62,33 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
+
+  // ngOnDestroy(): void {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //     console.log('ngOnDestroy called');
+  //   }
+  // }
+
   showCharts(): void {
     this.showChart = !this.showChart;
   }
-  
-  getMeasurements() {
+
+  showAverages(): void {
+    this.showAvg = !this.showAvg;
+  }
+
+  getMeasurements(): void {
+
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
         this.measurements = response;
         response.map((item) => {
-          this.myGraphData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([
+            new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
+            item.glucose_level, item.carb_intake
+          ]);
         });
         console.log(this.measurements);
       });
@@ -83,13 +104,12 @@ export class MeasurementListComponent implements OnInit {
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
       )
-      .subscribe((response) => {
-        this.hideTable = false;
-        this.hideDateTable = true;
-         this.measurements = response;
+      .subscribe((response: any) => {
+        this.measurements = response.measurements;
+        this.avgCarb = response.avgCarb;
+        this.avgGlucose = response.avgGlucose;
+        console.log(this.measurements);
 
-        //this.measurementsByDate = response;
-        //this.dateForm.setValue(startDate, endDate)
         console.log('response is: ' + response);
       });
   }

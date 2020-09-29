@@ -39,12 +39,16 @@ import { PatientDetailComponent } from './admin/patient-detail/patient-detail.co
 import { DoctorListComponent } from './admin/doctor-list/doctor-list.component';
 import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.component';
 import { AdminModule } from './admin/admin.module';
+import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
+import { UserPanelComponent } from './_shared/_components/user-panel/user-panel.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'user-panel', component: UserPanelComponent },
   // { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 
   {
@@ -99,6 +103,9 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ConsultHistoryListComponent,
+    UserPanelComponent,
+
   ],
   imports: [
     CommonModule,

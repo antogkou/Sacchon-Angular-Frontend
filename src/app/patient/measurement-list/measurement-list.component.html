@@ -1,7 +1,16 @@
 <div class="col">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h2 class="text-center">Measurement Data</h2>
+  <form [formGroup]="dateForm" (ngSubmit)="getMeasurementsByDate()">
+  <input
+    formControlName="startDate"
+    type="date"
+    name="startDate"
+    id="startDate"
+  />
+  <input formControlName="endDate" type="date" name="endDate" id="endDate" />
+  <input type="submit" />
+</form>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
@@ -92,7 +101,7 @@
         </tbody>
       </table>
       <div class="container">
-        <button type="button" class="btn btn-primary btn-lg" id="averageBtn">
+        <button type="button" class="btn btn-primary btn-lg" id="averageBtn" (click)="showAverages()">
           Compute My Average
         </button>
       
@@ -103,6 +112,16 @@
     </div>
     <div class="col-md-6">
       <div *ngIf="showChart">
+        
+        <div *ngIf="showAvg" class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Your Averages</h5>
+        <p class="card-text">{{avgGlucose}}</p>
+    
+      </div>
+    </div>
 
         <google-chart
         *ngIf="myGraphData.length > 0"
@@ -120,19 +139,3 @@
   </div>
 </div>
 
-<!-- <table border="1" cellspacing="0" cellpadding="0" > -->
-
-
-
-
-</div>
-  <!-- <google-chart
-  *ngIf="myGraphData.length > 0"
-  [title]="title"
-  [type]="type"
-  [data]="myGraphData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart> -->
