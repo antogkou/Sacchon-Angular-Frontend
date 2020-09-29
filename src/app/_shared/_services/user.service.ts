@@ -20,6 +20,15 @@ export class UserService {
     }),
   };
 
+  options = {
+    headers: new HttpHeaders({
+      Authorization: 'Basic ' + localStorage.getItem('account'),
+    }),
+    body: {
+      email: ''
+    },
+  };
+
   /** GET all users without doctor */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(
@@ -37,13 +46,19 @@ export class UserService {
     );
   }
 
-   /** GET current user information */
-   updateCurrentUserInfo(user: User): Observable<User[]> {
+  /** GET current user information */
+  updateCurrentUserInfo(user: User): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
     return this.http.put<User[]>(url, user, this.httpOptions).pipe(
       tap((_) => console.log(`updated current user information`)),
       catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
     );
+  }
+
+  /** DELETE user  */
+  disableUser(email: string): Observable<User> {
+    const url = `${this.baseUrl}delete`;
+    return this.http.delete<User>(url, this.options);
   }
 
   /** POST login users */
