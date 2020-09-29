@@ -18,8 +18,8 @@ export class MeasurementListComponent implements OnInit {
   showAvg = false;
   hideTable = true;
 
-  avgCarb: number = 0;
-  avgGlucose: number = 0;
+  avgCarb = 0;
+  avgGlucose = 0;
 
   dateForm: FormGroup;
   startDate = new FormControl();
@@ -81,7 +81,6 @@ export class MeasurementListComponent implements OnInit {
         // sets the table values
         this.measurements = response;
         // updates the graph
-        debugger
         response.map((item) => {
           this.myGraphData.push([
             new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
