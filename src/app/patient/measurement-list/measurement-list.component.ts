@@ -4,7 +4,8 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ChartsModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-measurement-list',
@@ -22,6 +23,9 @@ export class MeasurementListComponent implements OnInit {
   avgGlucose = 0;
 
   dateForm: FormGroup;
+
+  hideTable = true;
+  hideDateTable = false;
   startDate = new FormControl();
   endDate = new FormControl();
 
@@ -44,7 +48,6 @@ export class MeasurementListComponent implements OnInit {
   users: User[];
 
   isLoadingResults = true;
-  subscription: Subscription;
 
   constructor(
     private measurementService: MeasurementService,
@@ -58,6 +61,7 @@ export class MeasurementListComponent implements OnInit {
     });
     this.getMeasurements();
   }
+
 
   // ngOnDestroy(): void {
   //   if (this.subscription) {
@@ -75,12 +79,11 @@ export class MeasurementListComponent implements OnInit {
   }
 
   getMeasurements(): void {
+
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
-        // sets the table values
         this.measurements = response;
-        // updates the graph
         response.map((item) => {
           this.myGraphData.push([
             new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
@@ -91,13 +94,13 @@ export class MeasurementListComponent implements OnInit {
       });
   }
 
-  getMeasurementsByDate(): void {
+  getMeasurementsByDate() {
     console.log(
       'start= ' + this.dateForm.get('startDate').value,
       'end= ' + this.dateForm.get('endDate').value
     );
     this.measurementService
-      .getMeasurementsByDate(
+      .getMeasurementsByDate2(
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
       )
@@ -106,17 +109,20 @@ export class MeasurementListComponent implements OnInit {
         this.avgCarb = response.avgCarb;
         this.avgGlucose = response.avgGlucose;
         console.log(this.measurements);
+
         console.log('response is: ' + response);
       });
   }
 
-  deleteMeasurements(id: any): void {
+  deleteCases(id: any) {
     this.isLoadingResults = true;
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
+        //  location.reload();
+        window.location.reload()
         this.getMeasurements();
-        // this.router.navigate(['patient/measurements']);
+        //this.router.navigate(['patient/measurements']);
       },
       (err) => {
         console.log(err);

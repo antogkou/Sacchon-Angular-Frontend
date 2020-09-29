@@ -22,22 +22,6 @@ export class ConsultService {
     return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
   }
 
-  /** GET consults from the server */
-  getMyPatientConsults(): Observable<Consult[]> {
-    return this.http.get<Consult[]>(
-      this.baseUrl + 'myaccount/consults',
-      this.httpOptions
-    );
-  }
-
-  /** GET logged in patient's consults */
-  getConsultByDoctor(): Observable<Consult[]> {
-    return this.http.get<Consult[]>(
-      this.baseUrl + 'doctor/my-consults',
-      this.httpOptions
-    );
-  }
-
   /** GET clicked consult id from the server */
   getConsultById(id: string): Observable<Consult> {
     const url = `${this.baseUrl}consult/${id}`;
@@ -68,9 +52,9 @@ export class ConsultService {
       )
     );
   }
+  /**PUT consult and save it into the server */
 
-  /** PUT consult and save it into the server */
-  updateConsult(id: string, consult: Consult): Observable<any> {
+  updateConsult(id: string, consult: Consult): Observable<any>{
     const url = `${this.baseUrl}consult/${id}`;
     return this.http.put(url, consult, this.httpOptions).pipe(
       tap((_) => console.log(`updated consult with id=${id}`)),
@@ -78,14 +62,16 @@ export class ConsultService {
     );
   }
 
-  /** DELETE: delete a consult from the server */
-  deleteConsults(id: string): Observable<Consult> {
+  /**DELETE: delete a consult from the server */
+
+  deleteConsults(id : string):Observable<Consult>{
     const url = `${this.baseUrl}consult/${id}`;
     return this.http.delete<Consult>(url, this.httpOptions).pipe(
       tap((_) => console.log(`deleted consult with id=${id}`)),
       catchError(this.handleError<Consult>('deleteCosnults'))
     );
   }
+ 
 
   /** Post consult to the server */
   addConsult(values: Consult, email: string): Observable<any> {

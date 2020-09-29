@@ -42,6 +42,7 @@ import { AdminModule } from './admin/admin.module';
 import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
 import { UserPanelComponent } from './_shared/_components/user-panel/user-panel.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -68,7 +69,7 @@ const routes: Routes = [
       // { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: ActivePatientsComponent},
       { path: 'my-patients', component : MyPatientsListComponent},
-      { path: 'consults', component: ConsultHistoryListComponent },
+      { path: 'consults', component: ConsultListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
@@ -104,6 +105,7 @@ const routes: Routes = [
     FooterComponent,
     ConsultHistoryListComponent,
     UserPanelComponent,
+
   ],
   imports: [
     CommonModule,

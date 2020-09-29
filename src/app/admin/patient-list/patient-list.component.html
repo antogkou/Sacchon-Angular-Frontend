@@ -1,74 +1,27 @@
-<button type="button" class="btn btn-info" (click)="showInactiveFunction()">
-  Show Active/Inactive Patients
-</button>
-<div *ngIf="showInactive">
-  <form [formGroup]="inactiveDateForm" (ngSubmit)="getInactivePatients()">
-    <input
-      formControlName="startDate"
-      type="date"
-      name="startDate"
-      id="startDate"
-    />
-    <input formControlName="endDate" type="date" name="endDate" id="endDate" />
-    <input type="submit" />
-  </form>
-
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
-          let inactivePatient of inactivePatients
-            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize;
-          let i = index
-        "
-      >
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ inactivePatient.firstName }}</td>
-        <td>{{ inactivePatient.lastName }}</td>
-        <td>{{ inactivePatient.email }}</td>
-        <td>{{ inactivePatient.phoneNumber }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>Change page:</p>
-  <ngb-pagination
-    [(page)]="page"
-    [pageSize]="pageSize"
-    [collectionSize]="inactivePatients.length"
-  ></ngb-pagination>
-</div>
-
 <div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid">
-  <div *ngIf="patientList" class="row">
-    <div *ngFor="let user of users" class="col-md-3">
-      <div *ngIf="user.userRole == 'patient'" class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-          <p class="card-text">{{ user.email }}</p>
-          <div class="card-text">
-            address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
-          </div>
-          <div class="card-text">{{ user.phoneNumber }}</div>
-          <div>{{ user.userRole }} Has doctor: {{ user.hasActiveDoctor }}</div>
 
-          <button class="btn" type="button" [routerLink]="[user.email]">
-            See Patient's details
-          </button>
-        </div>
-        <div class="card-footer text-muted">
-          Registed at:
-          <cite title="Source Title">{{ user.createdDate | date }}</cite>
+    <div class="row">
+      <div *ngFor="let user of users" class="col-md-3">
+        <div *ngIf="user.userRole == 'patient'" class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+            <p class="card-text">{{ user.email }}</p>
+            <div class="card-text">
+              address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+            </div>
+            <div class="card-text">{{ user.phoneNumber }}</div>
+            <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
+            
+            <button class="btn" type="button" [routerLink]="[user.email]">
+              See Patient's details
+            </button>
+          </div>
+          <div class="card-footer text-muted">
+            Registed at:
+            <cite title="Source Title">{{ user.createdDate | date }}</cite>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  
