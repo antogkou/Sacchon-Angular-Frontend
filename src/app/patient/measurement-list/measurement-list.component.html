@@ -19,8 +19,8 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
-      <th scope="col">Daily Glucose Level</th>
       <th scope="col">Daily Carb Intake</th>
+      <th scope="col">Daily Glucose Level</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -56,27 +56,46 @@
 </table>
 
 <div class="container">
-  <button type="button" class="btn btn-primary btn-lg" id="averageBtn">
+  <button
+    (click)="showAverages()"
+    type="button"
+    class="btn btn-primary btn-lg"
+    id="averageBtn"
+  >
     Compute My Average
   </button>
 
-  <button (click)="showCharts()" type="button" class="btn btn-primary btn-lg" id="graphBtn">
+  <button
+    (click)="showCharts()"
+    type="button"
+    class="btn btn-primary btn-lg"
+    id="graphBtn"
+  >
     Show My Graphs
   </button>
 </div>
 
+<div *ngIf="showAvg" class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Your Averages</h5>
+        <p class="card-text">{{avgGlucose}}</p>
+    
+      </div>
+    </div>
+  </div>
+
 <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
 <div *ngIf="showChart">
-
-  <google-chart 
-  *ngIf="myGraphData.length > 0"
-  [title]="title"
-  [type]="type"
-  [data]="myGraphData"
-  [columns]="chartColumns"
-  [options]="options"
-  [width]="width"
-  [height]="height"
-></google-chart>
-
+  <google-chart
+    *ngIf="myGraphData.length > 0"
+    [title]="title"
+    [type]="type"
+    [data]="myGraphData"
+    [columns]="chartColumns"
+    [options]="options"
+    [width]="width"
+    [height]="height"
+  ></google-chart>
 </div>

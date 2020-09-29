@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   public currentUserRole: any;
   ping = new Subject<string>();
-  
+
   constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
@@ -20,6 +20,7 @@ export class UserService {
     }),
   };
 
+  /** GET all users without doctor */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(
       this.baseUrl + 'users-without-doctor',
@@ -27,6 +28,25 @@ export class UserService {
     );
   }
 
+  /** GET current user information */
+  getCurrentUserInfo(): Observable<User[]> {
+    const url = `${this.baseUrl}user-panel`;
+    return this.http.get<User[]>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`fetched current user information`)),
+      catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
+    );
+  }
+
+   /** GET current user information */
+   updateCurrentUserInfo(user: User): Observable<User[]> {
+    const url = `${this.baseUrl}user-panel`;
+    return this.http.put<User[]>(url, user, this.httpOptions).pipe(
+      tap((_) => console.log(`updated current user information`)),
+      catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
+    );
+  }
+
+  /** POST login users */
   login(email, password) {
     return this.http
       .post(this.baseUrl + 'login', {
@@ -72,8 +92,7 @@ export class UserService {
     });
   }
 
-  /**GET specific doctor's patients */
-
+  /** GET specific doctor's patients */
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
     return this.http.get<User[]>(url, this.httpOptions).pipe(
@@ -82,6 +101,7 @@ export class UserService {
     );
   }
 
+  /** GET users without doctor by id */
   getUsersById(id: string): Observable<User> {
     const url = `${this.baseUrl}users-without-doctor/${id}`;
     return this.http.get<User>(url, this.httpOptions).pipe(
@@ -90,6 +110,7 @@ export class UserService {
     );
   }
 
+  /** GET all users */
   getAllUsers(): Observable<User[]> {
     return this.http
       .get<User[]>(`${this.baseUrl}get-all-users`, this.httpOptions)
@@ -116,6 +137,7 @@ export class UserService {
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
 
+  /** GET a patient's data by using email */
   getPatientData(email: string): Observable<User> {
     return this.http
       .get<User>(
