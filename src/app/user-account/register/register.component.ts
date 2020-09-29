@@ -1,5 +1,6 @@
+import { first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from '../../_shared/_services/user.service';
@@ -20,20 +21,21 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      userRole: [''],
-      zipCode: ['', Validators.required],
-      // hasActiveDoctor: [1],
-      // isActive: [0],
-      // createdDate: []
-    });
+    this.initializeForm();
+  }
+  
+  initializeForm() {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      address: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      city: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      userRole: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      zipCode: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    })
   }
 
   get data() {
@@ -42,6 +44,9 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     if (this.registerForm.invalid) {
+      this._snackBar.open('Register failed!', 'Error', {
+        duration: 2000,
+         });
       return;
     } else {
       this.userService.register(this.registerForm.value).subscribe(r => {
