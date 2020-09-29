@@ -15,10 +15,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //move this to admin panel?
-    this.userService.getUsers().subscribe((users) => {
-      this.users = users;
-      console.log(users);
-    });
+    // this.userService.getUsers().subscribe((users) => {
+    //   this.users = users;
+    //   console.log(users);
+    // });
   }
 
   goToPatient() {

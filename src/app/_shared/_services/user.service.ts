@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class UserService {
   public currentUserRole: any;
-  ping = new Subject<string>();
+   ping = new Subject<User[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -41,7 +41,7 @@ export class UserService {
   getCurrentUserInfo(): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
     return this.http.get<User[]>(url, this.httpOptions).pipe(
-      tap((_) => console.log(`fetched current user information`)),
+      tap((_) => console.log(`fetched current user information`)), 
       catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
     );
   }

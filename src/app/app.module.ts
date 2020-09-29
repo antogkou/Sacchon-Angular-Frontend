@@ -69,7 +69,7 @@ const routes: Routes = [
       // { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: ActivePatientsComponent},
       { path: 'my-patients', component : MyPatientsListComponent},
-      { path: 'consults', component: ConsultListComponent },
+      { path: 'consults', component: ConsultHistoryListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },

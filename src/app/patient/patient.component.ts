@@ -12,9 +12,9 @@ export class PatientComponent implements OnInit {
   constructor(public userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users) => {
-      this.users = users;
-      console.log(users);
-    });
+    // this.userService.getUsers().subscribe((users) => {
+    //   this.users = users;
+    //   console.log(users);
+    // });
   }
 }

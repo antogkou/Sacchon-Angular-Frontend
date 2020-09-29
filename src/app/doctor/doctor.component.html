@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div *ngIf="userService.currentUserRole == 'doctor'" class="wrapper">
   <div id="sidebar-div" class="sidebar">
     <div class="nav-bar-container">
       <div class="brand">
@@ -27,4 +27,3 @@
     </div>
   </div>
 </div>
-  <router-outlet></router-outlet>

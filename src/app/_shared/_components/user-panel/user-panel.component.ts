@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../../_services/user.service';
 
 @Component({
@@ -29,12 +30,21 @@ export class UserPanelComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    public subscription$: Subscription
   ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
+    // this.disEmail = localStorage.getItem('account').toString();
+    // console.log(this.disEmail);
     this.getCurrentUserInfo();
+    this.initializeForm();
+    this.subscription$ = this.userService.getCurrentUserInfo().subscribe();
+  }
+
+  ngOnDestoy(): void {
+    console.log('ngOnDestroy called!');
+    this.subscription$.unsubscribe();
   }
 
   get data() {
@@ -43,7 +53,7 @@ export class UserPanelComponent implements OnInit {
 
   initializeForm(): void {
     this.userPanelForm = new FormGroup({
-      email: new FormControl({ disabled: true }),
+      email: new FormControl(),
       password: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
@@ -54,20 +64,23 @@ export class UserPanelComponent implements OnInit {
     });
   }
 
-  getCurrentUserInfo(): void {
-    this.userService.getCurrentUserInfo().subscribe((data: any) => {
-      this.email = data.email;
-      this.userPanelForm.setValue({
-        email: data.email,
-        password: data.password,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phoneNumber: data.phoneNumber,
-        city: data.city,
-        address: data.address,
-        zipCode: data.zipCode,
+  getCurrentUserInfo() {
+    this.userService
+      .getCurrentUserInfo()
+      .subscribe((data: any) => {
+        debugger;
+        // this.email = data.email;
+        this.userPanelForm.setValue({
+          email: data.email,
+          password: data.password,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          phoneNumber: data.phoneNumber,
+          city: data.city,
+          address: data.address,
+          zipCode: data.zipCode,
+        });
       });
-    });
   }
 
   disableAccount(): void {

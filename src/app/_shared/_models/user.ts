@@ -10,6 +10,6 @@ export class User {
     userRole: string;
     zipCode: number;
     hasActiveDoctor: number;
-    createdDate: number;
+    createdDate: Date;
     isActive: number;
 }
