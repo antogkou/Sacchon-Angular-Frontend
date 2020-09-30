@@ -27,21 +27,24 @@ export class UserPanelComponent implements OnInit {
   submitted = false;
   loading = false;
   disEmail = '';
+  subscription$: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public userService: UserService
-  ) // public subscription$: Subscription
+    public userService: UserService,
+    
+  )  
   {}
 
   ngOnInit(): void {
-    // this.disEmail = localStorage.getItem('account').toString();
-    // console.log(this.disEmail);
     this.getCurrentUserInfo();
     this.initializeForm();
   }
 
   ngOnDestoy(): void {
+    if(this.subscription$){
+      this.subscription$.unsubscribe();
+    }
     console.log('ngOnDestroy called!');
   }
 
@@ -63,8 +66,7 @@ export class UserPanelComponent implements OnInit {
   }
 
   getCurrentUserInfo() {
-    this.userService.getCurrentUserInfo().subscribe((data: any) => {
-      debugger;
+  this.subscription$ = this.userService.getCurrentUserInfo().subscribe((data: any) => {
       // this.email = data.email;
       this.userPanelForm.setValue({
         email: data.email,

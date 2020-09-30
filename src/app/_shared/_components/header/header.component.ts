@@ -18,10 +18,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy called')
+    console.log('ngOnDestroy called');
   }
 
-  getUserInfo(): void {
+
+
+  getUserInfo() {
       this.userService.getCurrentUserInfo().subscribe(
       (data) => (this.myData = data),
       (error) => console.log(error)
@@ -31,8 +33,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('account');
-    this.myData = null;
-    localStorage.clear();
     console.log('user logged out');
     this.router.navigate(['']);
   }

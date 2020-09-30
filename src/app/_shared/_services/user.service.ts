@@ -32,14 +32,22 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(
       this.baseUrl + 'users-without-doctor',
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
   /** GET current user information */
   getCurrentUserInfo(): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
-    return this.http.get<User[]>(url, this.httpOptions).pipe(
+    return this.http.get<User[]>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched current user information`)), 
       catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
     );
@@ -48,7 +56,11 @@ export class UserService {
   /** GET current user information */
   updateCurrentUserInfo(user: User): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
-    return this.http.put<User[]>(url, user, this.httpOptions).pipe(
+    return this.http.put<User[]>(url, user, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`updated current user information`)),
       catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
     );
@@ -57,7 +69,11 @@ export class UserService {
   /** DELETE user  */
   disableUser(email: string): Observable<User> {
     const url = `${this.baseUrl}delete`;
-    return this.http.delete<User>(url, this.options);
+    return this.http.delete<User>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    });
   }
 
   /** POST login users */
@@ -109,7 +125,11 @@ export class UserService {
   /** GET specific doctor's patients */
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
-    return this.http.get<User[]>(url, this.httpOptions).pipe(
+    return this.http.get<User[]>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched my patients`)),
       catchError(this.handleError<User[]>(`getDoctorPatients failed`))
     );
@@ -118,7 +138,11 @@ export class UserService {
   /** GET users without doctor by id */
   getUsersById(id: string): Observable<User> {
     const url = `${this.baseUrl}users-without-doctor/${id}`;
-    return this.http.get<User>(url, this.httpOptions).pipe(
+    return this.http.get<User>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched user id=${id}`)),
       catchError(this.handleError<User>(`getUsersById id=${id}`))
     );
@@ -127,7 +151,11 @@ export class UserService {
   /** GET all users */
   getAllUsers(): Observable<User[]> {
     return this.http
-      .get<User[]>(`${this.baseUrl}get-all-users`, this.httpOptions)
+      .get<User[]>(`${this.baseUrl}get-all-users`, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
       .pipe(tap((_) => console.log(`fetched all users`)));
   }
 
@@ -136,7 +164,11 @@ export class UserService {
     return this.http
       .get<User[]>(
         `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
@@ -146,7 +178,11 @@ export class UserService {
     return this.http
       .get<User[]>(
         `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
@@ -156,7 +192,11 @@ export class UserService {
     return this.http
       .get<User>(
         `${this.baseUrl}admin-panel?patient&email=${email}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(
         tap((_) => console.log(`fetched patient with data email=${email}`)),

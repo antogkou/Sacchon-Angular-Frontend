@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { User } from '../_shared/_models/user';
 import { UserService } from '../_shared/_services/user.service';
 
@@ -10,11 +11,14 @@ import { UserService } from '../_shared/_services/user.service';
 })
 export class HomeComponent implements OnInit {
   users: User[];
+ 
 
-  constructor(public userService: UserService, private router: Router) {}
+  constructor(public userService: UserService, private router: Router) {
+  
+  }
 
   ngOnInit(): void {
-    //move this to admin panel?
+   
     // this.userService.getUsers().subscribe((users) => {
     //   this.users = users;
     //   console.log(users);
