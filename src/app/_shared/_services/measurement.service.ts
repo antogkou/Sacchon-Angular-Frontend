@@ -84,7 +84,11 @@ export class MeasurementService {
         glucose_level: values.carb_intake,
         carb_intake: values.glucose_level,
       },
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
