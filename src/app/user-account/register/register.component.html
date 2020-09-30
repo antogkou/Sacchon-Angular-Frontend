@@ -1,4 +1,17 @@
-<!-- <div class="container">
+<div class="container">
+  <div class="py-5 text-center">
+    <img
+      class="d-block mx-auto mb-4"
+      src="../assets/images/Sacchon_200x200.png"
+      alt="Sacchon"
+      width="100"
+      height="100"
+    />
+    <h2>Register</h2>
+    <p class="lead">Please enter your information to register your account</p>
+  </div>
+
+  <!-- <div class="container">
   <div class="py-5 text-center">
     <img
       class="d-block mx-auto mb-4"
@@ -18,193 +31,203 @@
     </div>
   </div>
 </div> -->
-<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-  <!-- First name -->
-  <div class="form-group">
-    <label for="firstNameInput">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstNameInput"
-      placeholder="Enter first name"
-      formControlName="firstName"
-    />
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-8 order-md-1">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <!-- First name -->
+        <div class="form-group">
+          <label for="firstNameInput">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstNameInput"
+            placeholder="Enter first name"
+            formControlName="firstName"
+          />
 
-    <div
-      *ngIf="
-        registerForm.get('firstName').errors?.required &&
-        registerForm.get('firstName').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-    <div
-      *ngIf="
-        registerForm.get('firstName').errors?.minlength &&
-        registerForm.get('firstName').dirty
-      "
-      class="text-danger"
-    >
-      The minimum length is 3 characters!
-    </div>
-  </div>
-  <!-- /First name -->
+          <div
+            *ngIf="
+              registerForm.get('firstName').errors?.required &&
+              registerForm.get('firstName').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
 
-  <!-- Last name -->
-  <div class="form-group">
-    <label for="lastNameInput">Last Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="lastNameInput"
-      placeholder="Enter last name"
-      formControlName="lastName"
-    />
-    <div
-      *ngIf="
-        registerForm.get('lastName').invalid &&
-        registerForm.get('lastName').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- /Last name -->
+          <div
+            *ngIf="
+              registerForm.get('firstName').errors?.minlength &&
+              registerForm.get('firstName').dirty
+            "
+            class="text-danger"
+          >
+            The minimum length is 3 characters!
+          </div>
+        </div>
+        <!-- /First name -->
 
-  <!-- email -->
-  <div class="form-group">
-    <label for="emailInput">Email</label>
-    <input
-      type="text"
-      class="form-control"
-      id="emailInput"
-      placeholder="Enter email"
-      formControlName="email"
-    />
-    <div
-      *ngIf="
-        registerForm.get('lastName').invalid &&
-        registerForm.get('lastName').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- email -->
+        <!-- Last name -->
+        <div class="form-group">
+          <label for="lastNameInput">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastNameInput"
+            placeholder="Enter last name"
+            formControlName="lastName"
+          />
+          <div
+            *ngIf="
+              registerForm.get('lastName').invalid &&
+              registerForm.get('lastName').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- /Last name -->
 
-  <!-- password -->
-  <div class="form-group">
-    <label for="passwordInput">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="passwordInput"
-      placeholder="Enter password"
-      formControlName="password"
-    />
-    <div
-      *ngIf="
-        registerForm.get('password').invalid &&
-        registerForm.get('password').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- password -->
+        <!-- email -->
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="emailInput"
+            placeholder="Enter email"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              registerForm.get('lastName').invalid &&
+              registerForm.get('lastName').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- email -->
 
-  <!-- address -->
-  <div class="form-group">
-    <label for="addressInput">Address</label>
-    <input
-      type="text"
-      class="form-control"
-      id="addressInput"
-      placeholder="Enter address"
-      formControlName="address"
-    />
-    <div
-      *ngIf="
-        registerForm.get('address').invalid && registerForm.get('address').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- address -->
+        <!-- password -->
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="passwordInput"
+            placeholder="Enter password"
+            formControlName="password"
+          />
+          <div
+            *ngIf="
+              registerForm.get('password').invalid &&
+              registerForm.get('password').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- password -->
 
-  <!-- city -->
-  <div class="form-group">
-    <label for="cityInput">City</label>
-    <input
-      type="text"
-      class="form-control"
-      id="cityInput"
-      placeholder="Enter city"
-      formControlName="city"
-    />
-    <div
-      *ngIf="registerForm.get('city').invalid && registerForm.get('city').dirty"
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- city -->
+        <!-- address -->
+        <div class="form-group">
+          <label for="addressInput">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="addressInput"
+            placeholder="Enter address"
+            formControlName="address"
+          />
+          <div
+            *ngIf="
+              registerForm.get('address').invalid &&
+              registerForm.get('address').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- address -->
 
-  <!-- phoneNumber -->
-  <div class="form-group">
-    <label for="phoneNumberInput">Phone Number</label>
-    <input
-      type="phoneNumber"
-      class="form-control"
-      id="phoneNumberInput"
-      placeholder="Enter phoneNumber"
-      formControlName="phoneNumber"
-    />
-    <div
-      *ngIf="
-        registerForm.get('phoneNumber').invalid &&
-        registerForm.get('phoneNumber').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- phoneNumber -->
+        <!-- city -->
+        <div class="form-group">
+          <label for="cityInput">City</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cityInput"
+            placeholder="Enter city"
+            formControlName="city"
+          />
+          <div
+            *ngIf="
+              registerForm.get('city').invalid && registerForm.get('city').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- city -->
 
-  <!-- zipCode -->
-  <div class="form-group">
-    <label for="zipCodeInput">Zip Code</label>
-    <input
-      type="text"
-      class="form-control"
-      id="zipCodeInput"
-      placeholder="Enter zipCode"
-      formControlName="zipCode"
-    />
-    <div
-      *ngIf="
-        registerForm.get('zipCode').invalid && registerForm.get('zipCode').dirty
-      "
-      class="text-danger"
-    >
-      Field is required!
-    </div>
-  </div>
-  <!-- zipCode -->
-  <!--   
+        <!-- phoneNumber -->
+        <div class="form-group">
+          <label for="phoneNumberInput">Phone Number</label>
+          <input
+            type="phoneNumber"
+            class="form-control"
+            id="phoneNumberInput"
+            placeholder="Enter phoneNumber"
+            formControlName="phoneNumber"
+          />
+          <div
+            *ngIf="
+              registerForm.get('phoneNumber').invalid &&
+              registerForm.get('phoneNumber').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- phoneNumber -->
+
+        <!-- zipCode -->
+        <div class="form-group">
+          <label for="zipCodeInput">Zip Code</label>
+          <input
+            type="text"
+            class="form-control"
+            id="zipCodeInput"
+            placeholder="Enter zipCode"
+            formControlName="zipCode"
+          />
+          <div
+            *ngIf="
+              registerForm.get('zipCode').invalid &&
+              registerForm.get('zipCode').dirty
+            "
+            class="text-danger"
+          >
+            Field is required!
+          </div>
+        </div>
+        <!-- zipCode -->
+        <!--   
   {{ registerForm.status }}
   {{ registerForm.value | json }}<br />
   {{ registerForm.valid }}
   {{ registerForm.dirty }}  -->
-  <button class="btn btn-primary" [disabled]="!registerForm.valid">
-    Submit
-  </button>
-</form>
+        <button class="btn btn-primary" [disabled]="!registerForm.valid">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
