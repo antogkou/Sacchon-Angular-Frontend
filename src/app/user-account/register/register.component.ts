@@ -26,15 +26,14 @@ export class RegisterComponent implements OnInit {
   
   initializeForm() {
     this.registerForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      address: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      city: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      userRole: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      zipCode: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      firstName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      lastName: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      phoneNumber: new FormControl(null, Validators.required),
+      zipCode: new FormControl(null, Validators.required),
     })
   }
 
@@ -43,6 +42,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(){
+    console.log(this.registerForm.value);
     if (this.registerForm.invalid) {
       this._snackBar.open('Register failed!', 'Error', {
         duration: 2000,
