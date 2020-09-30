@@ -20,8 +20,8 @@
     </tbody>
   </table>
 </div> -->
-
-<table class="table-striped">
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+<table class="table">
   <thead class="head">
     <tr>
       <th scope="col">Consult Information</th>
