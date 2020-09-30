@@ -1,141 +1,159 @@
 <div class="col">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<h2 class="text-center">Measurement Data</h2>
-  <form [formGroup]="dateForm" (ngSubmit)="getMeasurementsByDate()">
-  <input
-    formControlName="startDate"
-    type="date"
-    name="startDate"
-    id="startDate"
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <input formControlName="endDate" type="date" name="endDate" id="endDate" />
-  <input type="submit" />
-</form>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">
-      <table *ngIf="hideTable" class="table-striped">
-        <thead class="head">
-          <tr>
-            <th scope="col"> # </th>
-            <th scope="col"> Date </th>
-            <th scope="col"> Daily Glucose Level </th>
-            <th scope="col"> Daily Carb Intake </th>
-            <th scope="col"> Actions </th>
-          </tr>
-        </thead>
-      
-        <tbody class="table-body">
-          <tr *ngFor="let measurement of measurements; let i = index">
-            <td>{{ i + 1 }}</td>
-      
-            <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
-      
-            <td>{{ measurement.carb_intake }} mg/dL</td>
-      
-            <td>{{ measurement.glucose_level }} grams</td>
-      
-            <td>
-              <button
-                (click)="deleteCases(measurement.measurement_id)"
-                class="btn"
-                type="button"
-              ><i class="fa fa-trash"></i>
-                
-              </button>
-      
-              <button
-              
-                [routerLink]="[measurement.measurement_id]"
-                class="btn"
-                type="button"><i class="fa fa-folder"></i>
-                
-              </button>
-            </td>
-          </tr>
-      
-          <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-        </tbody>
-      </table>
-      
-      <table *ngIf="hideDateTable" class="table-striped">
-        <thead class="head">
-          <tr>
-            <th scope="col"> # </th>
-            <th scope="col"> Date </th>
-            <th scope="col"> Daily Glucose Level </th>
-            <th scope="col"> Daily Carb Intake </th>
-            <th scope="col" > Actions </th>
-          </tr>
-        </thead>
-      
-        <tbody class="table-body">
-          <tr *ngFor="let measurement of measurementsByDate; let i = index">
-            <td>{{ i + 1 }}</td>
-      
-            <th scope="row">{{ measurement.created_date | date: "dd/MM/yyyy" }}</th>
-      
-            <td>{{ measurement.carb_intake }} mg/dL</td>
-      
-            <td>{{ measurement.glucose_level }} grams</td>
-      
-            <td>
-              <button
-                (click)="deleteCases(measurement.measurement_id)"
-                class="btn"
-                type="button"
-              >
-                Delete
-              </button>
-              <button
-                [routerLink]="[measurement.measurement_id]"
-                class="btn"
-                type="button"
-              >
-                Update
-              </button>
-            </td>
-          </tr>
-      
-          <!-- Using `myData.length > 0` to make sure `myData` gets full before creating the chart -->
-        </tbody>
-      </table>
-      <div class="container">
-        <button type="button" class="btn btn-primary btn-lg" id="averageBtn" (click)="showAverages()">
-          Compute My Average
-        </button>
-      
-        <button type="button" class="btn btn-primary btn-lg" id="graphBtn" (click)="showCharts()">
-          Show My Graphs
-        </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="showChart">
-        
-        <div *ngIf="showAvg" class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Your Averages</h5>
-        <p class="card-text">{{avgGlucose}}</p>
-    
-      </div>
-    </div>
+  <h2 class="text-center">Measurement Data</h2>
+  <button type="button" class="btn btn-info" (click)="switchToDateAvg()">
+    Calculate average statistics by date
+  </button>
+  <div *ngIf="formDateAvg">
+    <form [formGroup]="dateForm" (ngSubmit)="getMeasurementsByDate()">
+      <input
+        formControlName="startDate"
+        type="date"
+        name="startDate"
+        id="startDate"
+      />
+      <input
+        formControlName="endDate"
+        type="date"
+        name="endDate"
+        id="endDate"
+      />
+      <input type="submit" />
+    </form>
 
-        <google-chart
-        *ngIf="myGraphData.length > 0"
-        [title]="title"
-        [type]="type"
-        [data]="myGraphData"
-        [columns]="chartColumns"
-        [options]="options"
-        [width]="width"
-        [height]="height"
-      ></google-chart>
-      
+    <table class="table-striped">
+      <thead class="head">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Daily Glucose Level</th>
+          <th scope="col">Daily Carb Intake</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="table-body">
+        <tr *ngFor="let measurement of measurementsByDate | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize; let i = index">
+          <td>{{ i + 1 }}</td>
+
+          <th scope="row">
+            {{ measurement.created_date | date: "dd/MM/yyyy" }}
+          </th>
+
+          <td>{{ measurement.carb_intake }} mg/dL</td>
+
+          <td>{{ measurement.glucose_level }} grams</td>
+
+          <td>
+            <button
+              (click)="deleteMeasurements(measurement.measurement_id)"
+              class="btn"
+              type="button"
+            >
+              Delete
+            </button>
+            <button
+              [routerLink]="[measurement.measurement_id]"
+              class="btn"
+              type="button"
+            >
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Change page:</p>
+    <ngb-pagination [collectionSize]="70" [(page)]="page" [directionLinks]="false"></ngb-pagination>
+    <pre>Current page: {{page}}</pre>
+
+    <div *ngIf="showAvg" class="card">
+      <div class="card-body">
+        <h5 class="card-title">Your Average Results</h5>
+        <p class="card-text">The average daily glucose level is: {{ avgGlucose }}</p>
+        <p class="card-text">The average daily carb intake is: {{ avgCarb }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="patientFullData" class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table-striped">
+          <thead class="head">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Daily Glucose Level</th>
+              <th scope="col">Daily Carb Intake</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody class="table-body">
+            <tr *ngFor="let measurement of measurements | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize; let i = index">
+              <td>{{ i + 1 }}</td>
+              <th scope="row">
+                {{ measurement.created_date | date: "dd/MM/yyyy" }}
+              </th>
+              <td>{{ measurement.carb_intake }} mg/dL</td>
+              <td>{{ measurement.glucose_level }} grams</td>
+              <td>
+                <button
+                  (click)="deleteMeasurements(measurement.measurement_id)"
+                  class="btn"
+                  type="button"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+
+                <button
+                  [routerLink]="[measurement.measurement_id]"
+                  class="btn"
+                  type="button"
+                >
+                  <i class="fa fa-folder"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Change page:</p>
+        <ngb-pagination [collectionSize]="measurements.length" [(page)]="page" [directionLinks]="false"></ngb-pagination>
+        <pre>Current page: {{page}}</pre>
+
+        <div class="container">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            id="graphBtn"
+            (click)="showCharts()"
+          >
+            Show My Graphs
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <div class="row">
+            <div *ngIf="showChart" class="col-sm-6">
+              <google-chart
+                *ngIf="myGraphData.length > 0"
+                [title]="title"
+                [type]="type"
+                [data]="myGraphData"
+                [columns]="chartColumns"
+                [options]="options"
+                [width]="width"
+                [height]="height"
+              ></google-chart>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

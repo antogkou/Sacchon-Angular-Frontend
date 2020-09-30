@@ -18,6 +18,7 @@ import { ConsultListComponent } from './consult-list/consult-list.component';
 import { PatientComponent } from './patient.component';
 import { MeasurementEditComponent } from './measurement-edit/measurement-edit.component';
 import { UserPanelComponent } from '../_shared/_components/user-panel/user-panel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserPanelComponent } from '../_shared/_components/user-panel/user-panel
     RouterModule,
     HttpClientModule,
     GoogleChartsModule,
+    NgbModule
   ],
   exports: [
     MeasurementListComponent,

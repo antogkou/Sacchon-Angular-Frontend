@@ -17,14 +17,14 @@ export class MeasurementListComponent implements OnInit {
 
   showChart = false;
   showAvg = false;
-  hideTable = true;
-
+  formDateAvg = false;
+  patientFullData = true;
   avgCarb = 0;
   avgGlucose = 0;
-
+  page = 1;
+  pageSize = 5;
   dateForm: FormGroup;
 
-  hideDateTable = false;
   startDate = new FormControl();
   endDate = new FormControl();
 
@@ -61,7 +61,6 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
-
   // ngOnDestroy(): void {
   //   if (this.subscription) {
   //     this.subscription.unsubscribe();
@@ -73,20 +72,24 @@ export class MeasurementListComponent implements OnInit {
     this.showChart = !this.showChart;
   }
 
-  showAverages(): void {
-    this.showAvg = !this.showAvg;
-  }
+  // showAverages(): void {
+  //   this.showAvg = !this.showAvg;
+  // }
 
   getMeasurements(): void {
-
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
         this.measurements = response;
         response.map((item) => {
           this.myGraphData.push([
-            new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
-            item.glucose_level, item.carb_intake
+            new Date(item.created_date)
+              .toISOString()
+              .replace('-', '/')
+              .split('T')[0]
+              .replace('-', '/'),
+            item.glucose_level,
+            item.carb_intake,
           ]);
         });
         console.log(this.measurements);
@@ -104,22 +107,22 @@ export class MeasurementListComponent implements OnInit {
         this.dateForm.get('endDate').value
       )
       .subscribe((response: any) => {
-        this.measurements = response.measurements;
+        this.measurementsByDate = response.measurements;
         this.avgCarb = response.avgCarb;
         this.avgGlucose = response.avgGlucose;
+        this.showAvg = true;
         console.log(this.measurements);
-
         console.log('response is: ' + response);
       });
   }
 
-  deleteCases(id: any) {
+  deleteMeasurements(id: any) {
     this.isLoadingResults = true;
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
         //  location.reload();
-        window.location.reload()
+        window.location.reload();
         this.getMeasurements();
         //this.router.navigate(['patient/measurements']);
       },
@@ -128,5 +131,10 @@ export class MeasurementListComponent implements OnInit {
         this.isLoadingResults = false;
       }
     );
+  }
+
+  switchToDateAvg(): void {
+    this.formDateAvg = !this.formDateAvg;
+    this.patientFullData = !this.patientFullData;
   }
 }
