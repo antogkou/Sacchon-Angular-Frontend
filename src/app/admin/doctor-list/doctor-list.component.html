@@ -47,21 +47,27 @@
   ></ngb-pagination>
 </div>
 
-<div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid pad-15">
+<div
+  *ngIf="userService.currentUserRole == 'admin'"
+  class="container-fluid pad-15"
+>
   <div *ngIf="doctorList" class="row">
-    <div *ngFor="let user of users" >
+    <div *ngFor="let user of users">
       <div *ngIf="user.userRole == 'doctor'">
         <div class="col-md-3 min-wid-100 align-items-stretch">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
-              <hr>
+              <h5 class="card-title text-center">
+                {{ user.firstName }} {{ user.lastName }}
+              </h5>
+              <hr />
               <div class="min-wid-100">
                 <p class="card-text">Email: {{ user.email }}</p>
                 <div class="card-text">
-                  address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+                  address:{{ user.address }}, {{ user.city }},
+                  {{ user.zipCode }}
                 </div>
-                  <div class="card-text">Tel: {{ user.phoneNumber }}</div>
+                <div class="card-text">Tel: {{ user.phoneNumber }}</div>
                 <div>Has doctor: {{ user.hasActiveDoctor }}</div>
               </div>
               <div class="text-center">
