@@ -17,6 +17,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { ConsultListComponent } from './consult-list/consult-list.component';
 import { PatientComponent } from './patient.component';
 import { MeasurementEditComponent } from './measurement-edit/measurement-edit.component';
+import { UserPanelComponent } from '../_shared/_components/user-panel/user-panel.component';
 
 @NgModule({
   declarations: [

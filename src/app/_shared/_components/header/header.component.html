@@ -1,12 +1,13 @@
 <div class="topnav">
-  <a href="#">Home </a
-  ><a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
+
+  <a href="#">Home </a>
+  <a routerLink="/patient" routerLinkActive="active"> Patient Component </a>
   <a routerLink="/doctor" routerLinkActive="active"> Doctor Component </a>
   <a routerLink="/admin" routerLinkActive="active"> Admin Component </a>
   <div class="topnav-right">
-    <a routerLink="/user-panel" routerLinkActive="active">My Account</a>
+    <a routerLink="/patient/user-panel" routerLinkActive="active">My Account</a>
     <a href="#about">About</a>
-    <a routerLink="/login" (click)="logout()">Logout</a>
+    <a  routerLinkActive="active" (click)="logout()">Logout</a>
   </div>
 </div>
 

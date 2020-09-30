@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'user-panel', component: UserPanelComponent },
+  
   // { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 
   {
@@ -59,6 +59,7 @@ const routes: Routes = [
       { path: 'measurements/create', component: MeasurementAddComponent },
       { path: 'measurements/:id', component: MeasurementEditComponent },
       { path: 'consult', component: ConsultListComponent },
+      { path: 'user-panel', component: UserPanelComponent },
     ],
   },
   {
@@ -69,14 +70,15 @@ const routes: Routes = [
       // { path: 'my-patients', component: DoctorComponent },
       { path: 'patients-without-doctor', component: ActivePatientsComponent},
       { path: 'my-patients', component : MyPatientsListComponent},
-      { path: 'consults', component: ConsultListComponent },
+      { path: 'consults', component: ConsultHistoryListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
       { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
       { path: 'my-patients/:email', component: PatientsDetailComponent },
       { path: 'my-patients/consult/:email', component: PatientConsultListComponent },
-      { path: 'my-patients/consult/:email/:id', component: ConsultEditComponent}
+      { path: 'my-patients/consult/:email/:id', component: ConsultEditComponent},
+      { path: 'user-panel', component: UserPanelComponent },
     ],
   },
   {
@@ -91,6 +93,7 @@ const routes: Routes = [
       { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
+      { path: 'user-panel', component: UserPanelComponent },
     ],
   },
 ];
@@ -104,7 +107,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ConsultHistoryListComponent,
-    UserPanelComponent,
+    UserPanelComponent
 
   ],
   imports: [

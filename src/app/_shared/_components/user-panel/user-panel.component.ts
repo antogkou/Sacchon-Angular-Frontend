@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../../_services/user.service';
 
 @Component({
@@ -26,15 +27,25 @@ export class UserPanelComponent implements OnInit {
   submitted = false;
   loading = false;
   disEmail = '';
+  subscription$: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public userService: UserService
-  ) {}
+    public userService: UserService,
+    
+  )  
+  {}
 
   ngOnInit(): void {
-    this.initializeForm();
     this.getCurrentUserInfo();
+    this.initializeForm();
+  }
+
+  ngOnDestoy(): void {
+    if(this.subscription$){
+      this.subscription$.unsubscribe();
+    }
+    console.log('ngOnDestroy called!');
   }
 
   get data() {
@@ -43,7 +54,7 @@ export class UserPanelComponent implements OnInit {
 
   initializeForm(): void {
     this.userPanelForm = new FormGroup({
-      email: new FormControl({ disabled: true }),
+      email: new FormControl(),
       password: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
@@ -54,9 +65,9 @@ export class UserPanelComponent implements OnInit {
     });
   }
 
-  getCurrentUserInfo(): void {
-    this.userService.getCurrentUserInfo().subscribe((data: any) => {
-      this.email = data.email;
+  getCurrentUserInfo() {
+  this.subscription$ = this.userService.getCurrentUserInfo().subscribe((data: any) => {
+      // this.email = data.email;
       this.userPanelForm.setValue({
         email: data.email,
         password: data.password,

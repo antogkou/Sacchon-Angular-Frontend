@@ -11,6 +11,7 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserPanelComponent } from '../_shared/_components/user-panel/user-panel.component';
 
 
 
