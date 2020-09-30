@@ -1,3 +1,6 @@
+
+
+
 .table-striped {
   margin-top: 100px;
 
@@ -9,9 +12,11 @@
 
   border: solid teal 1px;
 
-  border-radius: 10px;
+  border-radius: 0px;
 
   -moz-border-radius: 10px;
+
+  border-spacing: 5px;
 }
 
 .head {

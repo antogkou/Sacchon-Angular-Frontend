@@ -20,7 +20,7 @@
 }
 
 #sidebar-div {
-    position: fixed;
+    position: sticky;;
     top: 0;
     left: 0;
     height: 100vh;
@@ -29,6 +29,7 @@
     float: left;
     background-color: #2e313d;
     border-right: 1px solid #202125;
+
     text-align: center;
     overflow-x: hidden;
 }
@@ -64,7 +65,7 @@ li a {
 }
 
 li:hover{
-    background-color: #39796b;
+    background-color: teal;
     border-left: solid 5px yellowgreen;
 }
 

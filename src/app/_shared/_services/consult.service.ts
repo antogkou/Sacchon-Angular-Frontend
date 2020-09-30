@@ -19,14 +19,22 @@ export class ConsultService {
 
   /** GET consults from the server */
   getConsults(): Observable<Consult[]> {
-    return this.http.get<Consult[]>(this.baseUrl + 'consult', this.httpOptions);
+    return this.http.get<Consult[]>(this.baseUrl + 'consult', {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    });
   }
 
   /** GET consults from the server */
   getMyPatientConsults(): Observable<Consult[]> {
     return this.http.get<Consult[]>(
       this.baseUrl + 'myaccount/consults',
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
@@ -34,14 +42,22 @@ export class ConsultService {
   getConsultByDoctor(): Observable<Consult[]> {
     return this.http.get<Consult[]>(
       this.baseUrl + 'doctor/my-consults',
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
   /** GET clicked consult id from the server */
   getConsultById(id: string): Observable<Consult> {
     const url = `${this.baseUrl}consult/${id}`;
-    return this.http.get<Consult>(url, this.httpOptions).pipe(
+    return this.http.get<Consult>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched consult id=${id}`)),
       catchError(this.handleError<Consult>(`getConsultById id=${id}`))
     );
@@ -50,7 +66,11 @@ export class ConsultService {
   /** GET consult by patient email */
   getConsultByPatientEmail(email: string): Observable<Consult> {
     const url = `${this.baseUrl}my-patients?consults-of-patient&email=${email}`;
-    return this.http.get<Consult>(url, this.httpOptions).pipe(
+    return this.http.get<Consult>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched consults with patient mail=${email}`)),
       catchError(
         this.handleError<Consult>(`getConsultByPatientEmail email=${email}`)
@@ -61,7 +81,11 @@ export class ConsultService {
   /** GET consult by doctor email */
   getConsultByDoctorEmail(email: string): Observable<Consult> {
     const url = `${this.baseUrl}admin-panel?doctor&email=${email}`;
-    return this.http.get<Consult>(url, this.httpOptions).pipe(
+    return this.http.get<Consult>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched consults with doctor mail=${email}`)),
       catchError(
         this.handleError<Consult>(`getConsultByDoctorEmail email=${email}`)
@@ -72,7 +96,11 @@ export class ConsultService {
   /** PUT consult and save it into the server */
   updateConsult(id: string, consult: Consult): Observable<any> {
     const url = `${this.baseUrl}consult/${id}`;
-    return this.http.put(url, consult, this.httpOptions).pipe(
+    return this.http.put(url, consult, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`updated consult with id=${id}`)),
       catchError(this.handleError<any>('update consults'))
     );
@@ -81,7 +109,11 @@ export class ConsultService {
   /** DELETE: delete a consult from the server */
   deleteConsults(id: string): Observable<Consult> {
     const url = `${this.baseUrl}consult/${id}`;
-    return this.http.delete<Consult>(url, this.httpOptions).pipe(
+    return this.http.delete<Consult>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`deleted consult with id=${id}`)),
       catchError(this.handleError<Consult>('deleteCosnults'))
     );
@@ -97,7 +129,11 @@ export class ConsultService {
         medication: values.medication,
         patient_email: email,
       },
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 

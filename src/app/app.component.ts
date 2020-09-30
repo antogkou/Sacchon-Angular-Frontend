@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { UserService } from './_shared/_services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,12 @@ export class AppComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private userService: UserService
   ) {}
+
+  ngOnInit(): void {
+   
+  }
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;

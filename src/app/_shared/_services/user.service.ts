@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -9,8 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class UserService {
   public currentUserRole: any;
-  ping = new Subject<string>();
-  
+
   constructor(private http: HttpClient) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
@@ -20,13 +19,64 @@ export class UserService {
     }),
   };
 
+  options = {
+    headers: new HttpHeaders({
+      Authorization: 'Basic ' + localStorage.getItem('account'),
+    }),
+    body: {
+      email: ''
+    },
+  };
+
+  /** GET all users without doctor */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(
       this.baseUrl + 'users-without-doctor',
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
+  /** GET current user information */
+  getCurrentUserInfo(): Observable<User[]> {
+    const url = `${this.baseUrl}user-panel`;
+    return this.http.get<User[]>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
+      tap((_) => console.log(`fetched current user information`)), 
+      catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
+    );
+  }
+
+  /** GET current user information */
+  updateCurrentUserInfo(user: User): Observable<User[]> {
+    const url = `${this.baseUrl}user-panel`;
+    return this.http.put<User[]>(url, user, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
+      tap((_) => console.log(`updated current user information`)),
+      catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
+    );
+  }
+
+  /** DELETE user  */
+  disableUser(email: string): Observable<User> {
+    const url = `${this.baseUrl}delete`;
+    return this.http.delete<User>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    });
+  }
+
+  /** POST login users */
   login(email, password) {
     return this.http
       .post(this.baseUrl + 'login', {
@@ -72,27 +122,40 @@ export class UserService {
     });
   }
 
-  /**GET specific doctor's patients */
-
+  /** GET specific doctor's patients */
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
-    return this.http.get<User[]>(url, this.httpOptions).pipe(
+    return this.http.get<User[]>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched my patients`)),
       catchError(this.handleError<User[]>(`getDoctorPatients failed`))
     );
   }
 
+  /** GET users without doctor by id */
   getUsersById(id: string): Observable<User> {
     const url = `${this.baseUrl}users-without-doctor/${id}`;
-    return this.http.get<User>(url, this.httpOptions).pipe(
+    return this.http.get<User>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched user id=${id}`)),
       catchError(this.handleError<User>(`getUsersById id=${id}`))
     );
   }
 
+  /** GET all users */
   getAllUsers(): Observable<User[]> {
     return this.http
-      .get<User[]>(`${this.baseUrl}get-all-users`, this.httpOptions)
+      .get<User[]>(`${this.baseUrl}get-all-users`, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
       .pipe(tap((_) => console.log(`fetched all users`)));
   }
 
@@ -101,7 +164,11 @@ export class UserService {
     return this.http
       .get<User[]>(
         `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
@@ -111,16 +178,25 @@ export class UserService {
     return this.http
       .get<User[]>(
         `${this.baseUrl}admin-panel?inactive&from=${startDate}&to=${endDate}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(tap((_) => console.log(`fetched all inactive doctors`)));
   }
 
+  /** GET a patient's data by using email */
   getPatientData(email: string): Observable<User> {
     return this.http
       .get<User>(
         `${this.baseUrl}admin-panel?patient&email=${email}`,
-        this.httpOptions
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Basic ' + localStorage.getItem('account'),
+          }),
+        }
       )
       .pipe(
         tap((_) => console.log(`fetched patient with data email=${email}`)),

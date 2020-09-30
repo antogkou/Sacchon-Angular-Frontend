@@ -1,4 +1,108 @@
-<div class="d-flex align-items-center h-100">
+
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="../assets/images/Sacchon_200x200.png" alt="" width="100" height="100">
+    <h2>Register</h2>
+    <p class="lead">Please enter your information to register your account</p>
+  </div>
+
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Address</h4>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" formControlName="firstName" id="firstName">
+            <div *ngIf="registerForm.get('firstName').invalid && registerForm.get('firstName').dirty" class="text-danger">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" >
+            <div *ngIf="registerForm.get('lastName').invalid && registerForm.get('lastName').dirty" class="text-danger">
+              Valid last name is required
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Email <span class="text-muted"></span></label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="you@example.com">
+          <div *ngIf="registerForm.get('email').invalid && registerForm.get('email').dirty" class="text-danger">
+            Please enter a valid email address
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" formControlName="address" placeholder="1234 Main St" >
+          <div *ngIf="registerForm.get('address').invalid && registerForm.get('address').dirty" class="text-danger">
+            Please enter your address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city">
+          <div *ngIf="registerForm.get('city').invalid && registerForm.get('city').dirty" class="text-danger">
+            Please enter the city you live in
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phonenumber">Phone Number</label>
+          <input type="text" class="form-control" id="phonenumber" formControlName="phoneNumber">
+          <div *ngIf="registerForm.get('phoneNumber').invalid && registerForm.get('phoneNumber').dirty" class="text-danger">
+            Please enter a valid phone number that we can reach you
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="zipcode">Zip Code</label>
+          <input type="text" class="form-control" id="zipcode" formControlName="zipCode">
+          <div *ngIf="registerForm.get('zipCode').invalid && registerForm.get('zipCode').dirty" class="text-danger">
+            Please enter a valid zip code
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Make a strong password combining letters and numbers" >
+          <div *ngIf="registerForm.get('password').invalid && registerForm.get('password').dirty" class="text-danger">
+            Please enter a valid password
+          </div>
+        </div>
+
+        <div class="row">
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </form>
+    </div>  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="d-flex align-items-center h-100">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-5">
@@ -53,7 +157,7 @@
 
               <div class="mt-4">
                 <button mat-raised-button color="primary">Register</button>
-                <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
+                <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a>
                 <a [routerLink]="['/login']" class="ml-2" mat-button color="primary">Cancel</a>
               </div>
             </form>
@@ -61,4 +165,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+ -->

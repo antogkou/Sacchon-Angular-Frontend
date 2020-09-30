@@ -7,29 +7,29 @@ import { ConsultService } from '../../_shared/_services/consult.service';
 @Component({
   selector: 'app-consult-history-list',
   templateUrl: './consult-history-list.component.html',
-  styleUrls: ['./consult-history-list.component.scss']
+  styleUrls: ['./consult-history-list.component.scss'],
 })
 export class ConsultHistoryListComponent implements OnInit {
-  url = 'http://localhost:9000/v1/team6/sacchon/doctor/my-consults';
 
-  myData : any[] = [];
-  consults : Consult[];
+  myData: any[] = [];
+  consults: Consult[];
 
   constructor(
     private consultService: ConsultService,
-    private httpClient : HttpClient,
-    private router : Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
-    this.consultService.getConsultByDoctor()
-    .subscribe((response) => {
+    this.consultService.getConsultByDoctor().subscribe((response) => {
       this.consults = response;
       response.map((item) => {
-        this.myData.push([item.patient_email, item.consultText, item.medication, item.medication,item.consult_created_date]);
+        this.myData.push([
+          item.patient_email,
+          item.consultText,
+          item.medication,
+          item.medication,
+          item.consult_created_date,
+        ]);
       });
-    })
+    });
   }
-
 }

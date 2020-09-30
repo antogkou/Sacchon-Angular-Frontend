@@ -1,15 +1,33 @@
-.patient-btn{
-    min-width: 100%;
+.table-striped
+{
+    margin-top: 100px;
+    margin-left: 400px;
+    width: 700px;
+    border-collapse:separate;
+    border:solid teal 1px;
+    border-radius:10px;
+    -moz-border-radius:10px;    
 }
 
-.pad-top-20{
-    padding-top: 20px;
+.head{
+ text-align: center;
+ background-color: teal;
+ color: white;
+ font-size: large;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.pad-20{
-    padding: 20px;
+.table-body{
+    text-align: center;
+}
+.btn{
+background-color:  teal;
+color:white;
+margin-right: 10px;
 }
 
-.card {
-    width: 20rem;
-  }
+.container{
+  height: 200px;
+  position: relative;
+  display: inline-block;
+}

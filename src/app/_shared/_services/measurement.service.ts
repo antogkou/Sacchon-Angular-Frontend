@@ -20,87 +20,61 @@ export class MeasurementService {
   getMeasurements(): Observable<Measurement[]> {
     return this.http.get<Measurement[]>(
       this.baseUrl + 'measurements',
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      }
     );
   }
 
   /** GET current user's measurements from the server */
   getCurrentUserMeasurements(): Observable<Measurement[]> {
-    return this.http
-      .get<Measurement[]>(
-        this.baseUrl + 'myaccount/mymeasurements',
-        this.httpOptions
-      )
-      .pipe(
-        tap(
-          (_) => console.log('fetched current user measurements'),
-          catchError(
-            this.handleError<Measurement>('getCurrentUserMeasurements')
-          )
-        )
-      );
+    return this.http.get<Measurement[]>(this.baseUrl + 'myaccount/mymeasurements', {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
+      tap((_ => console.log('fetched current user measurements')),
+      catchError(this.handleError<Measurement>('getCurrentUserMeasurements')))
+    );
   }
 
   /** GET clicked measurement details from the server */
   getMeasurementsById(id: string): Observable<Measurement> {
     const url = `${this.baseUrl}measurements/${id}`;
-    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+    return this.http.get<Measurement>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched measurement id=${id}`)),
       catchError(this.handleError<Measurement>(`getMeasurementsById id=${id}`))
     );
   }
 
-  /** GET measurements by date currently testing */
-  getMeasurementsByDate(
-    startDate: Date,
-    endDate: Date
-  ): Observable<Measurement[]> {
+  /** GET measurements by date */
+  getMeasurementsByDate(startDate: Date, endDate: Date): Observable<Measurement> {
     const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-    return this.http.get<Measurement[]>(url, this.httpOptions);
+    return this.http.get<Measurement>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
+      tap((_) => console.log(`fetched measurement with date from=${startDate} to=${endDate}`)),
+      catchError(this.handleError<Measurement>(`getMeasurementsByDate from=${startDate} to=${endDate}`))
+    );
   }
 
-  /** GET measurements by date Old */
-  // getMeasurementsByDate2(
-  //   startDate: Date,
-  //   endDate: Date
-  // ): Observable<Measurement> {
-  //   const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-  //   return this.http.get<Measurement>(url, this.httpOptions).pipe(
-  //     tap((_) =>
-  //       console.log(
-  //         `fetched measurements with date from=${startDate} to=${endDate}`
-  //       )
-  //     ),
-  //     catchError(
-  //       this.handleError<Measurement>(
-  //         `getMeasurementsByDate from=${startDate} to=${endDate}`
-  //       )
-  //     )
-  //   );
-  // }
-
-  /** GET current user's measurements from the server by date didnt work */
-  // getCurrentUserMeasurementsDates(
-  //   startDate: Date,
-  //   endDate: Date
-  // ): Observable<Measurement[]> {
-  //   const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-  //   return this.http
-  //     .get<Measurement[]>(url, this.httpOptions)
-  //     .pipe(
-  //       tap(
-  //         (_) =>
-  //           console.log(
-  //             `fetched measurements with date from=${startDate} to=${endDate}`
-  //           ),
-  //         catchError(
-  //           this.handleError<Measurement>(
-  //             `getMeasurementsByDate from=${startDate} to=${endDate}`
-  //           )
-  //         )
-  //       )
-  //     );
-  // }
+   /** GET measurements by date */
+   getMeasurementsByDate2(startDate: Date, endDate: Date): Observable<Measurement[]> {
+    const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
+    return this.http.get<Measurement[]>(url,{
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    })
+  }
 
   /** POST: add a new measurement to the server */
   addMeasurement(values: Measurement): Observable<any> {
@@ -117,7 +91,11 @@ export class MeasurementService {
   /** PUT: update a measurement and save it into the server */
   updateMeasurements(id: string, measurements: Measurement): Observable<any> {
     const url = `${this.baseUrl}measurements/${id}`;
-    return this.http.put(url, measurements, this.httpOptions).pipe(
+    return this.http.put(url, measurements, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`updated measurement with id=${id}`)),
       catchError(this.handleError<any>('updateMeasurements'))
     );
@@ -126,7 +104,11 @@ export class MeasurementService {
   /** DELETE: delete a measurement from the server *be careful with this* */
   deleteMeasurements(id: string): Observable<Measurement> {
     const url = `${this.baseUrl}measurements/${id}`;
-    return this.http.delete<Measurement>(url, this.httpOptions).pipe(
+    return this.http.delete<Measurement>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`deleted measurement with id=${id}`)),
       catchError(this.handleError<Measurement>('deleteMeasurements'))
     );
@@ -136,13 +118,13 @@ export class MeasurementService {
 
   getMeasurementsByPatientsEmail(email: string): Observable<Measurement> {
     const url = `${this.baseUrl}patient/measurements?email=${email}`;
-    return this.http.get<Measurement>(url, this.httpOptions).pipe(
+    return this.http.get<Measurement>(url, {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    }).pipe(
       tap((_) => console.log(`fetched measurement with patient mail=${email}`)),
-      catchError(
-        this.handleError<Measurement>(
-          `getMeasurementsByPatientsEmail email=${email}`
-        )
-      )
+      catchError(this.handleError<Measurement>(`getMeasurementsByPatientsEmail email=${email}`))
     );
   }
 

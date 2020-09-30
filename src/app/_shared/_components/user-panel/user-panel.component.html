@@ -1,0 +1,74 @@
+<form [formGroup]="userPanelForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input
+        formControlName="email"
+        disabled
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">First Name</label>
+    <input
+      formControlName="firstName"
+      type="text"
+      class="form-control"
+      id="firstName"
+      placeholder="First Name.."
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input
+    formControlName="lastName"
+      type="text"
+      class="form-control"
+      id="lastName"
+      placeholder="Last Name.."
+    />
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number</label>
+    <input
+      formControlName="phoneNumber"
+      type="text"
+      class="form-control"
+      id="phoneNumber"
+      placeholder="Phone Number.."
+    />
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">City</label>
+      <input formControlName="city" type="text" class="form-control" id="city" />
+    </div>
+    <div class="form-group col-md-4">
+      <label for="address">Address</label>
+      <input formControlName="address" type="text" class="form-control" id="address" />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="zipCode">Zip</label>
+      <input formControlName="zipCode" type="text" class="form-control" id="zipCode" />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update</button>
+  
+</form>
+<button (click)="disableAccount()" type="submit" class="btn btn-danger">Disable Account</button>

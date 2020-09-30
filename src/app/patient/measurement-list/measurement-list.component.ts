@@ -4,7 +4,8 @@ import { MeasurementService } from '../../_shared/_services/measurement.service'
 import { UserService } from '../../_shared/_services/user.service';
 import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ChartsModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-measurement-list',
@@ -15,9 +16,15 @@ export class MeasurementListComponent implements OnInit {
   url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
   showChart = false;
+  showAvg = false;
   hideTable = true;
 
+  avgCarb = 0;
+  avgGlucose = 0;
+
   dateForm: FormGroup;
+
+  hideDateTable = false;
   startDate = new FormControl();
   endDate = new FormControl();
 
@@ -25,7 +32,7 @@ export class MeasurementListComponent implements OnInit {
   submitted = false;
   type = 'LineChart';
   title = 'Glucose level';
-  chartColumns = ['Date', 'Glucose'];
+  chartColumns = ['Date', 'Glucose', 'Carb Intake'];
   options = {
     hAxis: {
       title: 'Timeline',
@@ -40,7 +47,6 @@ export class MeasurementListComponent implements OnInit {
   users: User[];
 
   isLoadingResults = true;
-  subscription: Subscription;
 
   constructor(
     private measurementService: MeasurementService,
@@ -55,59 +61,67 @@ export class MeasurementListComponent implements OnInit {
     this.getMeasurements();
   }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-      console.log('ngOnDestroy called');
-    }
-  }
 
+  // ngOnDestroy(): void {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //     console.log('ngOnDestroy called');
+  //   }
+  // }
 
   showCharts(): void {
     this.showChart = !this.showChart;
   }
 
+  showAverages(): void {
+    this.showAvg = !this.showAvg;
+  }
+
   getMeasurements(): void {
+
     this.measurementService
       .getCurrentUserMeasurements()
       .subscribe((response) => {
-        // sets the table values
         this.measurements = response;
-        // updates the graph
         response.map((item) => {
-          this.myGraphData.push([item.created_date, item.glucose_level]);
+          this.myGraphData.push([
+            new Date(item.created_date).toISOString().replace('-', '/').split('T')[0].replace('-', '/'),
+            item.glucose_level, item.carb_intake
+          ]);
         });
         console.log(this.measurements);
       });
   }
 
-  getMeasurementsByDate(): void {
+  getMeasurementsByDate() {
     console.log(
       'start= ' + this.dateForm.get('startDate').value,
       'end= ' + this.dateForm.get('endDate').value
     );
     this.measurementService
-      .getMeasurementsByDate(
+      .getMeasurementsByDate2(
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
       )
-      .subscribe((response) => {
-        if (response.length > 0) {
-          this.measurements = response;
-        } else {
-          console.log('getMeasurementsByDate failed');
-        }
+      .subscribe((response: any) => {
+        this.measurements = response.measurements;
+        this.avgCarb = response.avgCarb;
+        this.avgGlucose = response.avgGlucose;
+        console.log(this.measurements);
+
         console.log('response is: ' + response);
       });
   }
 
-  deleteMeasurements(id: any): void {
+  deleteCases(id: any) {
     this.isLoadingResults = true;
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
+        //  location.reload();
+        window.location.reload()
         this.getMeasurements();
-        // this.router.navigate(['patient/measurements']);
+        //this.router.navigate(['patient/measurements']);
       },
       (err) => {
         console.log(err);
