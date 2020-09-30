@@ -47,26 +47,34 @@
   ></ngb-pagination>
 </div>
 
-<div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid">
+<div *ngIf="userService.currentUserRole == 'admin'" class="container-fluid pad-15">
   <div *ngIf="patientList" class="row">
-    <div *ngFor="let user of users" class="col-md-3">
-      <div *ngIf="user.userRole == 'patient'" class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-          <p class="card-text">{{ user.email }}</p>
-          <div class="card-text">
-            address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+    <div *ngFor="let user of users" >
+      <div *ngIf="user.userRole == 'patient'">
+        <div class="col-md-3 min-wid-100 align-items-stretch">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
+              <hr>
+              <div class="min-wid-100">
+                <p class="card-text">Email: {{ user.email }}</p>
+                <div class="card-text">
+                  address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+                </div>
+                  <div class="card-text">Tel: {{ user.phoneNumber }}</div>
+                <div>Has doctor: {{ user.hasActiveDoctor }}</div>
+              </div>
+              <div class="text-center">
+                <button class="btn" type="button" [routerLink]="[user.email]">
+                  See Patient's details
+                </button>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              Registed at:
+              <cite title="Source Title">{{ user.createdDate | date }}</cite>
+            </div>
           </div>
-          <div class="card-text">{{ user.phoneNumber }}</div>
-          <div>{{ user.userRole }} Has doctor: {{ user.hasActiveDoctor }}</div>
-
-          <button class="btn" type="button" [routerLink]="[user.email]">
-            See Patient's details
-          </button>
-        </div>
-        <div class="card-footer text-muted">
-          Registed at:
-          <cite title="Source Title">{{ user.createdDate | date }}</cite>
         </div>
       </div>
     </div>

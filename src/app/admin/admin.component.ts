@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_shared/_models/user';
 import { UserService } from '../_shared/_services/user.service';
@@ -7,6 +7,7 @@ import { UserService } from '../_shared/_services/user.service';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdminComponent implements OnInit {
   users: User[];
