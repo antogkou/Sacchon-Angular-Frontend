@@ -34,62 +34,25 @@
   <div class="row justify-content-center align-items-center">
     <div class="col-md-8 order-md-1">
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-        <!-- First name -->
-        <div class="form-group">
-          <label for="firstNameInput">First Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="firstNameInput"
-            placeholder="Enter first name"
-            formControlName="firstName"
-          />
-
-          <div
-            *ngIf="
-              registerForm.get('firstName').errors?.required &&
-              registerForm.get('firstName').dirty
-            "
-            class="text-danger"
-          >
-            Field is required!
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" formControlName="firstName" id="firstName">
+            <div *ngIf="registerForm.get('firstName').invalid && registerForm.get('firstName').dirty" class="text-danger">
+              Valid first name is required.
+            </div>
           </div>
-
-          <div
-            *ngIf="
-              registerForm.get('firstName').errors?.minlength &&
-              registerForm.get('firstName').dirty
-            "
-            class="text-danger"
-          >
-            The minimum length is 3 characters!
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" >
+            <div *ngIf="registerForm.get('lastName').invalid && registerForm.get('lastName').dirty" class="text-danger">
+              Valid last name is required
+            </div>
           </div>
         </div>
-        <!-- /First name -->
-
-        <!-- Last name -->
-        <div class="form-group">
-          <label for="lastNameInput">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastNameInput"
-            placeholder="Enter last name"
-            formControlName="lastName"
-          />
-          <div
-            *ngIf="
-              registerForm.get('lastName').invalid &&
-              registerForm.get('lastName').dirty
-            "
-            class="text-danger"
-          >
-            Field is required!
-          </div>
-        </div>
-        <!-- /Last name -->
 
         <!-- email -->
+        <div class="mb-3">
         <div class="form-group">
           <label for="emailInput">Email</label>
           <input
@@ -101,17 +64,19 @@
           />
           <div
             *ngIf="
-              registerForm.get('lastName').invalid &&
-              registerForm.get('lastName').dirty
+              registerForm.get('email').invalid &&
+              registerForm.get('email').dirty
             "
             class="text-danger"
           >
             Field is required!
           </div>
         </div>
+        </div>
         <!-- email -->
 
         <!-- password -->
+        <div class="mb-3">
         <div class="form-group">
           <label for="passwordInput">Password</label>
           <input
@@ -131,9 +96,11 @@
             Field is required!
           </div>
         </div>
+        </div>
         <!-- password -->
 
         <!-- address -->
+        <div class="mb-3">
         <div class="form-group">
           <label for="addressInput">Address</label>
           <input
@@ -153,9 +120,11 @@
             Field is required!
           </div>
         </div>
+        </div>
         <!-- address -->
 
         <!-- city -->
+        <div class="mb-3">
         <div class="form-group">
           <label for="cityInput">City</label>
           <input
@@ -174,9 +143,11 @@
             Field is required!
           </div>
         </div>
+        </div>
         <!-- city -->
 
         <!-- phoneNumber -->
+        <div class="mb-3">
         <div class="form-group">
           <label for="phoneNumberInput">Phone Number</label>
           <input
@@ -195,6 +166,7 @@
           >
             Field is required!
           </div>
+        </div>
         </div>
         <!-- phoneNumber -->
 
@@ -218,12 +190,6 @@
             Field is required!
           </div>
         </div>
-        <!-- zipCode -->
-        <!--   
-  {{ registerForm.status }}
-  {{ registerForm.value | json }}<br />
-  {{ registerForm.valid }}
-  {{ registerForm.dirty }}  -->
         <button class="btn btn-primary" [disabled]="!registerForm.valid">
           Submit
         </button>

@@ -27,13 +27,13 @@ export class RegisterComponent implements OnInit {
   initializeForm() {
     this.registerForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-      lastName: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      address: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      phoneNumber: new FormControl(null, Validators.required),
-      zipCode: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      email: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      address: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      city: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      zipCode: new FormControl(null,  [Validators.required, Validators.minLength(5)]),
     })
   }
 
