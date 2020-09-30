@@ -154,7 +154,7 @@
             type="phoneNumber"
             class="form-control"
             id="phoneNumberInput"
-            placeholder="Enter phoneNumber"
+            placeholder="Enter your phone number"
             formControlName="phoneNumber"
           />
           <div
@@ -177,7 +177,7 @@
             type="text"
             class="form-control"
             id="zipCodeInput"
-            placeholder="Enter zipCode"
+            placeholder="Enter your area zip code"
             formControlName="zipCode"
           />
           <div
@@ -190,7 +190,7 @@
             Field is required!
           </div>
         </div>
-        <button class="btn btn-primary" [disabled]="!registerForm.valid">
+        <button class="btn btn-primary btn-block" [disabled]="!registerForm.valid">
           Submit
         </button>
       </form>

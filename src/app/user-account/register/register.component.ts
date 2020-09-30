@@ -51,10 +51,11 @@ export class RegisterComponent implements OnInit {
     } else {
       this.userService.register(this.registerForm.value).subscribe(r => {
         this.router.navigate(['/login']);
-      })
         this._snackBar.open('Register Successfully', 'Success', {
-         duration: 2000,
-          });
+          duration: 2000,
+           });
+      });
+
     }
   }
 
