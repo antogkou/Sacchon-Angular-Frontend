@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h2>Dark Table</h2>
   <p>Here is a list of all consults:</p>
   <table class="table table-dark">
@@ -15,8 +15,28 @@
         <td>{{ consult.consultText }}</td>
         <td>{{ consult.dosage }}</td>
         <td>{{ consult.medication }}</td>
-        <td>{{ consult.consult_created_date }}</td>
+        <td>{{ consult.consult_created_date | date: "dd/MM/yyyy"  }}</td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
+
+<table class="table-striped">
+  <thead class="head">
+    <tr>
+      <th scope="col">Consult Information</th>
+      <th scope="col">Dosage</th>
+      <th scope="col">Medication</th>
+      <th scope="col">Created Date</th>
+    </tr>
+  </thead>
+
+  <tbody class="table-body">
+    <tr *ngFor="let consult of consults">
+      <td>{{ consult.consultText }}</td>
+      <td>{{ consult.dosage }}</td>
+      <td>{{ consult.medication }}</td>
+      <td>{{ consult.consult_created_date | date: "dd/MM/yyyy" }}</td>
+    </tr>
+  </tbody>
+</table>
