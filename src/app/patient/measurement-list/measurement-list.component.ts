@@ -13,7 +13,6 @@ import { ChartsModule } from 'angular-bootstrap-md';
   styleUrls: ['./measurement-list.component.scss'],
 })
 export class MeasurementListComponent implements OnInit {
-  url = 'http://localhost:9000/v1/team6/sacchon/measurements';
 
   showChart = false;
   showAvg = false;
@@ -72,10 +71,6 @@ export class MeasurementListComponent implements OnInit {
     this.showChart = !this.showChart;
   }
 
-  // showAverages(): void {
-  //   this.showAvg = !this.showAvg;
-  // }
-
   getMeasurements(): void {
     this.measurementService
       .getCurrentUserMeasurements()
@@ -108,11 +103,12 @@ export class MeasurementListComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.measurementsByDate = response.measurements;
+       // console.log('response mesaurements is: ' + response.measurements);
         this.avgCarb = response.avgCarb;
         this.avgGlucose = response.avgGlucose;
         this.showAvg = true;
-        console.log(this.measurements);
-        console.log('response is: ' + response);
+       // console.log('length=' + response.measurements.length);
+       // console.log('response is: ' + response);
       });
   }
 
@@ -121,10 +117,8 @@ export class MeasurementListComponent implements OnInit {
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
-        //  location.reload();
         window.location.reload();
         this.getMeasurements();
-        //this.router.navigate(['patient/measurements']);
       },
       (err) => {
         console.log(err);

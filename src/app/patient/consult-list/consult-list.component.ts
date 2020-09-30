@@ -9,7 +9,8 @@ import { ConsultService } from '../../_shared/_services/consult.service';
 })
 export class ConsultListComponent implements OnInit {
   constructor(private consultService: ConsultService) { }
-
+  page = 1;
+  pageSize = 5;
   consults: Consult[];
 
   ngOnInit(): void {

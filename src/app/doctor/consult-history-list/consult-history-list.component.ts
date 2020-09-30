@@ -27,7 +27,7 @@ export class ConsultHistoryListComponent implements OnInit {
           item.consultText,
           item.medication,
           item.medication,
-          item.consult_created_date,
+          new Date(item.consult_created_date),
         ]);
       });
     });
