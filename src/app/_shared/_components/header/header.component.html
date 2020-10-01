@@ -8,7 +8,7 @@
     <a
       href="https://www.pfizer.com/news/featured_stories/featured_stories_detail/the_abc_s_of_diabetes"
       >Diabetes ABC</a>
-    <a ng-if="userService.currentUserRole == 'patient' || userService.currentUserRole == 'doctor' || userService.currentUserRole == 'admin'" routerLinkActive="active" (click)="logout()">Logout</a>
+    <a *ngIf="userService.currentUserRole == 'patient' || userService.currentUserRole == 'doctor' || userService.currentUserRole == 'admin'" routerLinkActive="active" (click)="logout()">Logout</a>
   </div>
 </div>
 
