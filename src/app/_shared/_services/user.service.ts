@@ -220,7 +220,7 @@ export class UserService {
       if (error.error.code == 404) {
         this.route.navigate(['/404']);
       } else if (error.error.code == 500) {
-        this.route.navigate(['/500']);      
+        this.route.navigate(['/500']);
       }else if (error.error.code == 401) {
         this.route.navigate(['/401']);
       }

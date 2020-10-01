@@ -2,22 +2,50 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-5">
-          <h3 class="text-center">Log entry</h3>
-          <form [formGroup]="addMeasurementForm" (ngSubmit)="onCreateMeasurement()">         
-              <input type="text"  placeholder="Glucose level" formControlName="glucose_level">
-              <div *ngIf="addMeasurementForm.get('glucose_level').invalid && addMeasurementForm.get('glucose_level').dirty" class="text-danger">
-                Glucose level is required.
-              </div>
-           
-              <input type="text"  placeholder="Carb intake" formControlName="carb_intake">
-              <div *ngIf="addMeasurementForm.get('carb_intake').invalid && addMeasurementForm.get('carb_intake').dirty" class="text-danger">
-                Carbs are required.
-              </div>        
+        <h3 class="text-center">Log entry</h3>
+        <form
+          [formGroup]="addMeasurementForm"
+          (ngSubmit)="onCreateMeasurement()"
+        >
+          <input
+            type="text"
+            placeholder="Glucose level"
+            formControlName="glucose_level"
+          />
+          <div
+            *ngIf="
+              addMeasurementForm.get('glucose_level').invalid &&
+              addMeasurementForm.get('glucose_level').dirty
+            "
+            class="text-danger"
+          >
+            Glucose level is required.
+          </div>
 
-            <div class="mt-4">
-              <button [disabled]="!addMeasurementForm.valid" class="btn btn-primary" >Log Entry</button>
-            </div>
-          </form>
+          <input
+            type="text"
+            placeholder="Carb intake"
+            formControlName="carb_intake"
+          />
+          <div
+            *ngIf="
+              addMeasurementForm.get('carb_intake').invalid &&
+              addMeasurementForm.get('carb_intake').dirty
+            "
+            class="text-danger"
+          >
+            Carbs are required.
+          </div>
+
+          <div class="mt-4">
+            <button
+              [disabled]="!addMeasurementForm.valid"
+              class="btn btn-primary"
+            >
+              Log Entry
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
