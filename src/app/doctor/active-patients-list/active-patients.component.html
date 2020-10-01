@@ -1,27 +1,38 @@
-<div *ngFor="let user of users; let i=index">
-  <div class="pad-20">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-        <p class="card-text">{{ user.email }}</p>
-        <div class="card-text">
-          address:{{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="row">
+    <div *ngFor="let user of users; let i=index">
+      <div class="col-md-4">
+        <div class="mar-20">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+              <p class="card-text">{{ user.email }}</p>
+              <div class="card-text">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                : {{ user.address }}, {{ user.city }}, {{ user.zipCode }}
+              </div>
+              <div class="card-text">
+                <i class="fa fa-phone" aria-hidden="true"></i>: {{ user.phoneNumber }}
+              </div>
+              <div class="row">
+                <div class="col-md-6">Role: {{ user.userRole }}</div><div class="col-md-6">Has doctor: {{user.hasActiveDoctor}}</div> 
+              </div>
+              <div class="text-center">
+                <button class="btn btn-outline-dark patient-card-btn"  type="button" [routerLink]="[user.email]" >
+                  See Patient's details
+                </button>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              Registed at:
+              <cite title="Source Title">{{ user.createdDate | date }}</cite>
+            </div>
+          </div>
         </div>
-        <div class="card-text">{{ user.phoneNumber }}</div>
-        <div>{{ user.userRole }} Has doctor: {{user.hasActiveDoctor}}</div>
-        <div class="patient-btn pad-top-20">
-          <button class="btn btn-outline-dark patient-btn" type="button" [routerLink]="[user.email]" >
-            See Patient's details
-          </button>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        Registed at:
-        <cite title="Source Title">{{ user.createdDate | date }}</cite>
       </div>
     </div>
   </div>
 </div>
-  
 <router-outlet></router-outlet>
 
