@@ -1,3 +1,16 @@
+.min-wid-100{
+    min-width: 100%;
+}
+
+.card{
+    width: 20rem;
+    height: 320px;
+}
+
+.pad-15{
+padding-top: 15px;
+}
+
 .wrapper{
     height: 100%;
     width: 100%; 
@@ -6,7 +19,7 @@
 .sidebar{
     height: 100%;
     width: 200px;
-    background-color: cornflowerblue;
+    background-color:white;
 }
 
 .brand{
@@ -67,6 +80,7 @@ li a {
 li:hover{
     background-color: teal;
     border-left: solid 5px yellowgreen;
+    text-decoration: none;
 }
 
 .main-body{
@@ -112,13 +126,3 @@ li:hover{
 .pad-bot-50{
     padding-bottom: 50px;
 }
-
-.card{
-    width: 20rem;
-    height: 300px;
-}
-
-.mar-20{
-    margin: 20px;
-}
-
