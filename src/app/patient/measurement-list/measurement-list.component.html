@@ -96,9 +96,7 @@
             <tr
               *ngFor="
                 let measurement of measurements
-                  | slice
-                    : (page - 1) * pageSize
-                    : (page - 1) * pageSize + pageSize;
+                  
                 let i = index
               "
             >
