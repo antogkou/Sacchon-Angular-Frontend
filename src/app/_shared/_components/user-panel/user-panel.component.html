@@ -63,12 +63,19 @@
       <input formControlName="address" type="text" class="form-control" id="address" />
     </div>
     <div class="form-group col-md-2">
-      <label for="zipCode">Zip</label>
+      <label for="zipCode">Zip Code</label>
       <input formControlName="zipCode" type="text" class="form-control" id="zipCode" />
     </div>
   </div>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary col-xs-6 text-right">Update</button>
+    </div>
+    <div class="col-md-6">
+      <button (click)="disableAccount()" type="submit" class="btn btn-danger col-xs-6 text-left">Disable Account</button>  
+    </div>
+</div>
 
-  <button type="submit" class="btn btn-primary">Update</button>
-  
+</div>
 </form>
-<button (click)="disableAccount()" type="submit" class="btn btn-danger">Disable Account</button>

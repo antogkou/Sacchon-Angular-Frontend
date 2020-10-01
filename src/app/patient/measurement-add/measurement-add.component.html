@@ -5,17 +5,18 @@
           <h3 class="text-center">Log entry</h3>
           <form [formGroup]="addMeasurementForm" (ngSubmit)="onCreateMeasurement()">
           
-              <input type="text" matInput placeholder="Glucose level" formControlName="glucose_level">
-        
+              <input type="text"  placeholder="Glucose level" formControlName="glucose_level">
+              <div *ngIf="addMeasurementForm.get('glucose_level').invalid && addMeasurementForm.get('glucose_level').dirty" class="text-danger">
+                Glucose level is required.
+              </div>
            
-              <input type="text" matInput placeholder="Carb intake" formControlName="carb_intake">
-          
-           
+              <input type="text"  placeholder="Carb intake" formControlName="carb_intake">
+              <div *ngIf="addMeasurementForm.get('carb_intake').invalid && addMeasurementForm.get('carb_intake').dirty" class="text-danger">
+                Carbs are required.
+              </div>        
 
             <div class="mt-4">
-              <button mat-raised-button color="primary" >Log Entry</button>
-              <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
-              <!-- <a [routerLink]="['/home']" class="ml-2" mat-button color="primary">Cancel</a> -->
+              <button [disabled]="!addMeasurementForm.valid" class="btn btn-primary" >Log Entry</button>
             </div>
           </form>
       </div>
