@@ -69,19 +69,9 @@ export class UserService {
   }
 
   /** DELETE user  */
-  // disableUser(email: string): Observable<User> {
-  //   const url = `${this.baseUrl}delete`;
-  //   return this.http.delete<User>(url, {
-  //     headers: new HttpHeaders({
-  //       Authorization: 'Basic ' + localStorage.getItem('account'),
-  //     }),
-  //   });
-  // }
-
-  /** DELETE user  */
   disableUser(email: string): Observable<User> {
     const url = `${this.baseUrl}delete`;
-    console.log('service: ' + email)
+    console.log('service: ' + email);
     return this.http
       .put<User>(url, email, {
         headers: new HttpHeaders({
@@ -93,8 +83,6 @@ export class UserService {
         catchError(this.handleError<User>(`disableUser from admin panel`))
       );
   }
-
-
 
   /** POST login users */
   login(email, password) {
@@ -112,7 +100,8 @@ export class UserService {
           );
           this.currentUserRole = data.userRole;
           console.log(this.currentUserRole);
-        }), catchError(this.handleError<User[]>(`login failed`))
+        }),
+        catchError(this.handleError<User[]>(`login failed`))
       );
   }
 
@@ -239,7 +228,7 @@ export class UserService {
         this.route.navigate(['/404']);
       } else if (error.error.code == 500) {
         this.route.navigate(['/500']);
-      }else if (error.error.code == 401) {
+      } else if (error.error.code == 401) {
         this.route.navigate(['/401']);
       }
 
