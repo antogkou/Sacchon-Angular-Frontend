@@ -1,3 +1,7 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <button type="button" class="btn btn-info" (click)="showInactiveFunction()">
   Show Active/Inactive Doctors
 </button>
@@ -48,7 +52,7 @@
 </div>
 
 <div
-  *ngIf="userService.currentUserRole == 'doctor'"
+  *ngIf="userService.currentUserRole == 'admin'"
   class="container-fluid pad-15"
 >
   <div *ngIf="doctorList" class="row">
@@ -62,16 +66,18 @@
               </h5>
               <hr />
               <div class="min-wid-100">
-                <p class="card-text">Email: {{ user.email }}</p>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                : {{ user.email }}
                 <div class="card-text">
-                  address:{{ user.address }}, {{ user.city }},
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                 : {{ user.address }}, {{ user.city }},
                   {{ user.zipCode }}
                 </div>
-                <div class="card-text">Tel: {{ user.phoneNumber }}</div>
-                <div>Has doctor: {{ user.hasActiveDoctor }}</div>
+                <i class="fa fa-phone" aria-hidden="true"></i> :  
+                {{ user.phoneNumber }}
               </div>
               <div class="text-center">
-                <button class="btn" type="button" [routerLink]="[user.email]">
+                <button class="btn btn-dark" type="button" [routerLink]="[user.email]">
                   See Patient's details
                 </button>
               </div>

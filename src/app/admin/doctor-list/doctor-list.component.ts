@@ -33,7 +33,7 @@ export class DoctorListComponent implements OnInit {
   getAllUsers(): void {
     this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
-      console.log(this.users);
+      console.log('all users: ' + this.users);
     });
   }
 

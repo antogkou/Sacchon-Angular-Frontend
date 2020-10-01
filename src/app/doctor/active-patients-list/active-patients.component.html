@@ -7,7 +7,8 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-              <p class="card-text">{{ user.email }}</p>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              :{{ user.email }}
               <div class="card-text">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 : {{ user.address }}, {{ user.city }}, {{ user.zipCode }}
