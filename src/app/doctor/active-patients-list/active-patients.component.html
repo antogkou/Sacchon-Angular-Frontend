@@ -1,27 +1,34 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <div class="container">
   <div class="row">
-    <div *ngFor="let user of users; let i=index">
+    <div *ngFor="let user of users; let i = index">
       <div class="col-md-4">
         <div class="mar-20">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+              <h5 class="card-title">
+                {{ user.firstName }} {{ user.lastName }}
+              </h5>
               <i class="fa fa-envelope" aria-hidden="true"></i>
-              :{{ user.email }}
+              : {{ user.email }}
               <div class="card-text">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 : {{ user.address }}, {{ user.city }}, {{ user.zipCode }}
               </div>
               <div class="card-text">
-                <i class="fa fa-phone" aria-hidden="true"></i>: {{ user.phoneNumber }}
-              </div>
-              <div class="row">
-                <div class="col-md-6">Role: {{ user.userRole }}</div><div class="col-md-6">Has doctor: {{user.hasActiveDoctor}}</div> 
+                <i class="fa fa-phone" aria-hidden="true"></i>:
+                {{ user.phoneNumber }}
               </div>
               <div class="text-center">
-                <button class="btn btn-outline-dark patient-card-btn"  type="button" [routerLink]="[user.email]" >
-                  See Patient's details
+                <button
+                  class="btn btn-outline-dark patient-card-btn"
+                  type="button"
+                  [routerLink]="[user.email]"
+                >
+                  Patient's details
                 </button>
               </div>
             </div>
@@ -36,4 +43,3 @@
   </div>
 </div>
 <router-outlet></router-outlet>
-

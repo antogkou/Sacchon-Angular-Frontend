@@ -1,167 +1,130 @@
-/* The side navigation menu */
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-  }
-  
-  /* Sidebar links */
-  .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-  }
-  
-  /* Active/current link */
-  .sidebar a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  /* Links on mouse-over */
-  .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-  
-  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-  
-  /* On screens that are less than 700px wide, make the sidebar into a topbar */
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
-  }
+.min-wid-100{
+  min-width: 100%;
+}
 
-  .wrapper{
-    height: 100%;
-    width: 100%; 
+.card{
+  width: 20rem;
+  height: 320px;
+}
+
+.pad-15{
+padding-top: 15px;
+}
+
+.wrapper{
+  height: 100%;
+  width: 100%; 
 }
 
 .sidebar{
-    height: 100%;
-    width: 200px;
-    background-color: cornflowerblue;
+  height: 100%;
+  width: 200px;
+  background-color:white;
 }
 
 .brand{
-    position: relative;
-    background-color: #f1f1f1;;
+  position: relative;
+  background-color: hsl(226, 9%, 28%);
 }
 
 .main-menu{
-    min-width: 100%;
-    padding: 0;
+  min-width: 100%;
+  padding: 0;
 }
 
 #sidebar-div {
-    position: sticky;;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 300;
-    width: 200px;
-    float: left;
-    background-color: #adadad;
-    border-right: 1px solid teal;
+  position: sticky;;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 300;
+  width: 200px;
+  float: left;
+  background-color: #2e313d;
+  border-right: 1px solid #202125;
 
-    text-align: center;
-    overflow-x: hidden;
+  text-align: center;
+  overflow-x: hidden;
 }
 
 
 .nav-bar-container {
-    height: 100%;
+  height: 100%;
 }
 
 .menu-button{
-    height: 60px;
-    width: 200px;
+  height: 60px;
+  width: 200px;
 }
 
 li{
-    list-style-type:none;
+  list-style-type:none;
 }
 
 ol li {
-    border-bottom: 1px solid teal;
-    text-align: left;
-    margin: 10px;
+  border-bottom: 1px solid #202125;
+  text-align: left;
+  margin: 10px;
 }
 
 li a {
-    font-size: 25px;
-    display: block;
-    line-height: 50px;
-    padding-right: 25px;
-    position: relative;
-    color: white;
-    text-decoration: none;
+  font-size: 25px;
+  display: block;
+  line-height: 50px;
+  padding-right: 25px;
+  position: relative;
+  color: white;
+  text-decoration: none;
 }
 
 li:hover{
-    background-color: teal;
-    border-left: solid 5px yellowgreen;
+  background-color: teal;
+  border-left: solid 5px yellowgreen;
+  text-decoration: none;
 }
 
+li:hover a{
+  color: white;
+  }
+
 .main-body{
-    left: 200px;
-    position: absolute;
-    min-width: 80%;
-    padding: 50px;
+  left: 200px;
+  position: absolute;
+  min-width: 80%;
+  padding: 50px;
 }
 
 .dashboard-div{
-    position: relative;
-    margin-left: 50px;
+  position: relative;
+  margin-left: 50px;
 }
 
 .dashboard-title{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
 }
 
 .dashboard-second-title{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    opacity: 0.4;
-    padding-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  opacity: 0.4;
+  padding-left: 5px;
 }
 
 .pad-bot-50{
@@ -182,4 +145,5 @@ li:hover{
 
 .doctoras{
   margin-left: 325px;
+  padding-bottom: 50px;
 }

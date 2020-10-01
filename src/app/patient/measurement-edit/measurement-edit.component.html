@@ -1,23 +1,57 @@
+<ngb-alert *ngIf="successMessage" type="warning" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
 <div class="d-flex align-items-center h-100">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-5">
-          <h3 class="text-center">Log entry</h3>
+        <h3 class="text-center">Edit your measurement</h3>
+        <div class="col-md-8 order-md-1">
           <form [formGroup]="editMeasurementForm" (ngSubmit)="onFormSubmit()">
-          
-              <input type="text" matInput placeholder="Glucose level" formControlName="glucose_level">
-        
-           
-              <input type="text" matInput placeholder="Carb intake" formControlName="carb_intake">
-          
-           
-
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="glucose_level">Glucose level</label>
+                <input
+                  id="glucose_level"
+                  type="number"
+                  placeholder="Glucose level"
+                  formControlName="glucose_level"
+                />
+                <div
+                  *ngIf="
+                    editMeasurementForm.get('glucose_level').invalid &&
+                    editMeasurementForm.get('glucose_level').dirty
+                  "
+                  class="text-danger"
+                >
+                  Glucose level is required.
+                </div>
+                <label for="carb_intake">Carb Intake</label>
+                <input
+                  id="carb_intake"
+                  type="number"
+                  placeholder="Carb intake"
+                  formControlName="carb_intake"
+                />
+                <div
+                  *ngIf="
+                    editMeasurementForm.get('carb_intake').invalid &&
+                    editMeasurementForm.get('carb_intake').dirty
+                  "
+                  class="text-danger"
+                >
+                  Carbs are required.
+                </div>
+              </div>
+            </div>
             <div class="mt-4">
-              <button mat-raised-button color="primary" >Log Entry</button>
-              <!-- <a (click)="onRegister()" class="ml-2" mat-button color="primary">Cancel</a> -->
-              <!-- <a [routerLink]="['/home']" class="ml-2" mat-button color="primary">Cancel</a> -->
+              <button
+                [disabled]="!editMeasurementForm.valid"
+                class="btn btn-primary"
+              >
+                Update
+              </button>
             </div>
           </form>
+        </div>
       </div>
     </div>
   </div>
