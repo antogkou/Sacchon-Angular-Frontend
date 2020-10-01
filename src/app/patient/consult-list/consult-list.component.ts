@@ -15,7 +15,6 @@ export class ConsultListComponent implements OnInit {
   pageSize = 5;
   consults: Consult[];
   private _success = new Subject<string>();
-  private _consultsub$ = new Subject<string>();
   staticAlertClosed = false;
   successMessage = '';
 

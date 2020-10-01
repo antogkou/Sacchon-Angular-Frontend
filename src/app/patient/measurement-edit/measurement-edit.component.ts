@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Measurement } from 'src/app/_shared/_models/measurement';
 import { MeasurementService } from '../../_shared/_services/measurement.service';
 
@@ -17,21 +19,45 @@ export class MeasurementEditComponent implements OnInit {
   glucose_level = '';
   carb_intake = '';
   isLoadingResults = false;
+  staticAlertClosed = false;
+  successMessage = '';
+  private _success = new Subject<string>();
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private measurementService: MeasurementService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    this.toastMessage();
     this.getMeasuermentsById(this.route.snapshot.params.id);
     this.editMeasurementForm = this.formBuilder.group({
       glucose_level : [null, Validators.required],
       carb_intake : [null, Validators.required],
     });
 
+  }
+
+  ngOnDestroy(): void {
+    this._success.unsubscribe();
+    console.log('ngOnDestroy called')
+  }
+
+  toastMessage() {
+    this._success.subscribe((message) => (this.successMessage = message));
+    this._success
+      .pipe(debounceTime(5000))
+      .subscribe(() => (this.successMessage = ''));
+
+    this.changeSuccessMessage();
+  }
+
+  public changeSuccessMessage() {
+    this._success.next(
+      `Please be careful when editing your measurement.`
+    );
   }
 
   getMeasuermentsById(id: any) {
@@ -62,14 +88,4 @@ export class MeasurementEditComponent implements OnInit {
   measurementDetails() {
     this.router.navigate(['/patient/measurements', this.measurement_id]);
   }
-
-  // getMeasurementDetails(measurement_id: number) {
-  //   this.measurementService
-  //     .getMeasurementById(measurement_id)
-  //     .subscribe((data: any) => {
-  //       this.measurements = data;
-  //       console.log(this.measurement_id);
-  //     });
-  // }
-
 }
