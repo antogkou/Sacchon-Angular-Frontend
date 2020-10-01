@@ -41,15 +41,13 @@ import { DoctorDetailComponent } from './admin/doctor-detail/doctor-detail.compo
 import { AdminModule } from './admin/admin.module';
 import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
 import { UserPanelComponent } from './_shared/_components/user-panel/user-panel.component';
-
+import { PageNotFoundComponent } from './_shared/_components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  
-  // { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
+  { path: '404', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 
   {
     path: 'patient',
@@ -68,16 +66,25 @@ const routes: Routes = [
     children: [
       // { path: '', component: DoctorComponent },
       // { path: 'my-patients', component: DoctorComponent },
-      { path: 'patients-without-doctor', component: ActivePatientsComponent},
-      { path: 'my-patients', component : MyPatientsListComponent},
+      { path: 'patients-without-doctor', component: ActivePatientsComponent },
+      { path: 'my-patients', component: MyPatientsListComponent },
       { path: 'consults', component: ConsultHistoryListComponent },
       { path: 'consults/create', component: ConsultAddComponent },
       { path: 'consults/:id', component: ConsultListComponent },
       { path: 'consults/:id/edit', component: ConsultListComponent },
-      { path: 'patients-without-doctor/:email', component: PatientsDetailComponent },
+      {
+        path: 'patients-without-doctor/:email',
+        component: PatientsDetailComponent,
+      },
       { path: 'my-patients/:email', component: PatientsDetailComponent },
-      { path: 'my-patients/consult/:email', component: PatientConsultListComponent },
-      { path: 'my-patients/consult/:email/:id', component: ConsultEditComponent},
+      {
+        path: 'my-patients/consult/:email',
+        component: PatientConsultListComponent,
+      },
+      {
+        path: 'my-patients/consult/:email/:id',
+        component: ConsultEditComponent,
+      },
       { path: 'user-panel', component: UserPanelComponent },
     ],
   },
@@ -87,15 +94,17 @@ const routes: Routes = [
     children: [
       // { path: '', component: DoctorComponent },
       { path: 'patient-list', component: PatientListComponent },
-      { path: 'patient-list/:email', component: PatientDetailComponent},
+      { path: 'patient-list/:email', component: PatientDetailComponent },
       { path: 'doctor-list', component: DoctorListComponent },
-      { path: 'doctor-list/:email', component: DoctorDetailComponent},
+      { path: 'doctor-list/:email', component: DoctorDetailComponent },
       { path: 'doctor-data', component: ConsultListComponent },
       { path: 'patients-without-doctor', component: ConsultListComponent },
       { path: 'consults', component: ConsultListComponent },
       { path: 'user-panel', component: UserPanelComponent },
     ],
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
@@ -107,8 +116,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ConsultHistoryListComponent,
-    UserPanelComponent
-
+    UserPanelComponent,
   ],
   imports: [
     CommonModule,

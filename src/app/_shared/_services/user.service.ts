@@ -214,6 +214,7 @@ export class UserService {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
+      //this.route.navigate(error.error.code)
 
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
