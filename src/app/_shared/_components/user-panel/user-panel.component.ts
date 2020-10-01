@@ -83,7 +83,7 @@ export class UserPanelComponent implements OnInit {
 
   disableAccount(): void {
     console.log(this.email);
-    this.userService.disableUser(this.email).subscribe((a) => {
+    this.userService.disableUser(this.data.email.value).subscribe((a) => {
       this.router.navigate(['/home']);
     });
   }

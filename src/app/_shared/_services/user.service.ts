@@ -69,14 +69,32 @@ export class UserService {
   }
 
   /** DELETE user  */
+  // disableUser(email: string): Observable<User> {
+  //   const url = `${this.baseUrl}delete`;
+  //   return this.http.delete<User>(url, {
+  //     headers: new HttpHeaders({
+  //       Authorization: 'Basic ' + localStorage.getItem('account'),
+  //     }),
+  //   });
+  // }
+
+  /** DELETE user  */
   disableUser(email: string): Observable<User> {
     const url = `${this.baseUrl}delete`;
-    return this.http.delete<User>(url, {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    });
+    console.log('service: ' + email)
+    return this.http
+      .put<User>(url, email, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
+      .pipe(
+        tap((_) => console.log(`disabled user with email=${email}`)),
+        catchError(this.handleError<User>(`disableUser from admin panel`))
+      );
   }
+
+
 
   /** POST login users */
   login(email, password) {

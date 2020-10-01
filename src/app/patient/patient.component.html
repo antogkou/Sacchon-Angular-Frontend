@@ -8,10 +8,10 @@
         />
       </div>
       <ol class="main-menu text-left">
-        <li><a routerLink="measurements">My Measurements</a></li>
-        <li><a routerLink="measurements/create">New measurement entry</a></li>
-        <li><a routerLink="consult">My Consults</a></li>
-        <li><a routerLink="user-panel">User Panel</a></li>
+        <li><a (click)="disableMyText()" routerLink="measurements">My Measurements</a></li>
+        <li><a (click)="disableMyText()" routerLink="measurements/create">New measurement entry</a></li>
+        <li><a (click)="disableMyText()" routerLink="consult">My Consults</a></li>
+        <li><a (click)="disableMyText()" routerLink="user-panel">User Panel</a></li>
       </ol>
     </div>
   </div>
@@ -22,7 +22,36 @@
           <span class="dashboard-title">Dashboard</span>
           <span class="dashboard-second-title">{{userService.currentUserRole | titlecase}}</span>
         </div>
+
+        <div *ngIf ="mytext" >
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Pfizer Words
+          </h5>
+          <hr />
+          <div class="min-wid-100">
+          <div class="text-center">
+
+            Diabetes mellitus affects over 29 million Americans with about 8 million people who go undiagnosed.
+            <br>It is a condition in which there is too much glucose (also called high blood sugar) in the blood.
+            <br> Normally, an organ called the pancreas releases insulin, which picks up glucose in the bloodstream 
+            <br>and takes it around your body where it is then used as energy. Diabetes occurs when the pancreas
+            <br> does not produce enough insulin, or when the body does not respond to insulin (“insulin-resistant”).
+            <br>Too much sugar in the blood can lead to health problems.
+          </div>
+        </div>
+        <img class="doctoras" src="../assets/images/patient.jpg" width="500px" height="auto">
+       
+        <p class="paragraph">
+          You may click on My Measurements to see a list of your measurement log
+          <br>You may click on New Measurement Entry to log a measurement
+          <br>You may on My Consults to see the consults provided to you by proffessional doctors
+          <br>You may click User Panel to see your Credentials and update them
+        </p>
       </div>
+
+    </div>
+    
     </div>
     <div class="wrapper">
       <router-outlet></router-outlet>
