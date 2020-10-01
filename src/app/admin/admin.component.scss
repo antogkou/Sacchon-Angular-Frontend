@@ -10,3 +10,118 @@
 .pad-15{
 padding-top: 15px;
 }
+
+.wrapper{
+    height: 100%;
+    width: 100%; 
+}
+
+.sidebar{
+    height: 100%;
+    width: 200px;
+    background-color:white;
+}
+
+.brand{
+    position: relative;
+    background-color: hsl(226, 9%, 28%);
+}
+
+.main-menu{
+    min-width: 100%;
+    padding: 0;
+}
+
+#sidebar-div {
+    position: sticky;;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 300;
+    width: 200px;
+    float: left;
+    background-color: #2e313d;
+    border-right: 1px solid #202125;
+
+    text-align: center;
+    overflow-x: hidden;
+}
+
+
+.nav-bar-container {
+    height: 100%;
+}
+
+.menu-button{
+    height: 60px;
+    width: 200px;
+}
+
+li{
+    list-style-type:none;
+}
+
+ol li {
+    border-bottom: 1px solid #202125;
+    text-align: left;
+    margin: 10px;
+}
+
+li a {
+    font-size: 25px;
+    display: block;
+    line-height: 50px;
+    padding-right: 25px;
+    position: relative;
+    color: white;
+    text-decoration: none;
+}
+
+li:hover{
+    background-color: teal;
+    border-left: solid 5px yellowgreen;
+}
+
+.main-body{
+    left: 200px;
+    position: absolute;
+    min-width: 80%;
+    padding: 50px;
+}
+
+.dashboard-div{
+    position: relative;
+    margin-left: 50px;
+}
+
+.dashboard-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
+.dashboard-second-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    opacity: 0.4;
+    padding-left: 5px;
+}
+
+.pad-bot-50{
+    padding-bottom: 50px;
+}
