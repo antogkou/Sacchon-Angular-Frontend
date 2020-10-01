@@ -4,5 +4,5 @@ export interface Consult {
   medication: number;
   dosage: number;
   patient_email: string;
-  consult_created_date: Date;
+  consult_date: Date;
 }

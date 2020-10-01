@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   public currentUserRole: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   readonly baseUrl = 'http://localhost:9000/v1/team6/sacchon/';
   httpOptions = {
@@ -24,46 +25,47 @@ export class UserService {
       Authorization: 'Basic ' + localStorage.getItem('account'),
     }),
     body: {
-      email: ''
+      email: '',
     },
   };
 
   /** GET all users without doctor */
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(
-      this.baseUrl + 'users-without-doctor',
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Basic ' + localStorage.getItem('account'),
-        }),
-      }
-    );
+    return this.http.get<User[]>(this.baseUrl + 'users-without-doctor', {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + localStorage.getItem('account'),
+      }),
+    });
   }
 
   /** GET current user information */
   getCurrentUserInfo(): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
-    return this.http.get<User[]>(url, {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    }).pipe(
-      tap((_) => console.log(`fetched current user information`)), 
-      catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
-    );
+    return this.http
+      .get<User[]>(url, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
+      .pipe(
+        tap((_) => console.log(`fetched current user information`)),
+        catchError(this.handleError<User[]>(`getCurrentUserInfo failed`))
+      );
   }
 
   /** GET current user information */
   updateCurrentUserInfo(user: User): Observable<User[]> {
     const url = `${this.baseUrl}user-panel`;
-    return this.http.put<User[]>(url, user, {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    }).pipe(
-      tap((_) => console.log(`updated current user information`)),
-      catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
-    );
+    return this.http
+      .put<User[]>(url, user, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
+      .pipe(
+        tap((_) => console.log(`updated current user information`)),
+        catchError(this.handleError<User[]>(`updateCurrentUserInfo failed`))
+      );
   }
 
   /** DELETE user  */
@@ -92,7 +94,7 @@ export class UserService {
           );
           this.currentUserRole = data.userRole;
           console.log(this.currentUserRole);
-        })
+        }), catchError(this.handleError<User[]>(`login failed`))
       );
   }
 
@@ -125,27 +127,31 @@ export class UserService {
   /** GET specific doctor's patients */
   getDoctorPatients(): Observable<User[]> {
     const url = `${this.baseUrl}my-patients`;
-    return this.http.get<User[]>(url, {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    }).pipe(
-      tap((_) => console.log(`fetched my patients`)),
-      catchError(this.handleError<User[]>(`getDoctorPatients failed`))
-    );
+    return this.http
+      .get<User[]>(url, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
+      .pipe(
+        tap((_) => console.log(`fetched my patients`)),
+        catchError(this.handleError<User[]>(`getDoctorPatients failed`))
+      );
   }
 
   /** GET users without doctor by id */
   getUsersById(id: string): Observable<User> {
     const url = `${this.baseUrl}users-without-doctor/${id}`;
-    return this.http.get<User>(url, {
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    }).pipe(
-      tap((_) => console.log(`fetched user id=${id}`)),
-      catchError(this.handleError<User>(`getUsersById id=${id}`))
-    );
+    return this.http
+      .get<User>(url, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
+      .pipe(
+        tap((_) => console.log(`fetched user id=${id}`)),
+        catchError(this.handleError<User>(`getUsersById id=${id}`))
+      );
   }
 
   /** GET all users */
@@ -190,14 +196,11 @@ export class UserService {
   /** GET a patient's data by using email */
   getPatientData(email: string): Observable<User> {
     return this.http
-      .get<User>(
-        `${this.baseUrl}admin-panel?patient&email=${email}`,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Basic ' + localStorage.getItem('account'),
-          }),
-        }
-      )
+      .get<User>(`${this.baseUrl}admin-panel?patient&email=${email}`, {
+        headers: new HttpHeaders({
+          Authorization: 'Basic ' + localStorage.getItem('account'),
+        }),
+      })
       .pipe(
         tap((_) => console.log(`fetched patient with data email=${email}`)),
         catchError(this.handleError<User>(`getPatient from admin panel`))
@@ -214,6 +217,13 @@ export class UserService {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
+      if (error.error.code == 404) {
+        this.route.navigate(['/404']);
+      } else if (error.error.code == 500) {
+        this.route.navigate(['/500']);
+      }else if (error.error.code == 401) {
+        this.route.navigate(['/401']);
+      }
 
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);

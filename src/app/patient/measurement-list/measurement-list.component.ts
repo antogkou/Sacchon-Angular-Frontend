@@ -97,7 +97,7 @@ export class MeasurementListComponent implements OnInit {
       'end= ' + this.dateForm.get('endDate').value
     );
     this.measurementService
-      .getMeasurementsByDate2(
+      .getMeasurementsByDate(
         this.dateForm.get('startDate').value,
         this.dateForm.get('endDate').value
       )

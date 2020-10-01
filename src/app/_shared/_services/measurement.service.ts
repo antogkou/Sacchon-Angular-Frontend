@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Measurement } from '../_models/measurement';
@@ -14,7 +15,7 @@ export class MeasurementService {
       Authorization: 'Basic ' + localStorage.getItem('account'),
     }),
   };
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   /** GET all measurements from the server */
   getMeasurements(): Observable<Measurement[]> {
@@ -67,14 +68,17 @@ export class MeasurementService {
   }
 
    /** GET measurements by date */
-   getMeasurementsByDate2(startDate: Date, endDate: Date): Observable<Measurement[]> {
-    const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
-    return this.http.get<Measurement[]>(url,{
-      headers: new HttpHeaders({
-        Authorization: 'Basic ' + localStorage.getItem('account'),
-      }),
-    })
-  }
+  //  getMeasurementsByDate(startDate: Date, endDate: Date): Observable<Measurement[]> {
+  //   const url = `${this.baseUrl}myaccount/avg?from=${startDate}&to=${endDate}`;
+  //   return this.http.get<Measurement[]>(url,{
+  //     headers: new HttpHeaders({
+  //       Authorization: 'Basic ' + localStorage.getItem('account'),
+  //     }),
+  //   }).pipe(
+  //     tap((_ => console.log('fetched current user measurements by date')),
+  //     catchError(this.handleError<Measurement>('getMeasurementsByDate')))
+  //   );
+  // }
 
   /** POST: add a new measurement to the server */
   addMeasurement(values: Measurement): Observable<any> {
@@ -132,6 +136,7 @@ export class MeasurementService {
     );
   }
 
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -142,7 +147,14 @@ export class MeasurementService {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
+      if (error.error.code == 404) {
+       console.error('Backend returned 404');
+       
+      } else if (error.error.code == 500) {
+        console.error('Backend returned 500');
+      }else if (error.error.code == 401) {
+        console.error('Backend returned 401');
+      }
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
 
