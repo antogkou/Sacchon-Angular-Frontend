@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, public userService: UserService) {}
 
   ngOnInit(): void {
-    this.getUserInfo();
+    //this.getUserInfo();
   }
 
   ngOnDestroy(): void {

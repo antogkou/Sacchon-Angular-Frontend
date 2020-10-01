@@ -42,12 +42,16 @@ import { AdminModule } from './admin/admin.module';
 import { ConsultHistoryListComponent } from './doctor/consult-history-list/consult-history-list.component';
 import { UserPanelComponent } from './_shared/_components/user-panel/user-panel.component';
 import { PageNotFoundComponent } from './_shared/_components/page-not-found/page-not-found.component';
+import { InternalServerErrorComponent } from './_shared/_components/internal-server-error/internal-server-error.component';
+import { UnauthorizedClientErrorComponent } from './_shared/_components/unauthorized-client-error/unauthorized-client-error.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: '404', component: PageNotFoundComponent }, // Wildcard route for a 404 page
+  { path: '404', component: PageNotFoundComponent },
+  { path: '500', component: InternalServerErrorComponent },
+  { path: '401', component: UnauthorizedClientErrorComponent },
 
   {
     path: 'patient',
@@ -104,7 +108,7 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' },
+   { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
@@ -117,6 +121,7 @@ const routes: Routes = [
     FooterComponent,
     ConsultHistoryListComponent,
     UserPanelComponent,
+    InternalServerErrorComponent,
   ],
   imports: [
     CommonModule,
