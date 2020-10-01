@@ -36,7 +36,7 @@
       </thead>
 
       <tbody class="table-body">
-        <tr *ngFor="let measurement of measurementsByDate | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize; let i = index">
+        <tr *ngFor="let measurement of measurementsByDate ; let i = index">
           <td>{{ i + 1 }}</td>
 
           <th scope="row">
