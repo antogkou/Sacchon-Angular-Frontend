@@ -10,8 +10,8 @@ import { ConsultService } from 'src/app/_shared/_services/consult.service';
 })
 export class DoctorDetailComponent implements OnInit {
   consults: any[] = [];
-  page = 4;
-  pageSize = 6;
+  page = 1;
+  pageSize = 5;
   constructor(
     public consultService: ConsultService,
     private route: ActivatedRoute

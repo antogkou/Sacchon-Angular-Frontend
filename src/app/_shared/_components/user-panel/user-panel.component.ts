@@ -97,7 +97,9 @@ export class UserPanelComponent implements OnInit {
     this.userService
       .updateCurrentUserInfo(this.userPanelForm.value)
       .subscribe((a) => {
-        this.router.navigate(['/home']);
+        location.href = '#';
+        //TODO
+        //this.router.navigate(['/home']);
       });
   }
 }
