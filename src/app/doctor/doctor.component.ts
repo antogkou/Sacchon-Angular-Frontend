@@ -9,6 +9,8 @@ import { UserService } from '../_shared/_services/user.service';
 })
 export class DoctorComponent implements OnInit {
   users: User[];
+  mytext = true;
+  
   constructor(public userService: UserService) {}
 
   ngOnInit(): void {
@@ -17,4 +19,9 @@ export class DoctorComponent implements OnInit {
       console.log(users);
     });
   }
+
+  disableMyText(){
+    this.mytext = false;
+  }
+
 }
