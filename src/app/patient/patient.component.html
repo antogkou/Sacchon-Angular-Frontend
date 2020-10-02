@@ -3,6 +3,7 @@
     <div class="nav-bar-container">
       <div class="brand">
         <img
+        (click)="enableMyText()"
           src="../../assets/images/Sacchon_200x200.png"
           alt="placeholder_img"
         />
@@ -55,7 +56,7 @@
     
     </div>
     <div class="wrapper">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="outletStatus"></router-outlet>
     </div>
   </div>
 </div>
