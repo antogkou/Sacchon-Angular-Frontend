@@ -10,7 +10,7 @@ import { UserService } from '../_shared/_services/user.service';
 export class DoctorComponent implements OnInit {
   users: User[];
   mytext = true;
-  
+  outletStatus = false;
   constructor(public userService: UserService) {}
 
   ngOnInit(): void {
@@ -22,6 +22,12 @@ export class DoctorComponent implements OnInit {
 
   disableMyText(){
     this.mytext = false;
+    this.outletStatus = true;
+  }
+
+  enableMyText(){
+    this.outletStatus = false;
+    this.mytext = true;
   }
 
 }
