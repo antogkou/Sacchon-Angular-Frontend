@@ -7,7 +7,7 @@
   <button type="button" class="btn-info btn-lg btn-block" (click)="switchToDateAvg()">
     Calculate average statistics by date
   </button>
-  <div *ngIf="formDateAvg">
+  <div class="mar-bot-20 mar-top-20" *ngIf="formDateAvg">
     <form [formGroup]="dateForm" (ngSubmit)="getMeasurementsByDate()">
       <input
         formControlName="startDate"
@@ -21,7 +21,7 @@
         name="endDate"
         id="endDate"
       />
-      <input type="submit" />
+      <input class="btn btn-info" style="padding-top: 10px; margin-left: 10px; margin-bottom: 10px;" type="submit"/>
     </form>
 
     <table class="table-striped">
