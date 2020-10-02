@@ -6,6 +6,7 @@ import { User } from 'src/app/_shared/_models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ChartsModule } from 'angular-bootstrap-md';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-measurement-list',
@@ -49,7 +50,8 @@ export class MeasurementListComponent implements OnInit {
 
   constructor(
     private measurementService: MeasurementService,
-    public userService: UserService
+    public userService: UserService,
+    public route: Router
   ) {}
 
   ngOnInit(): void {
@@ -117,7 +119,8 @@ export class MeasurementListComponent implements OnInit {
     this.measurementService.deleteMeasurements(id).subscribe(
       (res) => {
         this.isLoadingResults = false;
-        window.location.reload();
+        // window.location.reload();
+        this.route.navigate(['/patient/measurements/']);
         this.getMeasurements();
       },
       (err) => {
