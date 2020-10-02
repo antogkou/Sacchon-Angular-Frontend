@@ -10,6 +10,7 @@ import { UserService } from '../_shared/_services/user.service';
 })
 export class AdminComponent implements OnInit {
   users: User[];
+  mytext = true;
 
   constructor(public userService: UserService) {}
  
@@ -18,6 +19,10 @@ export class AdminComponent implements OnInit {
       this.users = users;
       console.log(users);
     });
+  }
+
+  disableMyText(){
+    this.mytext = false;
   }
 
 

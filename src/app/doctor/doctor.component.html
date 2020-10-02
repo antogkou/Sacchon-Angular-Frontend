@@ -5,10 +5,10 @@
         <img src="../../assets/images/Sacchon_200x200.png" alt="placeholder_img">
       </div>
       <ol class="main-menu text-left">
-          <li><a routerLink="my-patients">My Patients</a></li>
-          <li><a routerLink="consults">My consults</a></li>
-          <li><a routerLink="patients-without-doctor">Find Patients</a></li>
-          <li><a routerLink="user-panel">User Panel</a></li>
+          <li><a (click)="disableMyText()" routerLink="my-patients">My Patients</a></li>
+          <li><a (click)="disableMyText()" routerLink="consults">My consults</a></li>
+          <li><a (click)="disableMyText()" routerLink="patients-without-doctor">Find Patients</a></li>
+          <li><a (click)="disableMyText()" routerLink="user-panel">User Panel</a></li>
       </ol>
     </div>
   </div>
@@ -18,6 +18,28 @@
         <div>
           <span class="dashboard-title">Dashboard</span>
           <span class="dashboard-second-title">{{userService.currentUserRole | titlecase}}</span>
+
+          <div *ngIf ="mytext" >
+          <div class="card-body text-center">
+            <h5 class="card-title text-center">
+              Famous Words
+            </h5>
+            <hr />
+            <div class="min-wid-100">
+            <div class="text-center">
+              ❝ Medicine cure diseases, but doctors cure patients❞<br>
+              -Carl Jung
+            </div>
+            <img class="doctoras" src="../assets/images/doctormd.jpg" width="500px" height="auto">
+          </div>
+         
+         
+          <p class="paragraph">
+            You may click on My Patients to see a list of patients you are currently consulting
+            <br>You may click on My Consults to see a history of all the consults you gave
+            <br>You may click Find Patients to see a list of patients that seek consultation
+            <br>You may click User Panel to see your Credentials and update them
+          </p>
         </div>
       </div>
     </div>  
