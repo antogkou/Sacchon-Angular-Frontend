@@ -24,9 +24,15 @@
       </tr>
     </tbody>
   </table>
+  <p>Change page:</p>
+<ngb-pagination
+  [(page)]='page'
+  [pageSize]="pageSize"
+  [collectionSize]="consults.length"
+></ngb-pagination>
 </div>
 
-<div>
+<!-- <div>
   <h3>Consults received: </h3>
   <table class="table">
     <thead class="thead-dark">
@@ -41,8 +47,7 @@
     <tbody>
       <tr
         *ngFor="
-          let consult of consults
-            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize;
+          let consult of consults;
           let i = index
         "
       >
@@ -50,8 +55,8 @@
         <td>{{ consult.consultText }}</td>
         <td>{{ consult.dosage }} </td>
         <td>{{ consult.medication }}</td>
-        <td>{{ consult.consult_created_date | date: "dd/MM/yyyy" }}</td>
+        <td>{{ consult.consult_date | date: "dd/MM/yyyy" }}</td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->

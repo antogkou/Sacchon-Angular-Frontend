@@ -32,7 +32,8 @@ export class PatientDetailComponent implements OnInit {
   }
 
   getPatient(email: string): void {
-    this.userService.getPatientData(email).subscribe((response) => {
+    console.log(this.route.snapshot.params.email);
+    this.userService.getPatientData(this.route.snapshot.params.email).subscribe((response) => {
       this.user = response;
       console.log(this.user);
     });
@@ -49,7 +50,7 @@ export class PatientDetailComponent implements OnInit {
 
   getConsultsByPatientEmail(email: string) {
     this.consultService
-      .getConsultByPatientEmail(email)
+      .getConsultByPatientEmail(this.route.snapshot.params.email)
       .subscribe((response: any) => {
         this.consults = response;
         console.log(response);
